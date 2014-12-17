@@ -3,4 +3,8 @@ class Api < ActiveRecord::Base
     key: proc { |record| Tropo.secret + record.id.to_s + record.created_at.to_s },
     marshal: true
   )
+
+  def name
+    self.class.name
+  end
 end

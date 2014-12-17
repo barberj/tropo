@@ -7,7 +7,6 @@ describe Api do
 
   describe '#name' do
     it 'defaults to type' do
-      binding.pry
       expect(insightly.name).to eq('Insightly')
     end
   end

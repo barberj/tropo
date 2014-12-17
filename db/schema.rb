@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(version: 20141217115406) do
 
   create_table "apis", force: true do |t|
     t.string   "type"
-    t.string   "name"
     t.string   "encrypted_data"
     t.datetime "created_at"
     t.datetime "updated_at"
