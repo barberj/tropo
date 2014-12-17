@@ -1,0 +1,2 @@
+class Insightly < Api
+end
