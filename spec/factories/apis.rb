@@ -1,8 +1,6 @@
 FactoryGirl.define do
   factory :api do
-    type ""
-name "MyString"
-name ""
+    type 'Insightly'
+    token 'insightly_token'
   end
-
 end

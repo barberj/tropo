@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Api do
   let(:insightly) do
-    Api.find_by_type('Insightly')
+    Api.find(create(:api).id)
   end
 
   describe '#name' do
