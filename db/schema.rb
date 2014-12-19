@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20141217115406) do
 
   create_table "api_configs", force: true do |t|
     t.string   "api_type"
-    t.string   "encrypted_data"
+    t.string   "encrypted_config_data"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20141217115406) do
   create_table "apis", force: true do |t|
     t.string   "type"
     t.string   "token"
-    t.string   "encrypted_data"
+    t.string   "encrypted_client_data"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
