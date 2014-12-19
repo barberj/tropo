@@ -1,1 +1,4 @@
-ActiveRecord::Base.extend EncryptedData
+class ActiveRecord::Base
+  extend EncryptedData
+  include Encryption
+end
