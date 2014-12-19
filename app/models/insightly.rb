@@ -19,14 +19,18 @@ class Insightly < Api
     )
   end
 
-  def request_new_contacts(created_since: 1.week.ago, limit: 250, page: 1)
+  def search_contacts(email:)
+    request(:get, 'Contacts', :email => email)
+  end
+
+  def new_contacts(created_since: 1.week.ago, limit: 250, page: 1)
     time_stamp = created_since.utc.strftime('%FT%T')
     request_page('Contacts', page, limit,
       '$filter' => "DATE_CREATED_UTC gt DateTime'#{time_stamp}'"
     )
   end
 
-  def request_updated_contacts(updated_since: 1.week.ago, limit: 250, page: 1)
+  def updated_contacts(updated_since: 1.week.ago, limit: 250, page: 1)
     time_stamp = updated_since.utc.strftime('%FT%T')
     request_page('Contacts', page, limit,
       '$filter' => "DATE_UPDATED_UTC gt DateTime'#{time_stamp}'"
