@@ -1,0 +1,12 @@
+HTTP/1.1 200 OK
+Cache-Control: no-cache
+Pragma: no-cache
+Content-Type: application/json; charset=utf-8
+Expires: -1
+Server: Microsoft-IIS/7.5
+Date: Fri, 19 Dec 2014 17:54:31 GMT
+Connection: close
+Content-Length: 273
+Set-Cookie: snaptid=sac1prdc01ut06; path=/
+
+[]

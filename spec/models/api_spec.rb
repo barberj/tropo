@@ -31,4 +31,27 @@ describe Api do
       expect(api.data[:api_key]).to be_nil
     end
   end
+
+  describe '#offset_for_page' do
+    it 'returns offset for page 1' do
+      expect(api.offset_for_page(:page => 1, :limit => 250)).to eq 0
+      expect(api.offset_for_page(:page => 1, :limit => 1)).to eq 0
+      expect(api.offset_for_page(:page => 1, :limit => 2)).to eq 0
+    end
+    it 'returns offset for page 2' do
+      expect(api.offset_for_page(:page => 2, :limit => 250)).to eq 250
+      expect(api.offset_for_page(:page => 2, :limit => 1)).to eq 1
+      expect(api.offset_for_page(:page => 2, :limit => 2)).to eq 2
+    end
+    it 'returns offset for page 3' do
+      expect(api.offset_for_page(:page => 3, :limit => 250)).to eq 500
+      expect(api.offset_for_page(:page => 3, :limit => 1)).to eq 2
+      expect(api.offset_for_page(:page => 3, :limit => 2)).to eq 4
+    end
+    it 'returns offset for page 100' do
+      expect(api.offset_for_page(:page => 100, :limit => 250)).to eq 24750
+      expect(api.offset_for_page(:page => 100, :limit => 1)).to eq 99
+      expect(api.offset_for_page(:page => 100, :limit => 2)).to eq 198
+    end
+  end
 end

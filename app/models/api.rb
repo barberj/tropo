@@ -7,4 +7,7 @@ class Api < ActiveRecord::Base
     self.class.name
   end
 
+  def offset_for_page(page: 1, limit: 250)
+    (page - 1) * limit
+  end
 end

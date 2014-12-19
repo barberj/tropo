@@ -1,0 +1,52 @@
+HTTP/1.1 200 OK
+Cache-Control: no-cache
+Pragma: no-cache
+Content-Type: application/json; charset=utf-8
+Expires: -1
+Server: Microsoft-IIS/7.5
+Date: Fri, 19 Dec 2014 17:16:12 GMT
+Connection: close
+Content-Length: 1459
+Set-Cookie: snaptid=sac1prdc01ut03; path=/
+
+[{"CONTACT_ID": 91978560,
+  "SALUTATION": null,
+  "FIRST_NAME": "Wade",
+  "LAST_NAME": "Foster",
+  "BACKGROUND": null,
+  "IMAGE_URL": 
+   "http://s3.amazonaws.com/insightly.userfiles/357208/M320XW/c0949871-70b7-488e-9cf9-f887b5b4a64e.jpeg",
+  "DEFAULT_LINKED_ORGANISATION": 46052623,
+  "OWNER_USER_ID": 635532,
+  "DATE_CREATED_UTC": "2014-12-16 01:28:20",
+  "DATE_UPDATED_UTC": "2014-12-16 01:28:22",
+  "VISIBLE_TO": "EVERYONE",
+  "VISIBLE_TEAM_ID": null,
+  "VISIBLE_USER_IDS": null,
+  "CUSTOMFIELDS": [],
+  "ADDRESSES": [],
+  "CONTACTINFOS": 
+   [{"CONTACT_INFO_ID": 162094335,
+     "TYPE": "EMAIL",
+     "SUBTYPE": null,
+     "LABEL": "WORK",
+     "DETAIL": "wade@zapier.com"}],
+  "DATES": 
+   [{"DATE_ID": 556503,
+     "OCCASION_NAME": "Interview",
+     "OCCASION_DATE": "2014-12-16 00:00:00",
+     "REPEAT_YEARLY": false,
+     "CREATE_TASK_YEARLY": false}],
+  "TAGS": [],
+  "LINKS": 
+   [{"LINK_ID": 59252389,
+     "CONTACT_ID": 91978560,
+     "OPPORTUNITY_ID": null,
+     "ORGANISATION_ID": 46052623,
+     "PROJECT_ID": null,
+     "SECOND_PROJECT_ID": null,
+     "SECOND_OPPORTUNITY_ID": null,
+     "ROLE": "CEO",
+     "DETAILS": null}],
+  "CONTACTLINKS": [],
+  "EMAILLINKS": null}]

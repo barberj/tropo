@@ -1,0 +1,11 @@
+HTTP/1.1 401 Unauthorized
+Cache-Control: no-cache
+Pragma: no-cache
+Expires: -1
+Server: Microsoft-IIS/7.5
+Date: Fri, 19 Dec 2014 18:29:43 GMT
+Connection: close
+Content-Length: 236
+Set-Cookie: snaptid=sac1prdc01ut03; path=/
+
+""
