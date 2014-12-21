@@ -23,7 +23,7 @@ class Insightly < Api
     request(:get, 'Contacts', :email => email)
   end
 
-  def new_contacts(created_since: 1.week.ago, limit: 250, page: 1)
+  def created_contacts(created_since: 1.week.ago, limit: 250, page: 1)
     time_stamp = created_since.utc.strftime('%FT%T')
     request_page('Contacts', page, limit,
       '$filter' => "DATE_CREATED_UTC gt DateTime'#{time_stamp}'"

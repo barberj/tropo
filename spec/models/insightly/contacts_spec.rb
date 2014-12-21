@@ -50,8 +50,8 @@ describe Insightly do
     end
   end
 
-  describe 'new' do
-    let(:stub_new_contacts) do
+  describe 'created' do
+    let(:stub_created_contacts) do
       stub_request(:get, 'https://letmein:@api.insight.ly/v2.1/Contacts')
         .with(:query => {
           '$filter' => "DATE_CREATED_UTC gt DateTime'2014-12-19T16:16:00'",
@@ -61,30 +61,30 @@ describe Insightly do
     end
 
     it 'returns contacts' do
-      stub_new_contacts
+      stub_created_contacts
         .to_return(File.new("#{mock_base}/a_contact.txt"))
 
-      contacts = api.new_contacts(
+      contacts = api.created_contacts(
         created_since: Time.new(2014, 12, 19, 11, 16, 0, -5*3600)
       )
 
       expect(contacts.first['CONTACT_ID']).to eq 91978560
     end
     it 'returns empty' do
-      stub_new_contacts
+      stub_created_contacts
         .to_return(File.new("#{mock_base}/nothing.txt"))
 
-      contacts = api.new_contacts(
+      contacts = api.created_contacts(
         created_since: Time.new(2014, 12, 19, 11, 16, 0, -5*3600)
       )
 
       expect(contacts).to be_empty
     end
     it 'raises unauthorized' do
-      stub_new_contacts
+      stub_created_contacts
         .to_return(File.new("#{mock_base}/unauthorized.txt"))
 
-      expect{api.new_contacts(
+      expect{api.created_contacts(
         created_since: Time.new(2014, 12, 19, 11, 16, 0, -5*3600)
       )}.to raise_error Exceptions::Unauthorized
     end
