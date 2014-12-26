@@ -1,12 +1,4 @@
-class InsightlyController < ApplicationController
-  def new
-  end
-
-  def signup
-    session['token'] = params['token']
-    redirect_to new_insightly_path
-  end
-
+class InsightlyController < RemoteApiController
   def create
     api = Insightly.create(
       token: session['token'],
