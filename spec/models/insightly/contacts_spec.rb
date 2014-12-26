@@ -10,10 +10,10 @@ describe Insightly do
 
   describe '#request' do
     it 'includes basic authorization' do
-      stub = stub_request(:get, 'https://letmein:@api.insight.ly/v2.1/header_test')
+      stub = stub_request(:get, 'https://letmein:@api.insight.ly/v2.1/basic_auth')
         .to_return(:status => 200, :body => "", :headers => {})
 
-      api.request(:get, 'header_test')
+      api.request(:get, 'basic_auth')
       expect(stub).to have_been_requested
     end
   end
