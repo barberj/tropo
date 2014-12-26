@@ -22,23 +22,23 @@ describe Insightly do
   end
 
   describe '#authorized?' do
+    before do
+      expect(api).to receive(:authorized?).and_call_original
+    end
     let(:stub_get_users) do
       stub_request(:get, 'https://letmein:@api.insight.ly/v2.1/Users')
-    end
-    before do
-      expect_any_instance_of(Api).to receive(:authorized?).and_call_original
     end
     it 'returns true' do
       stub_request(:get, 'https://letmein:@api.insight.ly/v2.1/Users')
         .to_return(File.new("#{mock_base}/a_user.txt"))
 
-      expect(api.authorized?).to be_true
+      expect(api.authorized?).to be_truthy
     end
     it 'returns false' do
       stub_request(:get, 'https://letmein:@api.insight.ly/v2.1/Users')
         .to_return(File.new("#{mock_base}/unauthorized.txt"))
 
-      expect(api.authorized?).to be_false
+      expect(api.authorized?).to be_falsey
     end
   end
 
