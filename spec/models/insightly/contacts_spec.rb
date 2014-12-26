@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 describe Insightly do
+  before do
+    expect_any_instance_of(Api).to receive(:authorized?).and_return(true)
+  end
   let!(:api) do
     id = create(:api, :data => {:api_key => 'letmein'}).id
     Api.find(id)
@@ -15,6 +18,27 @@ describe Insightly do
 
       api.request(:get, 'basic_auth')
       expect(stub).to have_been_requested
+    end
+  end
+
+  describe '#authorized?' do
+    let(:stub_get_users) do
+      stub_request(:get, 'https://letmein:@api.insight.ly/v2.1/Users')
+    end
+    before do
+      expect_any_instance_of(Api).to receive(:authorized?).and_call_original
+    end
+    it 'returns true' do
+      stub_request(:get, 'https://letmein:@api.insight.ly/v2.1/Users')
+        .to_return(File.new("#{mock_base}/a_user.txt"))
+
+      expect(api.authorized?).to be_true
+    end
+    it 'returns false' do
+      stub_request(:get, 'https://letmein:@api.insight.ly/v2.1/Users')
+        .to_return(File.new("#{mock_base}/unauthorized.txt"))
+
+      expect(api.authorized?).to be_false
     end
   end
 

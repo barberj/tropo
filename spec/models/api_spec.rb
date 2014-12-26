@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 describe Api do
+  before do
+    expect_any_instance_of(Api).to receive(:authorized?).and_return(true)
+  end
   let!(:api) do
     id = create(:api, :data => {:api_key => 'letmein'}).id
     Api.find(id)

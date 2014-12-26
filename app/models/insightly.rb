@@ -10,7 +10,7 @@ class Insightly < Api
     rsp
   end
 
-  def authorized?
+  def check_authorization
     request(:get, 'Users')
   end
 

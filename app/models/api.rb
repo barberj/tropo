@@ -11,7 +11,13 @@ class Api < ActiveRecord::Base
     (page - 1) * limit
   end
 
-  def authorized?
+  def check_authorization
     raise NotImplementedError
+  end
+
+  def authorized?
+    check_authorization.present?
+  rescue Exceptions::Unauthorized
+    false
   end
 end
