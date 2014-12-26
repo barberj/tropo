@@ -10,6 +10,10 @@ class Insightly < Api
     rsp
   end
 
+  def authorized?
+    request(:get, 'Users')
+  end
+
   def request_page(resource, page, limit, filter={})
     request(:get, 'Contacts',
       filter.merge(
