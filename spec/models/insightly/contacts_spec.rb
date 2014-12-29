@@ -9,8 +9,6 @@ describe Insightly do
     Api.find(id)
   end
 
-  let(:mock_base) { 'spec/webmocks/insightly' }
-
   describe '#request' do
     it 'includes basic authorization' do
       stub = stub_request(:get, 'https://letmein:@api.insight.ly/v2.1/basic_auth')
