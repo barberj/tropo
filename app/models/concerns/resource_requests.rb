@@ -21,7 +21,7 @@ module ResourceRequests
     reads_one?(resource) || reads_many?(resource)
   end
 
-  def can_search?(resource)
+  def can_request_search?(resource)
     respond_to? :"search_#{resource})"
   end
 
@@ -44,7 +44,7 @@ module ResourceRequests
     end
   end
 
-  def search(resource, params)
+  def requet_search(resource, params)
     send(:"search_#{resource}", params)
   end
 end
