@@ -1,5 +1,7 @@
 class Api < ActiveRecord::Base
   include Requests
+  has_one :api_config, inverse_of: :api
+
   encrypted_data(:client_data)
   validates_with AuthorizationValidator, on: :create
 

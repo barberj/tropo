@@ -1,4 +1,4 @@
-class RemoteApiController < ApplicationController
+class ApiController < ApplicationController
   def new; end
 
   def signup

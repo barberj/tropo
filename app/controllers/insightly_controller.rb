@@ -1,4 +1,4 @@
-class InsightlyController < RemoteApiController
+class InsightlyController < ApiController
   def create
     api = Insightly.create(
       token: session['token'],

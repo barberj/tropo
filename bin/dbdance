@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+require 'pathname'
+
+# path to your application root.
+APP_ROOT = Pathname.new File.expand_path('../../',  __FILE__)
+
+Dir.chdir APP_ROOT do
+  system 'rake db:drop'
+  system 'rake db:create'
+  system 'rake db:migrate'
+  system 'rake db:seed'
+end
