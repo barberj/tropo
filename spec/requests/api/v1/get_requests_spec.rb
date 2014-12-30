@@ -29,6 +29,46 @@ describe 'GetRequest' do
         )
       end
     end
+    context 'when given bad params' do
+      it 'returns bad_request (400)' do
+        rsp = get(
+          api_v1_path('contacts'),
+          { :created_since => Time.new(2014, 12, 29, 0, 0, 0, 0) },
+          'HTTP_AUTHORIZATION' => "Token insightly_token"
+        )
+
+        expect(rsp).to eq 400
+
+        rsp = get(
+          api_v1_path('contacts'),
+          { :updated_since => Time.new(2014, 12, 29, 0, 0, 0, 0) },
+          'HTTP_AUTHORIZATION' => "Token insightly_token"
+        )
+
+        expect(rsp).to eq 400
+      end
+      it 'returns time format message' do
+        get(
+          api_v1_path('contacts'),
+          { :created_since => Time.new(2014, 12, 29, 0, 0, 0, 0) },
+          'HTTP_AUTHORIZATION' => "Token insightly_token"
+        )
+
+        expect(json['message']).to eq(
+          'created_since requires format "YYYY-mm-ddTHH:MM:SS-Z"'
+        )
+
+        get(
+          api_v1_path('contacts'),
+          { :updated_since => Time.new(2014, 12, 29, 0, 0, 0, 0) },
+          'HTTP_AUTHORIZATION' => "Token insightly_token"
+        )
+
+        expect(json['message']).to eq(
+          'created_since requires format "YYYY-mm-ddTHH:MM:SS-Z"'
+        )
+      end
+    end
     context 'when unauthorized' do
       it 'returns unauthorized (401)' do
         expect_any_instance_of(Insightly)
@@ -37,7 +77,7 @@ describe 'GetRequest' do
 
         rsp = get(
           api_v1_path('contacts'),
-          { :created_since => Time.new(2014, 12, 29, 0, 0, 0, 0) },
+          { :created_since => Time.new(2014, 12, 29, 0, 0, 0, 0).strftime('%FT%T%z') },
           'HTTP_AUTHORIZATION' => "Token insightly_token"
         )
         expect(rsp).to eq 401
@@ -50,7 +90,7 @@ describe 'GetRequest' do
 
         get(
           api_v1_path('contacts'),
-          { :created_since => Time.new(2014, 12, 29, 0, 0, 0, 0) },
+          { :created_since => Time.new(2014, 12, 29, 0, 0, 0, 0).strftime('%FT%T%z') },
           'HTTP_AUTHORIZATION' => "Token insightly_token"
         )
 
@@ -66,7 +106,7 @@ describe 'GetRequest' do
 
         get(
           api_v1_path('contacts'),
-          { :created_since => Time.new(2014, 12, 29, 0, 0, 0, 0).strftime('%FT%T') },
+          { :created_since => Time.new(2014, 12, 29, 0, 0, 0, 0).strftime('%FT%T%z') },
           'HTTP_AUTHORIZATION' => "Token insightly_token"
         )
       end
@@ -78,7 +118,7 @@ describe 'GetRequest' do
 
         get(
           api_v1_path('contacts'),
-          { :updated_since => Time.new(2014, 12, 29, 0, 0, 0, 0).strftime('%FT%T') },
+          { :updated_since => Time.new(2014, 12, 29, 0, 0, 0, 0).strftime('%FT%T%z') },
           'HTTP_AUTHORIZATION' => "Token insightly_token"
         )
       end

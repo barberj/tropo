@@ -5,28 +5,36 @@ class Api::V1::GetRequestsController < Api::V1::RequestsController
   UNAUTHORIZED = %q(%{api} is not authorized. Please fix your authorization on %{api} and then retry.)
 
   def index
-    status, results = case
+    status, results = process_request(params)
+    render json: results, status: status
+  end
+
+private
+
+  def process_request(params)
+    case
     when params[:updated_since]
-      attempt_request(:updated, params[:resource], updated_params)
+      attempt_api_request(:updated, params[:resource], updated_params)
     when params[:created_since]
-      attempt_request(:created, params[:resource], created_params)
+      attempt_api_request(:created, params[:resource], created_params)
     when params[:identifiers]
-      attempt_request(:identifiers, params[:resource], identifiers_params)
+      attempt_api_request(:identifiers, params[:resource], identifiers_params)
     when params[:search_by]
-      attempt_request(:search, params[:resource], search_params)
+      attempt_api_request(:search, params[:resource], search_params)
     else
       [
         :bad_request,
         message: MISSING_PARAM
       ]
     end
-
-    render json: results, status: status
+  rescue Exceptions::InvalidTimeFormat => ex
+    [
+      :bad_request,
+      message: ex.message
+    ]
   end
 
-private
-
-  def attempt_request(request_type, resource, params)
+  def attempt_api_request(request_type, resource, params)
     if api.send(:"can_request_#{request_type}?", resource)
       api.send(:"request_#{request_type}", resource, params)
     else
@@ -42,12 +50,24 @@ private
     ]
   end
 
+  def normalize_time(key, values)
+    begin
+      values[key] = Time.strptime(values[key], '%FT%T%z').utc
+    rescue
+      raise Exceptions::InvalidTimeFormat.new(
+        %Q(#{key} requires format "YYYY-mm-ddTHH:MM:SS-Z")
+      )
+    end
+  end
+
   def created_params
     params.permit(
       :created_since,
       :page,
       :limit
-    ).symbolize_keys
+    ).symbolize_keys.tap do |p|
+      normalize_time(:created_since, p)
+    end
   end
 
   def updated_params
@@ -55,14 +75,14 @@ private
       :updated_since,
       :page,
       :limit
-    ).symbolize_keys
+    ).symbolize_keys.tap do |p|
+      normalize_time(:updated_since, p)
+    end
   end
 
   def identifiers_params
     params.permit(
       :identifiers,
-      :page,
-      :limit
     ).symbolize_keys
   end
 
