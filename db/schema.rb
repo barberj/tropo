@@ -16,19 +16,19 @@ ActiveRecord::Schema.define(version: 20141217115406) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "api_configs", force: true do |t|
-    t.string   "api_type"
+  create_table "api_configs", force: :cascade do |t|
     t.string   "encrypted_config_data"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer  "api_id",                null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
-  create_table "apis", force: true do |t|
-    t.string   "type"
-    t.string   "token"
+  create_table "apis", force: :cascade do |t|
+    t.string   "type",                  null: false
+    t.string   "token",                 null: false
     t.string   "encrypted_client_data"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
 end

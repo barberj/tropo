@@ -15,7 +15,5 @@ class CreateApis < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-
-    Insightly.create
   end
 end
