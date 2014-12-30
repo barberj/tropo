@@ -14,10 +14,10 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      get "/:resource"    => 'api#index'
-      post "/:resource"   => 'api#create'
-      put "/:resource"    => 'api#update'
-      delete "/:resource" => 'api#destroy'
+      get "/:resource"    => 'get_requests#index'
+      post "/:resource"   => 'post_requests#create'
+      put "/:resource"    => 'put_requests#update'
+      delete "/:resource" => 'delete_requests#destroy'
     end
   end
   # Example of named route that can be invoked with purchase_url(id: product.id)
