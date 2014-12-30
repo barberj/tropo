@@ -36,7 +36,10 @@ private
 
   def attempt_api_request(request_type, resource, params)
     if api.send(:"can_request_#{request_type}?", resource)
-      api.send(:"request_#{request_type}", resource, params)
+      [
+        :ok,
+        results: api.send(:"request_#{request_type}", resource, params)
+      ]
     else
       [
         :unprocessable_entity,
@@ -86,7 +89,7 @@ private
 
   def identifiers_params
     params.permit(
-      :identifiers,
+      :identifiers => []
     ).symbolize_keys
   end
 

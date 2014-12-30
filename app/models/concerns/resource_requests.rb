@@ -34,7 +34,7 @@ module ResourceRequests
   end
 
   def request_identifiers(resource, params)
-    identifiers = params['identifiers']
+    identifiers = params[:identifiers]
     if reads_many?(resource)
       send(:"read_#{resource}", identifiers)
     else

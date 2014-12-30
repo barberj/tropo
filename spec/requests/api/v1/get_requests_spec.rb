@@ -11,7 +11,7 @@ describe 'GetRequest' do
         rsp = get(
           api_v1_path('contacts'),
           nil,
-          'HTTP_AUTHORIZATION' => "Token insightly_token"
+          'HTTP_AUTHENTICATION' => "Token insightly_token"
         )
 
         expect(rsp).to eq 400
@@ -20,7 +20,7 @@ describe 'GetRequest' do
         get(
           api_v1_path('contacts'),
           nil,
-          'HTTP_AUTHORIZATION' => "Token insightly_token"
+          'HTTP_AUTHENTICATION' => "Token insightly_token"
         )
 
         expect(json['message']).to eq(
@@ -33,7 +33,7 @@ describe 'GetRequest' do
         rsp = get(
           api_v1_path('contacts'),
           { :created_since => Time.new(2014, 12, 29, 0, 0, 0, 0) },
-          'HTTP_AUTHORIZATION' => "Token insightly_token"
+          'HTTP_AUTHENTICATION' => "Token insightly_token"
         )
 
         expect(rsp).to eq 400
@@ -41,7 +41,7 @@ describe 'GetRequest' do
         rsp = get(
           api_v1_path('contacts'),
           { :updated_since => Time.new(2014, 12, 29, 0, 0, 0, 0) },
-          'HTTP_AUTHORIZATION' => "Token insightly_token"
+          'HTTP_AUTHENTICATION' => "Token insightly_token"
         )
 
         expect(rsp).to eq 400
@@ -50,7 +50,7 @@ describe 'GetRequest' do
         get(
           api_v1_path('contacts'),
           { :created_since => Time.new(2014, 12, 29, 0, 0, 0, 0) },
-          'HTTP_AUTHORIZATION' => "Token insightly_token"
+          'HTTP_AUTHENTICATION' => "Token insightly_token"
         )
 
         expect(json['message']).to eq(
@@ -60,7 +60,7 @@ describe 'GetRequest' do
         get(
           api_v1_path('contacts'),
           { :updated_since => Time.new(2014, 12, 29, 0, 0, 0, 0) },
-          'HTTP_AUTHORIZATION' => "Token insightly_token"
+          'HTTP_AUTHENTICATION' => "Token insightly_token"
         )
 
         expect(json['message']).to eq(
@@ -77,7 +77,7 @@ describe 'GetRequest' do
         rsp = get(
           api_v1_path('contacts'),
           { :created_since => Time.new(2014, 12, 29, 0, 0, 0, 0).strftime('%FT%T%z') },
-          'HTTP_AUTHORIZATION' => "Token insightly_token"
+          'HTTP_AUTHENTICATION' => "Token insightly_token"
         )
         expect(rsp).to eq 401
       end
@@ -90,7 +90,7 @@ describe 'GetRequest' do
         get(
           api_v1_path('contacts'),
           { :created_since => Time.new(2014, 12, 29, 0, 0, 0, 0).strftime('%FT%T%z') },
-          'HTTP_AUTHORIZATION' => "Token insightly_token"
+          'HTTP_AUTHENTICATION' => "Token insightly_token"
         )
 
         expect(json['message']).to match(
@@ -106,7 +106,7 @@ describe 'GetRequest' do
         get(
           api_v1_path('contacts'),
           { :created_since => Time.new(2014, 12, 29, 0, 0, 0, 0).strftime('%FT%T%z') },
-          'HTTP_AUTHORIZATION' => "Token insightly_token"
+          'HTTP_AUTHENTICATION' => "Token insightly_token"
         )
       end
     end
@@ -118,7 +118,7 @@ describe 'GetRequest' do
         get(
           api_v1_path('contacts'),
           { :updated_since => Time.new(2014, 12, 29, 0, 0, 0, 0).strftime('%FT%T%z') },
-          'HTTP_AUTHORIZATION' => "Token insightly_token"
+          'HTTP_AUTHENTICATION' => "Token insightly_token"
         )
       end
     end
@@ -130,7 +130,7 @@ describe 'GetRequest' do
         get(
           api_v1_path('contacts'),
           { :identifiers => ['1'] },
-          'HTTP_AUTHORIZATION' => "Token insightly_token"
+          'HTTP_AUTHENTICATION' => "Token insightly_token"
         )
       end
     end
@@ -142,7 +142,7 @@ describe 'GetRequest' do
         get(
           api_v1_path('contacts'),
           { :search_by => { :email => 'barber.justin@gmail.com' }},
-          'HTTP_AUTHORIZATION' => "Token insightly_token"
+          'HTTP_AUTHENTICATION' => "Token insightly_token"
         )
       end
     end
@@ -158,7 +158,7 @@ describe 'GetRequest' do
         rsp = get(
           api_v1_path('contacts'),
           { :created_since => Time.new(2014, 12, 29, 0, 0, 0, 0).strftime('%FT%T%z') },
-          'HTTP_AUTHORIZATION' => "Token lame_token"
+          'HTTP_AUTHENTICATION' => "Token lame_token"
         )
 
         expect(rsp).to eq 422
@@ -167,7 +167,7 @@ describe 'GetRequest' do
         get(
           api_v1_path('contacts'),
           { :created_since => Time.new(2014, 12, 29, 0, 0, 0, 0).strftime('%FT%T%z') },
-          'HTTP_AUTHORIZATION' => "Token lame_token"
+          'HTTP_AUTHENTICATION' => "Token lame_token"
         )
 
         expect(json['message']).to eq(
@@ -180,7 +180,7 @@ describe 'GetRequest' do
         rsp = get(
           api_v1_path('contacts'),
           { :updated_since => Time.new(2014, 12, 29, 0, 0, 0, 0).strftime('%FT%T%z') },
-          'HTTP_AUTHORIZATION' => "Token lame_token"
+          'HTTP_AUTHENTICATION' => "Token lame_token"
         )
 
         expect(rsp).to eq 422
@@ -189,7 +189,7 @@ describe 'GetRequest' do
         get(
           api_v1_path('contacts'),
           { :updated_since => Time.new(2014, 12, 29, 0, 0, 0, 0).strftime('%FT%T%z') },
-          'HTTP_AUTHORIZATION' => "Token lame_token"
+          'HTTP_AUTHENTICATION' => "Token lame_token"
         )
 
         expect(json['message']).to eq(
@@ -202,7 +202,7 @@ describe 'GetRequest' do
         rsp = get(
           api_v1_path('contacts'),
           { :identifiers => [1,2] },
-          'HTTP_AUTHORIZATION' => "Token lame_token"
+          'HTTP_AUTHENTICATION' => "Token lame_token"
         )
 
         expect(rsp).to eq 422
@@ -211,7 +211,7 @@ describe 'GetRequest' do
         get(
           api_v1_path('contacts'),
           { :identifiers => [1,2] },
-          'HTTP_AUTHORIZATION' => "Token lame_token"
+          'HTTP_AUTHENTICATION' => "Token lame_token"
         )
 
         expect(json['message']).to eq(
@@ -224,7 +224,7 @@ describe 'GetRequest' do
         rsp = get(
           api_v1_path('contacts'),
           { :search_by => { :email => 'barber.justin@gmail.com' }},
-          'HTTP_AUTHORIZATION' => "Token lame_token"
+          'HTTP_AUTHENTICATION' => "Token lame_token"
         )
 
         expect(rsp).to eq 422
@@ -233,7 +233,7 @@ describe 'GetRequest' do
         get(
           api_v1_path('contacts'),
           { :search_by => { :email => 'barber.justin@gmail.com' }},
-          'HTTP_AUTHORIZATION' => "Token lame_token"
+          'HTTP_AUTHENTICATION' => "Token lame_token"
         )
 
         expect(json['message']).to eq(
