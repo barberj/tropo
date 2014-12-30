@@ -4,6 +4,17 @@ class Api::V1::RequestsController < ActionController::Base
 
 private
 
+  def token
+    @token ||= (request.headers
+      .fetch("HTTP_AUTHORIZATION", "")
+      .match(/Token (.*)/) || [])[1]
+  end
+
+  def api
+    @api ||= Api.find_by(token: token)
+  end
+
   def authenticate!
+    head :unauthorized unless api
   end
 end

@@ -28,6 +28,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'thin'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'slim-rails'
+gem 'responders'
 gem 'httparty'
 
 # Use ActiveModel has_secure_password
