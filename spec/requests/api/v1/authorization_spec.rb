@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Api Request' do
+describe 'Request' do
   context 'with no Authorization Header' do
     it 'get returns 401' do
       expect(get(api_v1_path('contacts'))).to eq 401

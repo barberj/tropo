@@ -1,6 +1,6 @@
 class Api::V1::RequestsController < ActionController::Base
   respond_to :json
-  before_action :authenticate!
+  before_action :authorize!
 
 private
 
@@ -14,7 +14,7 @@ private
     @api ||= Api.find_by(token: token)
   end
 
-  def authenticate!
+  def authorize!
     head :unauthorized unless api
   end
 end
