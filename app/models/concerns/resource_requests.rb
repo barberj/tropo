@@ -22,7 +22,7 @@ module ResourceRequests
   end
 
   def can_request_search?(resource)
-    respond_to? :"search_#{resource})"
+    respond_to? :"search_#{resource}"
   end
 
   def request_updated(resource, params)
@@ -44,7 +44,7 @@ module ResourceRequests
     end
   end
 
-  def requet_search(resource, params)
+  def request_search(resource, params)
     send(:"search_#{resource}", params)
   end
 end

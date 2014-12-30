@@ -1,38 +1,18 @@
 class Api::V1::GetRequestsController < Api::V1::RequestsController
 
   MISSING_PARAM = %q(Get Requests Params must include either created_since, updated_since, identifiers, or search_by)
+  UNSUPPORTED_ACTION = %q(%{resource} can not perform %{type})
 
   def index
     status, results = case
     when params[:updated_since]
       attempt_request(:updated, params[:resource], updated_params)
     when params[:created_since]
-      if api.can_request_created?(params[:resource])
-        api.request_created(params[:resource], created_params)
-      else
-        [
-          :unprocessable_entity,
-          message: UNSUPPORTED_ACTION
-        ]
-      end
+      attempt_request(:created, params[:resource], created_params)
     when params[:identifiers]
-      if api.can_request_identifiers?(params[:resource])
-        api.request_identifiers(params[:resource], identifiers_params)
-      else
-        [
-          :unprocessable_entity,
-          message: UNSUPPORTED_ACTION
-        ]
-      end
+      attempt_request(:identifiers, params[:resource], identifiers_params)
     when params[:search_by]
-      if api.can_request_search?(params[:resource])
-        api.request_search(params[:resource], search_params)
-      else
-        [
-          :unprocessable_entity,
-          message: UNSUPPORTED_ACTION
-        ]
-      end
+      attempt_request(:search, params[:resource], search_params)
     else
       [
         :bad_request,
@@ -51,7 +31,7 @@ private
     else
       [
         :unprocessable_entity,
-        message: UNSUPPORTED_ACTION
+        message: UNSUPPORTED_ACTION % {type: request_type, resource: resource.capitalize}
       ]
     end
   end
@@ -81,10 +61,6 @@ private
   end
 
   def search_params
-    params.permit(
-      :search_by,
-      :page,
-      :limit
-    ).symbolize_keys
+    params[:search_by].symbolize_keys
   end
 end

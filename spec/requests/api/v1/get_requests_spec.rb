@@ -20,13 +20,40 @@ describe 'GetRequest' do
       end
     end
     context 'with updated_since params' do
-      it 'calls updated_resource'
+      it 'calls updated_resource' do
+        expect_any_instance_of(Insightly)
+          .to receive(:updated_contacts)
+
+        get(
+          api_v1_path('contacts'),
+          { :updated_since => Time.new(2014, 12, 29, 0, 0, 0, 0).strftime('%FT%T') },
+          'HTTP_AUTHORIZATION' => "Token insightly_token"
+        )
+      end
     end
     context 'with identifier params' do
-      it 'calls search_resource'
+      it 'calls search_resource' do
+        expect_any_instance_of(Insightly)
+          .to receive(:read_contact)
+
+        get(
+          api_v1_path('contacts'),
+          { :identifiers => ['1'] },
+          'HTTP_AUTHORIZATION' => "Token insightly_token"
+        )
+      end
     end
     context 'with search_by params' do
-      it 'calls search_resource'
+      it 'calls search_resource' do
+        expect_any_instance_of(Insightly)
+          .to receive(:search_contacts)
+
+        get(
+          api_v1_path('contacts'),
+          { :search_by => { :email => 'barber.justin@gmail.com' }},
+          'HTTP_AUTHORIZATION' => "Token insightly_token"
+        )
+      end
     end
   end
   context 'for Api without action' do
