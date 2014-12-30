@@ -1,12 +1,11 @@
 require 'rails_helper'
 
 describe 'GetRequest' do
-  before do
-    expect_any_instance_of(Api).to receive(:authorized?).and_return(true)
-    create(:api, :data => {:api_key => 'letmein'})
-  end
-
   context 'for Api with action' do
+    before do
+      expect_any_instance_of(Api).to receive(:authorized?).and_return(true)
+      create(:api, :data => {:api_key => 'letmein'})
+    end
     context 'when missing params' do
       it 'returns bad_request (400)' do
         rsp = get(
@@ -149,17 +148,98 @@ describe 'GetRequest' do
     end
   end
   context 'for Api without action' do
+    class Lame < Api; end
+    before do
+      expect_any_instance_of(Api).to receive(:authorized?).and_return(true)
+      create(:api, type: 'Lame', token: 'lame_token')
+    end
     context 'with created_since params' do
-      it 'returns unprocessable_entity (422)'
+      it 'returns unprocessable_entity (422)' do
+        rsp = get(
+          api_v1_path('contacts'),
+          { :created_since => Time.new(2014, 12, 29, 0, 0, 0, 0).strftime('%FT%T%z') },
+          'HTTP_AUTHORIZATION' => "Token lame_token"
+        )
+
+        expect(rsp).to eq 422
+      end
+      it 'returns unsupported action message' do
+        get(
+          api_v1_path('contacts'),
+          { :created_since => Time.new(2014, 12, 29, 0, 0, 0, 0).strftime('%FT%T%z') },
+          'HTTP_AUTHORIZATION' => "Token lame_token"
+        )
+
+        expect(json['message']).to eq(
+          "Can not request created for Lame's Contacts."
+        )
+      end
     end
     context 'with updated_since params' do
-      it 'returns unprocessable_entity (422)'
+      it 'returns unprocessable_entity (422)' do
+        rsp = get(
+          api_v1_path('contacts'),
+          { :updated_since => Time.new(2014, 12, 29, 0, 0, 0, 0).strftime('%FT%T%z') },
+          'HTTP_AUTHORIZATION' => "Token lame_token"
+        )
+
+        expect(rsp).to eq 422
+      end
+      it 'returns unsupported action message' do
+        get(
+          api_v1_path('contacts'),
+          { :updated_since => Time.new(2014, 12, 29, 0, 0, 0, 0).strftime('%FT%T%z') },
+          'HTTP_AUTHORIZATION' => "Token lame_token"
+        )
+
+        expect(json['message']).to eq(
+          "Can not request updated for Lame's Contacts."
+        )
+      end
     end
     context 'with identifier params' do
-      it 'returns unprocessable_entity (422)'
+      it 'returns unprocessable_entity (422)' do
+        rsp = get(
+          api_v1_path('contacts'),
+          { :identifiers => [1,2] },
+          'HTTP_AUTHORIZATION' => "Token lame_token"
+        )
+
+        expect(rsp).to eq 422
+      end
+      it 'returns unsupported action message' do
+        get(
+          api_v1_path('contacts'),
+          { :identifiers => [1,2] },
+          'HTTP_AUTHORIZATION' => "Token lame_token"
+        )
+
+        expect(json['message']).to eq(
+          "Can not request identifiers for Lame's Contacts."
+        )
+      end
     end
     context 'with search_by params' do
-      it 'returns unprocessable_entity (422)'
+      it 'returns unprocessable_entity (422)' do
+        rsp = get(
+          api_v1_path('contacts'),
+          { :search_by => { :email => 'barber.justin@gmail.com' }},
+          'HTTP_AUTHORIZATION' => "Token lame_token"
+        )
+
+        expect(rsp).to eq 422
+      end
+      it 'returns unsupported action message' do
+        get(
+          api_v1_path('contacts'),
+          { :search_by => { :email => 'barber.justin@gmail.com' }},
+          'HTTP_AUTHORIZATION' => "Token lame_token"
+        )
+
+        expect(json['message']).to eq(
+          "Can not request search for Lame's Contacts."
+        )
+      end
     end
   end
 end

@@ -1,7 +1,7 @@
 class Api::V1::GetRequestsController < Api::V1::RequestsController
 
   MISSING_PARAM = %q(Get Requests Params must include either created_since, updated_since, identifiers, or search_by.)
-  UNSUPPORTED_ACTION = %q(%{resource} can not perform %{type})
+  UNSUPPORTED_ACTION = %q(Can not request %{type} for %{api}'s %{resource}.)
   UNAUTHORIZED = %q(%{api} is not authorized. Please fix your authorization on %{api} and then retry.)
 
   def index
@@ -40,7 +40,11 @@ private
     else
       [
         :unprocessable_entity,
-        message: UNSUPPORTED_ACTION % {type: request_type, resource: resource.capitalize}
+        message: UNSUPPORTED_ACTION % {
+          api: api.name,
+          type: request_type,
+          resource: resource.capitalize
+        }
       ]
     end
   rescue Exceptions::Unauthorized
