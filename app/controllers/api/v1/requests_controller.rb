@@ -1,6 +1,6 @@
 class Api::V1::RequestsController < ActionController::Base
   respond_to :json
-  before_action :authorize!
+  before_action :authorize!, :normalize_resource!
 
 private
 
@@ -16,5 +16,9 @@ private
 
   def authorize!
     head :unauthorized unless api
+  end
+
+  def normalize_resource!
+    params['resource'] = params['resource'].downcase
   end
 end
