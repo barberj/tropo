@@ -11,6 +11,11 @@ Rails.application.routes.draw do
   resources :test, :only => [:new]
   resources :insightly, :only => [:new, :create]
   post 'insightly/signup' => 'insightly#signup'
+
+  namespace :api do
+    namespace :v1 do
+    end
+  end
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
