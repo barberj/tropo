@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'GetRequest' do
+describe 'GetRequests' do
   context 'for Api with action' do
     before do
       expect_any_instance_of(Api).to receive(:authorized?).and_return(true)
@@ -122,7 +122,7 @@ describe 'GetRequest' do
         )
       end
     end
-    context 'with identifier params' do
+    context 'with identifiers params' do
       it 'calls search_resource' do
         expect_any_instance_of(Insightly)
           .to receive(:read_contacts)
@@ -197,7 +197,7 @@ describe 'GetRequest' do
         )
       end
     end
-    context 'with identifier params' do
+    context 'with identifiers params' do
       it 'returns unprocessable_entity (422)' do
         rsp = get(
           api_v1_path('contacts'),
