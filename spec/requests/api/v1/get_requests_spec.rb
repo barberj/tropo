@@ -34,7 +34,7 @@ describe 'GetRequest' do
     context 'with identifier params' do
       it 'calls search_resource' do
         expect_any_instance_of(Insightly)
-          .to receive(:read_contact)
+          .to receive(:read_contacts)
 
         get(
           api_v1_path('contacts'),

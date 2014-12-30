@@ -151,4 +151,37 @@ describe Insightly do
       )}.to raise_error Exceptions::Unauthorized
     end
   end
+  describe 'read' do
+    let(:stub_read_contacts) do
+      stub_request(:get, 'https://letmein:@api.insight.ly/v2.1/Contacts')
+        .with(:query => {
+          'ids' => "1,2"
+        })
+    end
+
+    it 'returns contacts' do
+      stub_read_contacts
+        .to_return(File.new("#{mock_base}/a_contact.txt"))
+
+      contacts = api.read_contacts([1,2])
+
+      expect(contacts.first['CONTACT_ID']).to eq 91978560
+    end
+    it 'returns empty' do
+      stub_read_contacts
+        .to_return(File.new("#{mock_base}/nothing.txt"))
+
+      contacts = api.read_contacts([1,2])
+
+      expect(contacts).to be_empty
+    end
+    it 'raises unauthorized' do
+      stub_read_contacts
+        .to_return(File.new("#{mock_base}/unauthorized.txt"))
+
+      expect{api.read_contacts(
+        [1,2]
+      )}.to raise_error Exceptions::Unauthorized
+    end
+  end
 end

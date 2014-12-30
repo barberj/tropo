@@ -27,6 +27,10 @@ class Insightly < Api
     request(:get, 'Contacts', :email => email)
   end
 
+  def read_contacts(identifiers)
+    request(:get, 'Contacts', :ids => identifiers.join(','))
+  end
+
   def created_contacts(created_since: 1.week.ago, limit: 250, page: 1)
     time_stamp = created_since.utc.strftime('%FT%T')
     request_page('Contacts', page, limit,
