@@ -9,6 +9,8 @@ class Api::V1::GetRequestsController < Api::V1::RequestsController
     render json: results, status: status
   end
 
+  InvalidTimeFormat = Class.new StandardError
+
 private
 
   def process_request(params)
@@ -27,7 +29,7 @@ private
         message: MISSING_PARAM
       ]
     end
-  rescue Exceptions::InvalidTimeFormat => ex
+  rescue InvalidTimeFormat => ex
     [
       :bad_request,
       message: ex.message
@@ -60,7 +62,7 @@ private
   def normalize_time(key, values)
     values[key] = Time.strptime(values[key], '%FT%T%z').utc
   rescue
-    raise Exceptions::InvalidTimeFormat.new(
+    raise InvalidTimeFormat.new(
       %Q(#{key} requires format "YYYY-mm-ddTHH:MM:SS-Z")
     )
   end
