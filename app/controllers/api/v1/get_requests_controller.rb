@@ -58,13 +58,11 @@ private
   end
 
   def normalize_time(key, values)
-    begin
-      values[key] = Time.strptime(values[key], '%FT%T%z').utc
-    rescue
-      raise Exceptions::InvalidTimeFormat.new(
-        %Q(#{key} requires format "YYYY-mm-ddTHH:MM:SS-Z")
-      )
-    end
+    values[key] = Time.strptime(values[key], '%FT%T%z').utc
+  rescue
+    raise Exceptions::InvalidTimeFormat.new(
+      %Q(#{key} requires format "YYYY-mm-ddTHH:MM:SS-Z")
+    )
   end
 
   def created_params
