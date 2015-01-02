@@ -15,7 +15,10 @@ private
   end
 
   def authorize!
-    head :unauthorized unless api
+    render(
+      json: {message: 'Unauthorized. Please ensure Api is authorized and retry.'},
+      status: :unauthorized
+    ) if api.nil?
   end
 
   def normalize_resource!
