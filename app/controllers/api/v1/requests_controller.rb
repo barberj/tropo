@@ -6,7 +6,7 @@ private
 
   def token
     @token ||= (request.headers
-      .fetch("HTTP_AUTHENTICATION", "")
+      .fetch("HTTP_AUTHORIZATION", "")
       .match(/Token (.*)/) || [])[1]
   end
 

@@ -67,6 +67,11 @@ private
     )
   end
 
+  def normalize_offsets(values)
+    values[:page] = values[:page].to_i
+    values[:limit] = values[:limit].to_i
+  end
+
   def created_params
     params.permit(
       :created_since,
@@ -74,6 +79,7 @@ private
       :limit
     ).symbolize_keys.tap do |p|
       normalize_time(:created_since, p)
+      normalize_offsets(p)
     end
   end
 
@@ -84,6 +90,7 @@ private
       :limit
     ).symbolize_keys.tap do |p|
       normalize_time(:updated_since, p)
+      normalize_offsets(p)
     end
   end
 

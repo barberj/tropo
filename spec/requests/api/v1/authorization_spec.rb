@@ -20,12 +20,12 @@ describe 'Request' do
     context 'get' do
       it 'returns unauthorized (401)' do
         expect(get(api_v1_path('contacts'),
-          'HTTP_AUTHENTICATION' => "Token bad_token"
+          'HTTP_AUTHORIZATION' => "Token bad_token"
         )).to eq 401
       end
       it 'returns unauthorized message' do
         get(api_v1_path('contacts'),
-          'HTTP_AUTHENTICATION' => "Token bad_token"
+          'HTTP_AUTHORIZATION' => "Token bad_token"
         )
 
         expect(json['message']).to eq(
@@ -35,17 +35,17 @@ describe 'Request' do
     end
     it 'post returns unauthorized (401)' do
       expect(post(api_v1_path('contacts'),
-        'HTTP_AUTHENTICATION' => "Token bad_token"
+        'HTTP_AUTHORIZATION' => "Token bad_token"
       )).to eq 401
     end
     it 'put returns unauthorized (401)' do
       expect(put(api_v1_path('contacts'),
-        'HTTP_AUTHENTICATION' => "Token bad_token"
+        'HTTP_AUTHORIZATION' => "Token bad_token"
       )).to eq 401
     end
     it 'delete returns unauthorized (401)' do
       expect(delete(api_v1_path('contacts'),
-        'HTTP_AUTHENTICATION' => "Token bad_token"
+        'HTTP_AUTHORIZATION' => "Token bad_token"
       )).to eq 401
     end
   end
