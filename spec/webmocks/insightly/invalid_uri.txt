@@ -1,0 +1,12 @@
+HTTP/1.1 400 Bad Request
+Cache-Control: no-cache
+Pragma: no-cache
+Content-Type: application/json; charset=utf-8
+Expires: -1
+Server: Microsoft-IIS/7.5
+Date: Wed, 07 Jan 2015 02:52:27 GMT
+Connection: close
+Content-Length: 339
+Set-Cookie: snaptid=sac1prdc01ut04; path=/
+
+{"Message": "The query specified in the URI is not valid."}

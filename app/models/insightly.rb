@@ -7,8 +7,17 @@ class Insightly < Api
       :basic_auth => { :username => data[:api_key] },
       :headers    => { 'content-type' => 'application/json' }
     )
+
     raise Exceptions::Unauthorized if rsp.code == 401
-    raise Exceptions::ApiError unless rsp.code.in?([200, 201])
+    unless rsp.code.in?([200, 201])
+      msg = if rsp.kind_of? Hash
+        rsp['Message']
+      else
+        rsp.body
+      end
+      raise Exceptions::ApiError.new(msg)
+    end
+
     rsp
   end
 
