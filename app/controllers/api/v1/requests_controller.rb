@@ -2,6 +2,8 @@ class Api::V1::RequestsController < ActionController::Base
   respond_to :json
   before_action :authorize!, :normalize_resource!
 
+  attr_reader :resource
+
   UNAUTHORIZED = %q(%{api} is not authorized. Please fix your authorization on %{api} and then retry.)
 
   rescue_from Exceptions::ApiError do |exception|
@@ -15,6 +17,15 @@ class Api::V1::RequestsController < ActionController::Base
     render(
       json: { message: UNAUTHORIZED % {api: api.name} },
       status: :unauthorized,
+    )
+  end
+
+  rescue_from ActionController::ParameterMissing do
+    render(
+      json: {
+        message: %Q(#{request.env['REQUEST_METHOD'].capitalize} Requests must include data.)
+      },
+      status: :bad_request
     )
   end
 
@@ -38,6 +49,6 @@ private
   end
 
   def normalize_resource!
-    params['resource'] = params['resource'].downcase
+    @resource = params['resource'] = params['resource'].downcase
   end
 end

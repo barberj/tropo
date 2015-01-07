@@ -5,7 +5,7 @@ class Api::V1::PostRequestsController < Api::V1::RequestsController
     status, results = if api.can_request_create?(resource)
       [
         :ok,
-        results: api.request_create(resource, create_param)
+        results: api.request_create(resource, create_params)
       ]
     else
       [
@@ -24,6 +24,6 @@ class Api::V1::PostRequestsController < Api::V1::RequestsController
 private
 
   def create_params
-    params.permit(:data)
+    params.require(:data => [])
   end
 end

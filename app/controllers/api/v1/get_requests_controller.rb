@@ -12,13 +12,13 @@ private
   def process_request(params)
     case
     when params[:updated_since]
-      attempt_api_request(:updated, params[:resource], updated_params)
+      attempt_api_request(:updated, updated_params)
     when params[:created_since]
-      attempt_api_request(:created, params[:resource], created_params)
+      attempt_api_request(:created, created_params)
     when params[:identifiers]
-      attempt_api_request(:identifiers, params[:resource], identifiers_params)
+      attempt_api_request(:identifiers, identifiers_params)
     when params[:search_by]
-      attempt_api_request(:search, params[:resource], search_params)
+      attempt_api_request(:search, search_params)
     else
       raise Exceptions::ApiError.new(
         %q(Get Requests Params must include either created_since, updated_since, identifiers, or search_by.)
@@ -26,11 +26,11 @@ private
     end
   end
 
-  def attempt_api_request(request_type, resource, params)
+  def attempt_api_request(request_type, request_params)
     if api.send(:"can_request_#{request_type}?", resource)
       [
         :ok,
-        results: api.send(:"request_#{request_type}", resource, params)
+        results: api.send(:"request_#{request_type}", resource, request_params)
       ]
     else
       [
