@@ -2,19 +2,19 @@ module ResourceRequests
   extend ActiveSupport::Concern
 
   def can_request_updated?(resource)
-    respond_to? :"updated_#{resource}"
+    respond_to?(:"updated_#{resource}")
   end
 
   def can_request_created?(resource)
-    respond_to? :"created_#{resource}"
+    respond_to?(:"created_#{resource}")
   end
 
   def reads_one?(resource)
-    respond_to? :"read_#{resource.singularize}"
+    respond_to?(:"read_#{resource.singularize}")
   end
 
   def reads_many?(resource)
-    respond_to? :"read_#{resource}"
+    respond_to?(:"read_#{resource}")
   end
 
   def can_request_identifiers?(resource)
@@ -22,7 +22,7 @@ module ResourceRequests
   end
 
   def can_request_search?(resource)
-    respond_to? :"search_#{resource}"
+    respond_to?(:"search_#{resource}")
   end
 
   def request_updated(resource, params)
@@ -46,5 +46,49 @@ module ResourceRequests
 
   def request_search(resource, params)
     send(:"search_#{resource}", params)
+  end
+
+  def create_one?(resource)
+    respond_to?(:"create_#{resource.singularize}")
+  end
+
+  def create_many?(resource)
+    respond_to?(:"create_#{resource}")
+  end
+
+  def can_request_create?(resource)
+    create_many?(resource) || create_one?(resource)
+  end
+
+  def request_create(resource, data)
+    if create_many?(resource)
+      send(:"create_#{resource}", data)
+    else
+      data.flat_map do |datum|
+        send(:"create_#{resource.singularize}", datum)
+      end
+    end
+  end
+
+  def update_one?(resource)
+    respond_to?(:"update_#{resource.singularize}")
+  end
+
+  def update_many?(resource)
+    respond_to?(:"update_#{resource}")
+  end
+
+  def can_request_update?(resource)
+    update_many?(resource) || update_one?(resource)
+  end
+
+  def request_update(resource, data)
+    if update_many?(resource)
+      send(:"update_#{resource}", data)
+    else
+      data.flat_map do |datum|
+        send(:"update_#{resource.singularize}", datum)
+      end
+    end
   end
 end
