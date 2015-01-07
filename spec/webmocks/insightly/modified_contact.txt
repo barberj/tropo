@@ -1,0 +1,38 @@
+HTTP/1.1 201 Created
+Cache-Control: no-cache
+Pragma: no-cache
+Content-Type: application/json; charset=utf-8
+Expires: -1
+Location: https://api.insight.ly/v2.1/Contacts/94941802
+Server: Microsoft-IIS/7.5
+Date: Wed, 07 Jan 2015 01:58:56 GMT
+Connection: close
+Content-Length: 1024
+Set-Cookie: snaptid=sac1prdc01ut06; path=/
+
+{"CONTACT_ID": 94941802,
+ "SALUTATION": null,
+ "FIRST_NAME": "Coty",
+ "LAST_NAME": "Rosenblath",
+ "BACKGROUND": null,
+ "IMAGE_URL": "http://s3.amazonaws.com/insightly.userfiles/357208/",
+ "DEFAULT_LINKED_ORGANISATION": null,
+ "OWNER_USER_ID": 635532,
+ "DATE_CREATED_UTC": "2015-01-07 01:58:56",
+ "DATE_UPDATED_UTC": "2015-01-07 01:58:56",
+ "VISIBLE_TO": "EVERYONE",
+ "VISIBLE_TEAM_ID": null,
+ "VISIBLE_USER_IDS": null,
+ "CUSTOMFIELDS": [],
+ "ADDRESSES": [],
+ "CONTACTINFOS": 
+  [{"CONTACT_INFO_ID": 166638916,
+    "TYPE": "EMAIL",
+    "SUBTYPE": null,
+    "LABEL": "Work",
+    "DETAIL": "coty@ecommhub.com"}],
+ "DATES": [],
+ "TAGS": [],
+ "LINKS": [],
+ "CONTACTLINKS": [],
+ "EMAILLINKS": []}

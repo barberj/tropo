@@ -184,4 +184,43 @@ describe Insightly do
       )}.to raise_error Exceptions::Unauthorized
     end
   end
+
+  describe 'create' do
+    let(:stub_create_contact) do
+      stub_request(:post, 'https://letmein:@api.insight.ly/v2.1/Contacts')
+        .with(
+          :body => { 'FIRST_NAME' => 'Justin' }.to_json,
+          :headers =>  { 'content-type' => 'application/json' }
+        )
+    end
+    it 'returns contact' do
+      stub_create_contact
+        .to_return(File.new("#{mock_base}/modified_contact.txt"))
+
+      contact = api.create_contact('FIRST_NAME' => 'Justin').first
+      expect(contact['CONTACT_ID']).to eq(94941802)
+    end
+  end
+  describe 'update' do
+    let(:stub_update_contact) do
+      stub_request(:put, 'https://letmein:@api.insight.ly/v2.1/Contacts')
+        .with(
+          :body => {
+            'CONTACT_ID' => 1,
+            'FIRST_NAME' => 'Justin'
+          }.to_json,
+          :headers =>  { 'content-type' => 'application/json' }
+        )
+    end
+    it 'returns contact' do
+      stub_update_contact
+        .to_return(File.new("#{mock_base}/modified_contact.txt"))
+
+      contact = api.update_contact(
+        'CONTACT_ID' => 1,
+        'FIRST_NAME' => 'Justin'
+      ).first
+      expect(contact['CONTACT_ID']).to eq(94941802)
+    end
+  end
 end

@@ -1,12 +1,14 @@
 class Insightly < Api
 
-  def request(method, resource, params={})
+  def request(method, resource, query: {}, body: {})
     rsp = http(method, "https://api.insight.ly/v2.1/#{resource}",
-      :query      => params,
-      :basic_auth => { :username => data[:api_key] }
+      :query      => query,
+      :body       => body.to_json,
+      :basic_auth => { :username => data[:api_key] },
+      :headers    => { 'content-type' => 'application/json' }
     )
     raise Exceptions::Unauthorized if rsp.code == 401
-    raise Exceptions::ApiError if rsp.code != 200
+    raise Exceptions::ApiError unless rsp.code.in?([200, 201])
     rsp
   end
 
@@ -14,8 +16,16 @@ class Insightly < Api
     request(:get, 'Users')
   end
 
+  def get_request(resource, query)
+    request(:get, resource, query: query)
+  end
+
+  def upsert_request(method, resource, data)
+    Array.wrap(request(method, resource, body: data))
+  end
+
   def request_page(resource, page, limit, filter={})
-    request(:get, 'Contacts',
+    get_request('Contacts',
       filter.merge(
         '$top'    => limit,
         '$skip'   => offset_for_page(:page => page, :limit => limit),
@@ -24,11 +34,11 @@ class Insightly < Api
   end
 
   def search_contacts(email:)
-    request(:get, 'Contacts', :email => email)
+    get_request('Contacts', :email => email)
   end
 
   def read_contacts(identifiers)
-    request(:get, 'Contacts', :ids => identifiers.join(','))
+    get_request('Contacts', :ids => identifiers.join(','))
   end
 
   def created_contacts(created_since: 1.week.ago, limit: 250, page: 1)
@@ -43,5 +53,13 @@ class Insightly < Api
     request_page('Contacts', page, limit,
       '$filter' => "DATE_UPDATED_UTC gt DateTime'#{time_stamp}'"
     )
+  end
+
+  def create_contact(data)
+    upsert_request(:post, 'Contacts', data)
+  end
+
+  def update_contact(data)
+    upsert_request(:put, 'Contacts', data)
   end
 end
