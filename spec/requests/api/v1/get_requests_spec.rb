@@ -118,39 +118,93 @@ describe 'GetRequests' do
       end
     end
     context 'with created_since params' do
-      it 'calls created_resource' do
-        expect_any_instance_of(Insightly)
-          .to receive(:created_contacts)
-
+      let(:created_request) do
         get(
           api_v1_path('contacts'),
           { :created_since => Time.new(2014, 12, 29, 0, 0, 0, 0).strftime('%FT%T%z') },
           'HTTP_AUTHORIZATION' => "Token insightly_token"
         )
       end
+      it 'calls created_resource' do
+        expect_any_instance_of(Insightly)
+          .to receive(:created_contacts)
+
+        created_request
+      end
+      it 'returns results' do
+        expect_any_instance_of(Insightly)
+          .to receive(:created_contacts)
+          .and_return([1])
+
+        created_request
+
+        expect(json['results']).to eq([1])
+      end
+      it 'returns ok (200)' do
+        expect_any_instance_of(Insightly)
+          .to receive(:created_contacts)
+
+        expect(created_request).to eq 200
+      end
     end
     context 'with updated_since params' do
-      it 'calls updated_resource' do
-        expect_any_instance_of(Insightly)
-          .to receive(:updated_contacts)
-
+      let(:updated_request) do
         get(
           api_v1_path('contacts'),
           { :updated_since => Time.new(2014, 12, 29, 0, 0, 0, 0).strftime('%FT%T%z') },
           'HTTP_AUTHORIZATION' => "Token insightly_token"
         )
       end
+      it 'calls updated_resource' do
+        expect_any_instance_of(Insightly)
+          .to receive(:updated_contacts)
+
+        updated_request
+      end
+      it 'returns results' do
+        expect_any_instance_of(Insightly)
+          .to receive(:updated_contacts)
+          .and_return([1])
+
+        updated_request
+
+        expect(json['results']).to eq([1])
+      end
+      it 'returns ok (200)' do
+        expect_any_instance_of(Insightly)
+          .to receive(:updated_contacts)
+
+        expect(updated_request).to eq 200
+      end
     end
     context 'with identifiers params' do
-      it 'calls search_resource' do
-        expect_any_instance_of(Insightly)
-          .to receive(:read_contacts)
-
+      let(:identifier_request) do
         get(
           api_v1_path('contacts'),
           { :identifiers => ['1'] },
           'HTTP_AUTHORIZATION' => "Token insightly_token"
         )
+      end
+      it 'calls search_resource' do
+        expect_any_instance_of(Insightly)
+          .to receive(:read_contacts)
+
+        identifier_request
+      end
+      it 'returns results' do
+        expect_any_instance_of(Insightly)
+          .to receive(:read_contacts)
+          .and_return([1])
+
+        identifier_request
+
+        expect(json['results']).to eq([1])
+      end
+      it 'returns ok (200)' do
+        expect_any_instance_of(Insightly)
+          .to receive(:read_contacts)
+
+        expect(identifier_request).to eq 200
       end
     end
     context 'with search_by params' do

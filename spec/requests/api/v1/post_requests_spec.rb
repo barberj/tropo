@@ -2,10 +2,15 @@ require 'rails_helper'
 
 describe 'PostRequests' do
   context 'for Api with action' do
+    let(:data) do
+      {
+        data: [ {'FIRST_NAME' => 'Justin'} ]
+      }
+    end
     let(:post_request) do
       post(
         api_v1_path('contacts'),
-        { data: [{'FIRST_NAME' => 'Justin'}] },
+        data,
         'HTTP_AUTHORIZATION' => "Token insightly_token"
       )
     end
@@ -52,7 +57,36 @@ describe 'PostRequests' do
         )
       end
     end
-    context 'when errors'
+    context 'when creates one' do
+      it 'calls create_resource' do
+        expect_any_instance_of(Insightly)
+          .to receive(:create_contact)
+
+        post_request
+      end
+      it 'returns ok (200)' do
+        expect_any_instance_of(Insightly)
+          .to receive(:create_contact)
+
+        expect(post_request).to eq(200)
+      end
+      it 'returns results' do
+        expect_any_instance_of(Insightly)
+          .to receive(:create_contact)
+          .and_return([1])
+
+        post_request
+
+        expect(json['results']).to eq([1])
+      end
+      it 'iterates for multiple datasets' do
+        data[:data] << {'FIRST_NAME' => 'Robby'}
+        expect_any_instance_of(Insightly)
+          .to receive(:create_contact).twice
+
+        expect(post_request).to eq(200)
+      end
+    end
   end
   context 'for Api without action'
 end

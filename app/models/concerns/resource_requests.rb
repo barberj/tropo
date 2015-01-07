@@ -52,16 +52,16 @@ module ResourceRequests
     respond_to?(:"create_#{resource.singularize}")
   end
 
-  def create_many?(resource)
+  def creates_many?(resource)
     respond_to?(:"create_#{resource}")
   end
 
   def can_request_create?(resource)
-    create_many?(resource) || create_one?(resource)
+    creates_many?(resource) || create_one?(resource)
   end
 
   def request_create(resource, data)
-    if create_many?(resource)
+    if creates_many?(resource)
       send(:"create_#{resource}", data)
     else
       data.flat_map do |datum|
@@ -74,16 +74,16 @@ module ResourceRequests
     respond_to?(:"update_#{resource.singularize}")
   end
 
-  def update_many?(resource)
+  def updates_many?(resource)
     respond_to?(:"update_#{resource}")
   end
 
   def can_request_update?(resource)
-    update_many?(resource) || update_one?(resource)
+    updates_many?(resource) || update_one?(resource)
   end
 
   def request_update(resource, data)
-    if update_many?(resource)
+    if updates_many?(resource)
       send(:"update_#{resource}", data)
     else
       data.flat_map do |datum|
