@@ -1,7 +1,6 @@
 class Api::V1::GetRequestsController < Api::V1::RequestsController
 
   UNSUPPORTED_ACTION = %q(Can not request %{type} for %{api}'s %{resource}.)
-  InvalidTimeFormat = Class.new StandardError
 
   def index
     status, results = process_request(params)
@@ -21,16 +20,10 @@ private
     when params[:search_by]
       attempt_api_request(:search, params[:resource], search_params)
     else
-      [
-        :bad_request,
-        message: %q(Get Requests Params must include either created_since, updated_since, identifiers, or search_by.)
-      ]
+      raise Exceptions::ApiError.new(
+        %q(Get Requests Params must include either created_since, updated_since, identifiers, or search_by.)
+      )
     end
-  rescue InvalidTimeFormat => ex
-    [
-      :bad_request,
-      message: ex.message
-    ]
   end
 
   def attempt_api_request(request_type, resource, params)
@@ -54,7 +47,7 @@ private
   def normalize_time(key, values)
     values[key] = Time.strptime(values[key], '%FT%T%z').utc
   rescue
-    raise InvalidTimeFormat.new(
+    raise Exceptions::ApiError.new(
       %Q(#{key} requires format "YYYY-mm-ddTHH:MM:SS-Z")
     )
   end
