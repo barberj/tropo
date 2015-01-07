@@ -1,6 +1,5 @@
 class Api::V1::GetRequestsController < Api::V1::RequestsController
 
-  MISSING_PARAM = %q(Get Requests Params must include either created_since, updated_since, identifiers, or search_by.)
   UNSUPPORTED_ACTION = %q(Can not request %{type} for %{api}'s %{resource}.)
   InvalidTimeFormat = Class.new StandardError
 
@@ -24,7 +23,7 @@ private
     else
       [
         :bad_request,
-        message: MISSING_PARAM
+        message: %q(Get Requests Params must include either created_since, updated_since, identifiers, or search_by.)
       ]
     end
   rescue InvalidTimeFormat => ex

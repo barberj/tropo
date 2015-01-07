@@ -4,7 +4,14 @@ class Api::V1::RequestsController < ActionController::Base
 
   UNAUTHORIZED = %q(%{api} is not authorized. Please fix your authorization on %{api} and then retry.)
 
-  rescue_from Exceptions::Unauthorized do |exception|
+  rescue_from Exceptions::ApiError do |exception|
+    render(
+      json: { message: exception.message },
+      status: :bad_request,
+    )
+  end
+
+  rescue_from Exceptions::Unauthorized do
     render(
       json: { message: UNAUTHORIZED % {api: api.name} },
       status: :unauthorized,

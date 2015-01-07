@@ -6,6 +6,27 @@ describe 'GetRequests' do
       expect_any_instance_of(Api).to receive(:authorized?).and_return(true)
       create(:api, :data => {:api_key => 'letmein'})
     end
+    context 'when errors' do
+      let(:stub_request) do
+        expect_any_instance_of(Insightly)
+          .to receive(:created_contacts)
+          .and_raise Exceptions::ApiError.new('Errored')
+
+        get(
+          api_v1_path('contacts'),
+          { :created_since => Time.new(2014, 12, 29, 0, 0, 0, 0).strftime('%FT%T%z') },
+          'HTTP_AUTHORIZATION' => "Token insightly_token"
+        )
+      end
+      it 'returns bad_request (400)' do
+        rsp = stub_request
+        expect(rsp).to eq 400
+      end
+      it 'returns error message in json' do
+        stub_request
+        expect(json['message']).to eq 'Errored'
+      end
+    end
     context 'when missing params' do
       it 'returns bad_request (400)' do
         rsp = get(
