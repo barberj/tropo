@@ -2,6 +2,15 @@ class Api::V1::RequestsController < ActionController::Base
   respond_to :json
   before_action :authorize!, :normalize_resource!
 
+  UNAUTHORIZED = %q(%{api} is not authorized. Please fix your authorization on %{api} and then retry.)
+
+  rescue_from Exceptions::Unauthorized do |exception|
+    render(
+      json: { message: UNAUTHORIZED % {api: api.name} },
+      status: :unauthorized,
+    )
+  end
+
 private
 
   def token

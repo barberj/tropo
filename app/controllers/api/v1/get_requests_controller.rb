@@ -2,7 +2,6 @@ class Api::V1::GetRequestsController < Api::V1::RequestsController
 
   MISSING_PARAM = %q(Get Requests Params must include either created_since, updated_since, identifiers, or search_by.)
   UNSUPPORTED_ACTION = %q(Can not request %{type} for %{api}'s %{resource}.)
-  UNAUTHORIZED = %q(%{api} is not authorized. Please fix your authorization on %{api} and then retry.)
   InvalidTimeFormat = Class.new StandardError
 
   def index
@@ -51,11 +50,6 @@ private
         }
       ]
     end
-  rescue Exceptions::Unauthorized
-    [
-      :unauthorized,
-      message: UNAUTHORIZED % {api: api.name}
-    ]
   end
 
   def normalize_time(key, values)
