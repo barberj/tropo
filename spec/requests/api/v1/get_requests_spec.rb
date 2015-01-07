@@ -7,7 +7,7 @@ describe 'GetRequests' do
       create(:api, :data => {:api_key => 'letmein'})
     end
     context 'when errors' do
-      let(:stub_request) do
+      let(:get_request) do
         expect_any_instance_of(Insightly)
           .to receive(:created_contacts)
           .and_raise Exceptions::ApiError.new('Errored')
@@ -19,11 +19,11 @@ describe 'GetRequests' do
         )
       end
       it 'returns bad_request (400)' do
-        rsp = stub_request
+        rsp = get_request
         expect(rsp).to eq 400
       end
       it 'returns error message in json' do
-        stub_request
+        get_request
         expect(json['message']).to eq 'Errored'
       end
     end
@@ -90,10 +90,12 @@ describe 'GetRequests' do
       end
     end
     context 'when unauthorized' do
-      it 'returns unauthorized (401)' do
+      before do
         expect_any_instance_of(Insightly)
           .to receive(:created_contacts)
           .and_raise Exceptions::Unauthorized
+      end
+      it 'returns unauthorized (401)' do
 
         rsp = get(
           api_v1_path('contacts'),
@@ -103,11 +105,7 @@ describe 'GetRequests' do
         expect(rsp).to eq 401
       end
 
-      it 'returns unsupported action message' do
-        expect_any_instance_of(Insightly)
-          .to receive(:created_contacts)
-          .and_raise Exceptions::Unauthorized
-
+      it 'returns unauthorized message' do
         get(
           api_v1_path('contacts'),
           { :created_since => Time.new(2014, 12, 29, 0, 0, 0, 0).strftime('%FT%T%z') },

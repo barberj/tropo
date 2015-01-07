@@ -24,6 +24,6 @@ class Api::V1::PostRequestsController < Api::V1::RequestsController
 private
 
   def create_params
-    params.require(:data => [])
+    Array.wrap(params.require(:data))
   end
 end
