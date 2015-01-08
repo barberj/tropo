@@ -178,10 +178,13 @@ describe 'GetRequests' do
       end
     end
     context 'with identifiers params' do
+      let(:identifier_params) do
+        { :identifiers => ['1'] }
+      end
       let(:identifier_request) do
         get(
           api_v1_path('contacts'),
-          { :identifiers => ['1'] },
+          identifier_params,
           'HTTP_AUTHORIZATION' => "Token insightly_token"
         )
       end
@@ -203,6 +206,14 @@ describe 'GetRequests' do
       it 'returns ok (200)' do
         expect_any_instance_of(Insightly)
           .to receive(:read_contacts)
+
+        expect(identifier_request).to eq 200
+      end
+      it 'passes all identifiers when reads many' do
+        expect_any_instance_of(Insightly)
+          .to receive(:read_contacts)
+
+        identifier_params[:identifiers] << '2'
 
         expect(identifier_request).to eq 200
       end
