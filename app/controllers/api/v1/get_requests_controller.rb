@@ -1,15 +1,6 @@
 class Api::V1::GetRequestsController < Api::V1::RequestsController
 
-  UNSUPPORTED_ACTION = %q(Can not request %{type} for %{api}'s %{resource}.)
-
   def index
-    status, results = process_request(params)
-    render json: results, status: status
-  end
-
-private
-
-  def process_request(params)
     case
     when params[:updated_since]
       attempt_api_request(:updated, updated_params)
@@ -26,21 +17,20 @@ private
     end
   end
 
+private
+
   def attempt_api_request(request_type, request_params)
     if api.send(:"can_request_#{request_type}?", resource)
-      [
-        :ok,
-        results: api.send(:"request_#{request_type}", resource, request_params)
-      ]
+      render(
+        json: { results: api.send(:"request_#{request_type}", resource, request_params) },
+        status: :ok
+      )
     else
-      [
-        :unprocessable_entity,
-        message: UNSUPPORTED_ACTION % {
-          api: api.name,
-          type: request_type,
-          resource: resource.capitalize
-        }
-      ]
+      raise Exceptions::UnsupportedAction.new(UNSUPPORTED_ACTION % {
+        api: api.name,
+        type: request_type,
+        resource: resource.capitalize
+      })
     end
   end
 

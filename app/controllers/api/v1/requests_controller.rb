@@ -5,6 +5,7 @@ class Api::V1::RequestsController < ActionController::Base
   attr_reader :resource
 
   UNAUTHORIZED = %q(%{api} is not authorized. Please fix your authorization on %{api} and then retry.)
+  UNSUPPORTED_ACTION = %q(Can not request %{type} for %{api}'s %{resource}.)
 
   rescue_from Exceptions::ApiError do |exception|
     render(
@@ -23,13 +24,24 @@ class Api::V1::RequestsController < ActionController::Base
   rescue_from ActionController::ParameterMissing do
     render(
       json: {
-        message: %Q(#{request.env['REQUEST_METHOD'].capitalize} Requests must include data.)
+        message: %Q(#{request_method.capitalize} Requests must include data.)
       },
       status: :bad_request
     )
   end
 
+  rescue_from Exceptions::UnsupportedAction do |exception|
+    render(
+      json: { message: exception.message },
+      status: :unprocessable_entity
+    )
+  end
+
 private
+
+  def request_method
+    request.env['REQUEST_METHOD']
+  end
 
   def token
     @token ||= (request.headers
