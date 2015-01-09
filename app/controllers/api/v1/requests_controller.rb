@@ -30,7 +30,7 @@ class Api::V1::RequestsController < ActionController::Base
     )
   end
 
-  rescue_from Exceptions::UnsupportedAction do |exception|
+  rescue_from Exceptions::Unprocessable do |exception|
     render(
       json: { message: exception.message },
       status: :unprocessable_entity

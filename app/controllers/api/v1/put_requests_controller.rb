@@ -7,7 +7,7 @@ class Api::V1::PutRequestsController < Api::V1::RequestsController
         status: :ok,
       )
     else
-      raise Exceptions::UnsupportedAction.new(UNSUPPORTED_ACTION % {
+      raise Exceptions::Unprocessable.new(UNSUPPORTED_ACTION % {
         api: api.name,
         type: request_type,
         resource: resource.capitalize
