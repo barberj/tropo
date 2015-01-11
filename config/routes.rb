@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   resources :test, :only => [:new]
   resources :insightly, :only => [:new, :create]
-  post 'insightly/signup' => 'insightly#signup'
+  get 'insightly/signup' => 'insightly#signup'
 
   namespace :api do
     namespace :v1 do
