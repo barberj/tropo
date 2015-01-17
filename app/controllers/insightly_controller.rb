@@ -7,7 +7,7 @@ class InsightlyController < ApiController
     if !api.valid?
       redirect_to :back
     else
-      redirect_to 'http://127.0.0.1:3000/dashboard'
+      redirect_to session['redirect_uri']
     end
   end
 end
