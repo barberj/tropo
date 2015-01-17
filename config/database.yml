@@ -82,4 +82,5 @@ production:
   <<: *default
   database: tropo_production
   username: tropo
-  password: <%= ENV['TROPO_DATABASE_PASSWORD'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  host: simpleapi.c3ufgqdjjnc0.us-east-1.rds.amazonaws.com
