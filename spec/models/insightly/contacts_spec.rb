@@ -260,5 +260,31 @@ describe Insightly do
         expect(contact['CONTACT_ID']).to eq(94941802)
       end
     end
+    describe 'delete' do
+      let(:stub_delete_contact) do
+        stub_request(:delete, 'https://letmein:@api.insight.ly/v2.1/Contacts/1')
+          .with(:headers =>  { 'content-type' => 'application/json' })
+      end
+      it 'returns accepted' do
+        stub_delete_contact.
+          to_return(File.new("#{mock_base}/deleted.txt"))
+
+        expect(api.delete_contact(1).code).to eq(202)
+      end
+      it 'raises ApiError' do
+        stub_delete_contact.
+          to_return(File.new("#{mock_base}/deletion_error.txt"))
+
+        expect{api.delete_contact(1)}.
+          to raise_error Exceptions::ApiError
+      end
+      it 'returns api message' do
+        stub_delete_contact.
+          to_return(File.new("#{mock_base}/deletion_error.txt"))
+
+        expect{api.delete_contact(1)}.
+          to raise_error(/No Contact/)
+      end
+    end
   end
 end

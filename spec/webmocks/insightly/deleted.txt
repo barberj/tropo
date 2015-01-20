@@ -1,0 +1,11 @@
+HTTP/1.1 202 Accepted
+Cache-Control: no-cache
+Pragma: no-cache
+Expires: -1
+Server: Microsoft-IIS/7.5
+Date: Tue, 20 Jan 2015 18:17:48 GMT
+Connection: close
+Content-Length: 232
+Set-Cookie: snaptid=sac1prdc01ut05; path=/
+
+""

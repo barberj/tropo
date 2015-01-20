@@ -91,4 +91,26 @@ module ResourceRequests
       end
     end
   end
+
+  def deletes_one?(resource)
+    respond_to?(:"delete_#{resource.singularize}")
+  end
+
+  def deletes_many?(resource)
+    respond_to?(:"delete_#{resource}")
+  end
+
+  def can_request_delete?(resource)
+    deletes_one?(resource) || deletes_many?(resource)
+  end
+
+  def request_delete(resource, data)
+    if deletes_many?(resource)
+      send(:"delete_#{resource}", data)
+    else
+      data.flat_map do |datum|
+        send(:"delete_#{resource.singularize}", datum)
+      end
+    end
+  end
 end

@@ -9,7 +9,7 @@ class Insightly < Api
     )
 
     raise Exceptions::Unauthorized if rsp.code == 401
-    unless rsp.code.in?([200, 201])
+    unless rsp.code.in?([200, 201, 202])
       msg = if rsp.kind_of? Hash
         rsp['Message']
       else
@@ -70,5 +70,9 @@ class Insightly < Api
 
   def update_contact(data)
     upsert_request(:put, 'Contacts', data)
+  end
+
+  def delete_contact(id)
+    request(:delete, "Contacts/#{id}")
   end
 end
