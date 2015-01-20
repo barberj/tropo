@@ -1,4 +1,4 @@
-class Api::V1::PostRequestsController < Api::V1::RequestsController
+class PostDataController < DataController
   def create
     if api.can_request_create?(resource)
       render(

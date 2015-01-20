@@ -1,4 +1,4 @@
-class Api::V1::RequestsController < ActionController::Base
+class DataController < ActionController::Base
   respond_to :json
   before_action :authorize!, :normalize_resource!
 
@@ -24,7 +24,7 @@ class Api::V1::RequestsController < ActionController::Base
   rescue_from ActionController::ParameterMissing do
     render(
       json: {
-        message: %Q(#{request_method.capitalize} Requests must include data.)
+        message: %Q(#{request_method.capitalize} request must include data.)
       },
       status: :bad_request
     )

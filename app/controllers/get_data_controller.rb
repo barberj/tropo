@@ -1,4 +1,4 @@
-class Api::V1::GetRequestsController < Api::V1::RequestsController
+class GetDataController < DataController
 
   def index
     case
@@ -12,7 +12,7 @@ class Api::V1::GetRequestsController < Api::V1::RequestsController
       attempt_api_request(:search, search_params)
     else
       raise Exceptions::ApiError.new(
-        %q(Get Requests Params must include either created_since, updated_since, identifiers, or search_by.)
+        %q(Get request must include either created_since, updated_since, identifiers, or search_by.)
       )
     end
   end

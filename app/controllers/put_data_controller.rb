@@ -1,4 +1,4 @@
-class Api::V1::PutRequestsController < Api::V1::RequestsController
+class PutDataController < DataController
 
   def update
     if api.can_request_update?(resource)

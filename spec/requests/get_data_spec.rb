@@ -12,8 +12,7 @@ describe 'GetRequests' do
           .to receive(:created_contacts)
           .and_raise Exceptions::ApiError.new('Errored')
 
-        get(
-          api_v1_path('contacts'),
+        get('/contacts',
           { :created_since => Time.new(2014, 12, 29, 0, 0, 0, 0).strftime('%FT%T%z') },
           'HTTP_AUTHORIZATION' => "Token insightly_token"
         )
@@ -29,8 +28,7 @@ describe 'GetRequests' do
     end
     context 'when missing params' do
       it 'returns bad_request (400)' do
-        rsp = get(
-          api_v1_path('contacts'),
+        rsp = get('/contacts',
           nil,
           'HTTP_AUTHORIZATION' => "Token insightly_token"
         )
@@ -38,29 +36,26 @@ describe 'GetRequests' do
         expect(rsp).to eq 400
       end
       it 'returns missing params message' do
-        get(
-          api_v1_path('contacts'),
+        get('/contacts',
           nil,
           'HTTP_AUTHORIZATION' => "Token insightly_token"
         )
 
         expect(json['message']).to eq(
-          'Get Requests Params must include either created_since, updated_since, identifiers, or search_by.'
+          'Get request must include either created_since, updated_since, identifiers, or search_by.'
         )
       end
     end
     context 'when given bad params' do
       it 'returns bad_request (400)' do
-        rsp = get(
-          api_v1_path('contacts'),
+        rsp = get('/contacts',
           { :created_since => Time.new(2014, 12, 29, 0, 0, 0, 0) },
           'HTTP_AUTHORIZATION' => "Token insightly_token"
         )
 
         expect(rsp).to eq 400
 
-        rsp = get(
-          api_v1_path('contacts'),
+        rsp = get('/contacts',
           { :updated_since => Time.new(2014, 12, 29, 0, 0, 0, 0) },
           'HTTP_AUTHORIZATION' => "Token insightly_token"
         )
@@ -68,8 +63,7 @@ describe 'GetRequests' do
         expect(rsp).to eq 400
       end
       it 'returns time format message' do
-        get(
-          api_v1_path('contacts'),
+        get('/contacts',
           { :created_since => Time.new(2014, 12, 29, 0, 0, 0, 0) },
           'HTTP_AUTHORIZATION' => "Token insightly_token"
         )
@@ -78,8 +72,7 @@ describe 'GetRequests' do
           'created_since requires format "YYYY-mm-ddTHH:MM:SS-Z"'
         )
 
-        get(
-          api_v1_path('contacts'),
+        get('/contacts',
           { :updated_since => Time.new(2014, 12, 29, 0, 0, 0, 0) },
           'HTTP_AUTHORIZATION' => "Token insightly_token"
         )
@@ -97,8 +90,7 @@ describe 'GetRequests' do
       end
       it 'returns unauthorized (401)' do
 
-        rsp = get(
-          api_v1_path('contacts'),
+        rsp = get('/contacts',
           { :created_since => Time.new(2014, 12, 29, 0, 0, 0, 0).strftime('%FT%T%z') },
           'HTTP_AUTHORIZATION' => "Token insightly_token"
         )
@@ -106,8 +98,7 @@ describe 'GetRequests' do
       end
 
       it 'returns unauthorized message' do
-        get(
-          api_v1_path('contacts'),
+        get('/contacts',
           { :created_since => Time.new(2014, 12, 29, 0, 0, 0, 0).strftime('%FT%T%z') },
           'HTTP_AUTHORIZATION' => "Token insightly_token"
         )
@@ -119,8 +110,7 @@ describe 'GetRequests' do
     end
     context 'with created_since params' do
       let(:created_request) do
-        get(
-          api_v1_path('contacts'),
+        get('/contacts',
           { :created_since => Time.new(2014, 12, 29, 0, 0, 0, 0).strftime('%FT%T%z') },
           'HTTP_AUTHORIZATION' => "Token insightly_token"
         )
@@ -149,8 +139,7 @@ describe 'GetRequests' do
     end
     context 'with updated_since params' do
       let(:updated_request) do
-        get(
-          api_v1_path('contacts'),
+        get('/contacts',
           { :updated_since => Time.new(2014, 12, 29, 0, 0, 0, 0).strftime('%FT%T%z') },
           'HTTP_AUTHORIZATION' => "Token insightly_token"
         )
@@ -182,8 +171,7 @@ describe 'GetRequests' do
         { :identifiers => ['1'] }
       end
       let(:identifier_request) do
-        get(
-          api_v1_path('contacts'),
+        get('/contacts',
           identifier_params,
           'HTTP_AUTHORIZATION' => "Token insightly_token"
         )
@@ -223,8 +211,7 @@ describe 'GetRequests' do
         expect_any_instance_of(Insightly)
           .to receive(:search_contacts)
 
-        get(
-          api_v1_path('contacts'),
+        get('/contacts',
           { :search_by => { :email => 'barber.justin@gmail.com' }},
           'HTTP_AUTHORIZATION' => "Token insightly_token"
         )
@@ -239,8 +226,7 @@ describe 'GetRequests' do
     end
     context 'with created_since params' do
       it 'returns unprocessable_entity (422)' do
-        rsp = get(
-          api_v1_path('contacts'),
+        rsp = get('/contacts',
           { :created_since => Time.new(2014, 12, 29, 0, 0, 0, 0).strftime('%FT%T%z') },
           'HTTP_AUTHORIZATION' => "Token lame_token"
         )
@@ -248,8 +234,7 @@ describe 'GetRequests' do
         expect(rsp).to eq 422
       end
       it 'returns unsupported action message' do
-        get(
-          api_v1_path('contacts'),
+        get('/contacts',
           { :created_since => Time.new(2014, 12, 29, 0, 0, 0, 0).strftime('%FT%T%z') },
           'HTTP_AUTHORIZATION' => "Token lame_token"
         )
@@ -261,8 +246,7 @@ describe 'GetRequests' do
     end
     context 'with updated_since params' do
       it 'returns unprocessable_entity (422)' do
-        rsp = get(
-          api_v1_path('contacts'),
+        rsp = get('/contacts',
           { :updated_since => Time.new(2014, 12, 29, 0, 0, 0, 0).strftime('%FT%T%z') },
           'HTTP_AUTHORIZATION' => "Token lame_token"
         )
@@ -270,8 +254,7 @@ describe 'GetRequests' do
         expect(rsp).to eq 422
       end
       it 'returns unsupported action message' do
-        get(
-          api_v1_path('contacts'),
+        get('/contacts',
           { :updated_since => Time.new(2014, 12, 29, 0, 0, 0, 0).strftime('%FT%T%z') },
           'HTTP_AUTHORIZATION' => "Token lame_token"
         )
@@ -283,8 +266,7 @@ describe 'GetRequests' do
     end
     context 'with identifiers params' do
       it 'returns unprocessable_entity (422)' do
-        rsp = get(
-          api_v1_path('contacts'),
+        rsp = get('/contacts',
           { :identifiers => [1,2] },
           'HTTP_AUTHORIZATION' => "Token lame_token"
         )
@@ -292,8 +274,7 @@ describe 'GetRequests' do
         expect(rsp).to eq 422
       end
       it 'returns unsupported action message' do
-        get(
-          api_v1_path('contacts'),
+        get('/contacts',
           { :identifiers => [1,2] },
           'HTTP_AUTHORIZATION' => "Token lame_token"
         )
@@ -305,8 +286,7 @@ describe 'GetRequests' do
     end
     context 'with search_by params' do
       it 'returns unprocessable_entity (422)' do
-        rsp = get(
-          api_v1_path('contacts'),
+        rsp = get('/contacts',
           { :search_by => { :email => 'barber.justin@gmail.com' }},
           'HTTP_AUTHORIZATION' => "Token lame_token"
         )
@@ -314,8 +294,7 @@ describe 'GetRequests' do
         expect(rsp).to eq 422
       end
       it 'returns unsupported action message' do
-        get(
-          api_v1_path('contacts'),
+        get('/contacts',
           { :search_by => { :email => 'barber.justin@gmail.com' }},
           'HTTP_AUTHORIZATION' => "Token lame_token"
         )
