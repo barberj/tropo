@@ -8,8 +8,12 @@ Rails.application.routes.draw do
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
+  resources :test, :only => [:new]
   resources :insightly, :only => [:new, :create]
+  resources :google_contacts, :only => [:new, :create]
   get 'insightly/signup' => 'insightly#signup'
+  get 'google_contacts/signup' => 'google_contacts#signup'
+  get 'google_contacts/confirm' => 'google_contacts#create'
 
   get "/:resource"    => 'get_data#index'
   post "/:resource"   => 'post_data#create'

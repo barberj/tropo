@@ -1,0 +1,1227 @@
+HTTP/1.1 200 OK
+Expires: Fri, 23 Jan 2015 12:57:51 GMT
+Date: Fri, 23 Jan 2015 12:57:51 GMT
+Cache-Control: private, max-age=0, must-revalidate, no-transform
+ETag: "QH8zejVSLyt7I2A9XRRREEwNTwM."
+Vary: Origin
+Vary: X-Origin
+Content-Type: application/json; charset=UTF-8
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 1; mode=block
+Content-Length: 52102
+Server: GSE
+Alternate-Protocol: 443:quic,p=0.02
+Connection: close
+
+{"version": "1.0",
+ "encoding": "UTF-8",
+ "feed": 
+  {"xmlns": "http://www.w3.org/2005/Atom",
+   "xmlns$openSearch": "http://a9.com/-/spec/opensearch/1.1/",
+   "xmlns$gContact": "http://schemas.google.com/contact/2008",
+   "xmlns$batch": "http://schemas.google.com/gdata/batch",
+   "xmlns$gd": "http://schemas.google.com/g/2005",
+   "gd$etag": "\"QH8zejVSLyt7I2A9XRRREEwNTwM.\"",
+   "id": {"$t": "barber.justin@gmail.com"},
+   "updated": {"$t": "2015-01-23T12:57:51.182Z"},
+   "category": 
+    [{"scheme": "http://schemas.google.com/g/2005#kind",
+      "term": "http://schemas.google.com/contact/2008#contact"}],
+   "title": {"$t": "barber.justin@gmail.com's Contacts"},
+   "link": 
+    [{"rel": "alternate",
+      "type": "text/html",
+      "href": "https://www.google.com/"},
+     {"rel": "http://schemas.google.com/g/2005#feed",
+      "type": "application/atom+xml",
+      "href": 
+       "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full"},
+     {"rel": "http://schemas.google.com/g/2005#post",
+      "type": "application/atom+xml",
+      "href": 
+       "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full"},
+     {"rel": "http://schemas.google.com/g/2005#batch",
+      "type": "application/atom+xml",
+      "href": 
+       "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/batch"},
+     {"rel": "self",
+      "type": "application/atom+xml",
+      "href": 
+       "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full?max-results=25&updated-min=2014-01-29T00:00:00&alt=json"},
+     {"rel": "next",
+      "type": "application/atom+xml",
+      "href": 
+       "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full?max-results=25&updated-min=2014-01-29T00:00:00&alt=json&start-index=26"}],
+   "author": 
+    [{"name": {"$t": "(unknown)"},
+      "email": {"$t": "barber.justin@gmail.com"}}],
+   "generator": 
+    {"version": "1.0",
+     "uri": "http://www.google.com/m8/feeds",
+     "$t": "Contacts"},
+   "openSearch$totalResults": {"$t": "284"},
+   "openSearch$startIndex": {"$t": "1"},
+   "openSearch$itemsPerPage": {"$t": "25"},
+   "entry": 
+    [{"id": 
+       {"$t": 
+         "http://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/base/0"},
+      "gd$etag": "\"QnY8eDBbJit7I2A9XRRSEEsCQAc.\"",
+      "updated": {"$t": "2015-01-12T13:18:53.870Z"},
+      "app$edited": 
+       {"xmlns$app": "http://www.w3.org/2007/app",
+        "$t": "2015-01-12T13:18:53.870Z"},
+      "category": 
+       [{"scheme": "http://schemas.google.com/g/2005#kind",
+         "term": "http://schemas.google.com/contact/2008#contact"}],
+      "title": {"$t": "Jessica Parvin"},
+      "link": 
+       [{"rel": "http://schemas.google.com/contacts/2008/rel#photo",
+         "type": "image/*",
+         "href": 
+          "https://www.google.com/m8/feeds/photos/media/barber.justin%40gmail.com/0"},
+        {"rel": "self",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/0"},
+        {"rel": "edit",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/0"}],
+      "gd$name": 
+       {"gd$fullName": {"$t": "Jessica Parvin"},
+        "gd$givenName": {"$t": "Jessica"},
+        "gd$familyName": {"$t": "Parvin"}},
+      "gd$email": 
+       [{"address": "jessparvin@gmail.com",
+         "primary": "true",
+         "rel": "http://schemas.google.com/g/2005#other"}],
+      "gd$phoneNumber": 
+       [{"rel": "http://schemas.google.com/g/2005#mobile",
+         "uri": "tel:+1-678-654-4059",
+         "$t": "678.654.4059"}],
+      "gContact$groupMembershipInfo": 
+       [{"deleted": "false",
+         "href": 
+          "http://www.google.com/m8/feeds/groups/barber.justin%40gmail.com/base/6"}]},
+     {"id": 
+       {"$t": 
+         "http://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/base/1"},
+      "gd$etag": "\"QnY8eDBbJit7I2A9XRRSEEsCQAc.\"",
+      "updated": {"$t": "2015-01-12T13:18:53.870Z"},
+      "app$edited": 
+       {"xmlns$app": "http://www.w3.org/2007/app",
+        "$t": "2015-01-12T13:18:53.870Z"},
+      "category": 
+       [{"scheme": "http://schemas.google.com/g/2005#kind",
+         "term": "http://schemas.google.com/contact/2008#contact"}],
+      "title": {"$t": "Brandon Olekas"},
+      "link": 
+       [{"rel": "http://schemas.google.com/contacts/2008/rel#photo",
+         "type": "image/*",
+         "href": 
+          "https://www.google.com/m8/feeds/photos/media/barber.justin%40gmail.com/1",
+         "gd$etag": "\"VCx4BEAlWit7I2B8GEggdhlpI103OVs8ai4.\""},
+        {"rel": "self",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/1"},
+        {"rel": "edit",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/1"}],
+      "gd$name": 
+       {"gd$fullName": {"$t": "Brandon Olekas"},
+        "gd$givenName": {"$t": "Brandon"},
+        "gd$familyName": {"$t": "Olekas"}},
+      "gd$email": 
+       [{"address": "brandon.olekas@gmail.com",
+         "primary": "true",
+         "rel": "http://schemas.google.com/g/2005#other"}],
+      "gd$phoneNumber": 
+       [{"rel": "http://schemas.google.com/g/2005#mobile",
+         "uri": "tel:+1-954-554-6379",
+         "$t": "954.554.6379"}],
+      "gContact$website": 
+       [{"href": "http://www.google.com/profiles/101061972135932371861",
+         "rel": "other"}],
+      "gContact$groupMembershipInfo": 
+       [{"deleted": "false",
+         "href": 
+          "http://www.google.com/m8/feeds/groups/barber.justin%40gmail.com/base/6"}]},
+     {"id": 
+       {"$t": 
+         "http://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/base/2"},
+      "gd$etag": "\"QnY8eDBbJit7I2A9XRRSEEsCQAc.\"",
+      "updated": {"$t": "2015-01-12T13:18:53.870Z"},
+      "app$edited": 
+       {"xmlns$app": "http://www.w3.org/2007/app",
+        "$t": "2015-01-12T13:18:53.870Z"},
+      "category": 
+       [{"scheme": "http://schemas.google.com/g/2005#kind",
+         "term": "http://schemas.google.com/contact/2008#contact"}],
+      "title": {"$t": "Allison Calhoun"},
+      "link": 
+       [{"rel": "http://schemas.google.com/contacts/2008/rel#photo",
+         "type": "image/*",
+         "href": 
+          "https://www.google.com/m8/feeds/photos/media/barber.justin%40gmail.com/2",
+         "gd$etag": "\"TAVtMHxdfCt7I2BUWVw5RS1iPgEBD2wbTlU.\""},
+        {"rel": "self",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/2"},
+        {"rel": "edit",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/2"}],
+      "gd$name": 
+       {"gd$fullName": {"$t": "Allison Calhoun"},
+        "gd$givenName": {"$t": "Allison"},
+        "gd$familyName": {"$t": "Calhoun"}},
+      "gd$email": 
+       [{"address": "acalhoun5017@hotmail.com",
+         "primary": "true",
+         "rel": "http://schemas.google.com/g/2005#other"}],
+      "gd$phoneNumber": 
+       [{"rel": "http://schemas.google.com/g/2005#mobile",
+         "uri": "tel:+1-803-322-6476",
+         "$t": "803.322.6476"}],
+      "gContact$groupMembershipInfo": 
+       [{"deleted": "false",
+         "href": 
+          "http://www.google.com/m8/feeds/groups/barber.justin%40gmail.com/base/6"}]},
+     {"id": 
+       {"$t": 
+         "http://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/base/5"},
+      "gd$etag": "\"QnY8eDBbJit7I2A9XRRSEEsCQAc.\"",
+      "updated": {"$t": "2015-01-12T13:18:53.870Z"},
+      "app$edited": 
+       {"xmlns$app": "http://www.w3.org/2007/app",
+        "$t": "2015-01-12T13:18:53.870Z"},
+      "category": 
+       [{"scheme": "http://schemas.google.com/g/2005#kind",
+         "term": "http://schemas.google.com/contact/2008#contact"}],
+      "title": {"$t": "Alison Gross"},
+      "link": 
+       [{"rel": "http://schemas.google.com/contacts/2008/rel#photo",
+         "type": "image/*",
+         "href": 
+          "https://www.google.com/m8/feeds/photos/media/barber.justin%40gmail.com/5",
+         "gd$etag": "\"LitOE18aSit7I2BdImUIEQRfJAAhfD4AbS0.\""},
+        {"rel": "self",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/5"},
+        {"rel": "edit",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/5"}],
+      "gd$name": 
+       {"gd$fullName": {"$t": "Alison Gross"},
+        "gd$givenName": {"$t": "Alison"},
+        "gd$familyName": {"$t": "Gross"}},
+      "gd$email": 
+       [{"address": "aleighcat@gmail.com",
+         "primary": "true",
+         "rel": "http://schemas.google.com/g/2005#other"}],
+      "gd$im": 
+       [{"address": "algross1",
+         "label": "None",
+         "protocol": "http://schemas.google.com/g/2005#None"}],
+      "gd$phoneNumber": 
+       [{"rel": "http://schemas.google.com/g/2005#mobile",
+         "uri": "tel:+1-678-644-2552",
+         "$t": "(678)644-2552"}],
+      "gContact$groupMembershipInfo": 
+       [{"deleted": "false",
+         "href": 
+          "http://www.google.com/m8/feeds/groups/barber.justin%40gmail.com/base/6"}]},
+     {"id": 
+       {"$t": 
+         "http://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/base/7"},
+      "gd$etag": "\"QnY8eDBbJit7I2A9XRRSEEsCQAc.\"",
+      "updated": {"$t": "2015-01-12T13:18:53.870Z"},
+      "app$edited": 
+       {"xmlns$app": "http://www.w3.org/2007/app",
+        "$t": "2015-01-12T13:18:53.870Z"},
+      "category": 
+       [{"scheme": "http://schemas.google.com/g/2005#kind",
+         "term": "http://schemas.google.com/contact/2008#contact"}],
+      "title": {"$t": "Joe Yeagar"},
+      "link": 
+       [{"rel": "http://schemas.google.com/contacts/2008/rel#photo",
+         "type": "image/*",
+         "href": 
+          "https://www.google.com/m8/feeds/photos/media/barber.justin%40gmail.com/7"},
+        {"rel": "self",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/7"},
+        {"rel": "edit",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/7"}],
+      "gd$name": 
+       {"gd$fullName": {"$t": "Joe Yeagar"},
+        "gd$givenName": {"$t": "Joe"},
+        "gd$familyName": {"$t": "Yeagar"}},
+      "gd$email": 
+       [{"address": "gtg654a@mail.gatech.edu",
+         "primary": "true",
+         "rel": "http://schemas.google.com/g/2005#other"}],
+      "gd$phoneNumber": 
+       [{"rel": "http://schemas.google.com/g/2005#mobile",
+         "uri": "tel:+1-770-656-2634",
+         "$t": "770.656.2634"}],
+      "gContact$groupMembershipInfo": 
+       [{"deleted": "false",
+         "href": 
+          "http://www.google.com/m8/feeds/groups/barber.justin%40gmail.com/base/6"}]},
+     {"id": 
+       {"$t": 
+         "http://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/base/8"},
+      "gd$etag": "\"QnY8eDBbJit7I2A9XRRSEEsCQAc.\"",
+      "updated": {"$t": "2015-01-12T13:18:53.870Z"},
+      "app$edited": 
+       {"xmlns$app": "http://www.w3.org/2007/app",
+        "$t": "2015-01-12T13:18:53.870Z"},
+      "category": 
+       [{"scheme": "http://schemas.google.com/g/2005#kind",
+         "term": "http://schemas.google.com/contact/2008#contact"}],
+      "title": {"$t": "Brett Perryman"},
+      "link": 
+       [{"rel": "http://schemas.google.com/contacts/2008/rel#photo",
+         "type": "image/*",
+         "href": 
+          "https://www.google.com/m8/feeds/photos/media/barber.justin%40gmail.com/8"},
+        {"rel": "self",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/8"},
+        {"rel": "edit",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/8"}],
+      "gd$name": 
+       {"gd$fullName": {"$t": "Brett Perryman"},
+        "gd$givenName": {"$t": "Brett"},
+        "gd$familyName": {"$t": "Perryman"}},
+      "gd$email": 
+       [{"address": "gtg731h@mail.gatech.edu",
+         "primary": "true",
+         "rel": "http://schemas.google.com/g/2005#other"}],
+      "gd$phoneNumber": 
+       [{"rel": "http://schemas.google.com/g/2005#mobile",
+         "uri": "tel:+1-770-595-8229",
+         "$t": "770.595.8229"}],
+      "gContact$groupMembershipInfo": 
+       [{"deleted": "false",
+         "href": 
+          "http://www.google.com/m8/feeds/groups/barber.justin%40gmail.com/base/6"}]},
+     {"id": 
+       {"$t": 
+         "http://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/base/12"},
+      "gd$etag": "\"QnY8eDBbJit7I2A9XRRSEEsCQAc.\"",
+      "updated": {"$t": "2015-01-12T13:18:53.870Z"},
+      "app$edited": 
+       {"xmlns$app": "http://www.w3.org/2007/app",
+        "$t": "2015-01-12T13:18:53.870Z"},
+      "category": 
+       [{"scheme": "http://schemas.google.com/g/2005#kind",
+         "term": "http://schemas.google.com/contact/2008#contact"}],
+      "title": {"$t": "Eric Medin"},
+      "link": 
+       [{"rel": "http://schemas.google.com/contacts/2008/rel#photo",
+         "type": "image/*",
+         "href": 
+          "https://www.google.com/m8/feeds/photos/media/barber.justin%40gmail.com/12"},
+        {"rel": "self",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/12"},
+        {"rel": "edit",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/12"}],
+      "gd$name": 
+       {"gd$fullName": {"$t": "Eric Medin"},
+        "gd$givenName": {"$t": "Eric"},
+        "gd$familyName": {"$t": "Medin"}},
+      "gd$email": 
+       [{"address": "enuratique@gmail.com",
+         "primary": "true",
+         "rel": "http://schemas.google.com/g/2005#other"}],
+      "gd$phoneNumber": 
+       [{"rel": "http://schemas.google.com/g/2005#mobile",
+         "uri": "tel:+1-404-441-3495",
+         "$t": "404.441.3495"}],
+      "gContact$groupMembershipInfo": 
+       [{"deleted": "false",
+         "href": 
+          "http://www.google.com/m8/feeds/groups/barber.justin%40gmail.com/base/6"}]},
+     {"id": 
+       {"$t": 
+         "http://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/base/1b"},
+      "gd$etag": "\"QnY8eDBbJit7I2A9XRRSEEsCQAc.\"",
+      "updated": {"$t": "2015-01-12T13:18:53.870Z"},
+      "app$edited": 
+       {"xmlns$app": "http://www.w3.org/2007/app",
+        "$t": "2015-01-12T13:18:53.870Z"},
+      "category": 
+       [{"scheme": "http://schemas.google.com/g/2005#kind",
+         "term": "http://schemas.google.com/contact/2008#contact"}],
+      "title": {"$t": "Michael Barber Jr"},
+      "content": {"$t": "Work"},
+      "link": 
+       [{"rel": "http://schemas.google.com/contacts/2008/rel#photo",
+         "type": "image/*",
+         "href": 
+          "https://www.google.com/m8/feeds/photos/media/barber.justin%40gmail.com/1b"},
+        {"rel": "self",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/1b"},
+        {"rel": "edit",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/1b"}],
+      "gd$name": 
+       {"gd$fullName": {"$t": "Michael Barber Jr"},
+        "gd$givenName": {"$t": "Michael"},
+        "gd$familyName": {"$t": "Barber"},
+        "gd$nameSuffix": {"$t": "Jr"}},
+      "gd$email": 
+       [{"address": "barber_michael@bellsouth.net",
+         "primary": "true",
+         "rel": "http://schemas.google.com/g/2005#other"},
+        {"address": "mbarber@atlantaga.gov",
+         "rel": "http://schemas.google.com/g/2005#other"}],
+      "gd$phoneNumber": 
+       [{"rel": "http://schemas.google.com/g/2005#mobile",
+         "uri": "tel:+1-404-642-4379",
+         "$t": "404.642.4379"}],
+      "gd$structuredPostalAddress": 
+       [{"rel": "http://schemas.google.com/g/2005#home",
+         "gd$formattedAddress": 
+          {"$t": "3071 Alston Dr\nDecatur\nGA\nUnited States"},
+         "gd$street": {"$t": "3071 Alston Dr"},
+         "gd$city": {"$t": "Decatur"},
+         "gd$region": {"$t": "GA"},
+         "gd$country": {"$t": "United States"}}],
+      "gContact$groupMembershipInfo": 
+       [{"deleted": "false",
+         "href": 
+          "http://www.google.com/m8/feeds/groups/barber.justin%40gmail.com/base/293602f70abaa0ac"},
+        {"deleted": "false",
+         "href": 
+          "http://www.google.com/m8/feeds/groups/barber.justin%40gmail.com/base/e"},
+        {"deleted": "false",
+         "href": 
+          "http://www.google.com/m8/feeds/groups/barber.justin%40gmail.com/base/6"}]},
+     {"id": 
+       {"$t": 
+         "http://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/base/1e"},
+      "gd$etag": "\"QnY8eDBbJit7I2A9XRRSEEsCQAc.\"",
+      "updated": {"$t": "2015-01-12T13:18:53.870Z"},
+      "app$edited": 
+       {"xmlns$app": "http://www.w3.org/2007/app",
+        "$t": "2015-01-12T13:18:53.870Z"},
+      "category": 
+       [{"scheme": "http://schemas.google.com/g/2005#kind",
+         "term": "http://schemas.google.com/contact/2008#contact"}],
+      "title": {"$t": "Mark Emery"},
+      "link": 
+       [{"rel": "http://schemas.google.com/contacts/2008/rel#photo",
+         "type": "image/*",
+         "href": 
+          "https://www.google.com/m8/feeds/photos/media/barber.justin%40gmail.com/1e"},
+        {"rel": "self",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/1e"},
+        {"rel": "edit",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/1e"}],
+      "gd$name": 
+       {"gd$fullName": {"$t": "Mark Emery"},
+        "gd$givenName": {"$t": "Mark"},
+        "gd$familyName": {"$t": "Emery"}},
+      "gd$email": 
+       [{"address": "mark.emery@air2web.com",
+         "primary": "true",
+         "rel": "http://schemas.google.com/g/2005#other"}],
+      "gd$phoneNumber": 
+       [{"rel": "http://schemas.google.com/g/2005#mobile",
+         "uri": "tel:+1-404-375-4971",
+         "$t": "404.375.4971"}],
+      "gContact$groupMembershipInfo": 
+       [{"deleted": "false",
+         "href": 
+          "http://www.google.com/m8/feeds/groups/barber.justin%40gmail.com/base/6"}]},
+     {"id": 
+       {"$t": 
+         "http://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/base/22"},
+      "gd$etag": "\"QnY8eDBbJit7I2A9XRRSEEsCQAc.\"",
+      "updated": {"$t": "2015-01-12T13:18:53.870Z"},
+      "app$edited": 
+       {"xmlns$app": "http://www.w3.org/2007/app",
+        "$t": "2015-01-12T13:18:53.870Z"},
+      "category": 
+       [{"scheme": "http://schemas.google.com/g/2005#kind",
+         "term": "http://schemas.google.com/contact/2008#contact"}],
+      "title": {"$t": "Joseph Breuer"},
+      "link": 
+       [{"rel": "http://schemas.google.com/contacts/2008/rel#photo",
+         "type": "image/*",
+         "href": 
+          "https://www.google.com/m8/feeds/photos/media/barber.justin%40gmail.com/22",
+         "gd$etag": "\"TRdTGFA8Sit7I2BJAG0mTQtAIlI0GGk4Yjs.\""},
+        {"rel": "self",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/22"},
+        {"rel": "edit",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/22"}],
+      "gd$name": 
+       {"gd$fullName": {"$t": "Joseph Breuer"},
+        "gd$givenName": {"$t": "Joseph"},
+        "gd$familyName": {"$t": "Breuer"}},
+      "gd$email": 
+       [{"address": "joseph.breuer@gmail.com",
+         "primary": "true",
+         "rel": "http://schemas.google.com/g/2005#other"}],
+      "gd$phoneNumber": 
+       [{"rel": "http://schemas.google.com/g/2005#mobile",
+         "uri": "tel:+1-404-373-8160",
+         "$t": "404.373.8160"}],
+      "gContact$groupMembershipInfo": 
+       [{"deleted": "false",
+         "href": 
+          "http://www.google.com/m8/feeds/groups/barber.justin%40gmail.com/base/6"}]},
+     {"id": 
+       {"$t": 
+         "http://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/base/25"},
+      "gd$etag": "\"QnY8eDBbJit7I2A9XRRSEEsCQAc.\"",
+      "updated": {"$t": "2015-01-12T13:18:53.870Z"},
+      "app$edited": 
+       {"xmlns$app": "http://www.w3.org/2007/app",
+        "$t": "2015-01-12T13:18:53.870Z"},
+      "category": 
+       [{"scheme": "http://schemas.google.com/g/2005#kind",
+         "term": "http://schemas.google.com/contact/2008#contact"}],
+      "title": {"$t": "Lauren Purdy"},
+      "link": 
+       [{"rel": "http://schemas.google.com/contacts/2008/rel#photo",
+         "type": "image/*",
+         "href": 
+          "https://www.google.com/m8/feeds/photos/media/barber.justin%40gmail.com/25",
+         "gd$etag": "\"STlPFFcYfCt7I2BLWGAuWS1YRH43J099ZlY.\""},
+        {"rel": "self",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/25"},
+        {"rel": "edit",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/25"}],
+      "gd$name": 
+       {"gd$fullName": {"$t": "Lauren Purdy"},
+        "gd$givenName": {"$t": "Lauren"},
+        "gd$familyName": {"$t": "Purdy"}},
+      "gd$email": 
+       [{"address": "Lauren.Purdy@gmail.com",
+         "primary": "true",
+         "rel": "http://schemas.google.com/g/2005#other"}],
+      "gd$phoneNumber": 
+       [{"rel": "http://schemas.google.com/g/2005#home",
+         "uri": "tel:+1-504-656-5699",
+         "$t": "(504) 656-5699"},
+        {"rel": "http://schemas.google.com/g/2005#mobile",
+         "uri": "tel:+1-504-952-3319",
+         "$t": "(504)952-3319"}],
+      "gContact$groupMembershipInfo": 
+       [{"deleted": "false",
+         "href": 
+          "http://www.google.com/m8/feeds/groups/barber.justin%40gmail.com/base/6"}]},
+     {"id": 
+       {"$t": 
+         "http://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/base/33"},
+      "gd$etag": "\"QnY8eDBbJit7I2A9XRRSEEsCQAc.\"",
+      "updated": {"$t": "2015-01-12T13:18:53.870Z"},
+      "app$edited": 
+       {"xmlns$app": "http://www.w3.org/2007/app",
+        "$t": "2015-01-12T13:18:53.870Z"},
+      "category": 
+       [{"scheme": "http://schemas.google.com/g/2005#kind",
+         "term": "http://schemas.google.com/contact/2008#contact"}],
+      "title": {"$t": "Mariah Rippe"},
+      "link": 
+       [{"rel": "http://schemas.google.com/contacts/2008/rel#photo",
+         "type": "image/*",
+         "href": 
+          "https://www.google.com/m8/feeds/photos/media/barber.justin%40gmail.com/33",
+         "gd$etag": "\"LCkhBAonSit7I2BNO1UNakVZMms4K30kUVI.\""},
+        {"rel": "self",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/33"},
+        {"rel": "edit",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/33"}],
+      "gd$name": 
+       {"gd$fullName": {"$t": "Mariah Rippe"},
+        "gd$givenName": {"$t": "Mariah"},
+        "gd$familyName": {"$t": "Rippe"}},
+      "gd$email": 
+       [{"address": "mariahrippe@gmail.com",
+         "primary": "true",
+         "rel": "http://schemas.google.com/g/2005#other"}],
+      "gd$phoneNumber": 
+       [{"rel": "http://schemas.google.com/g/2005#home",
+         "uri": "tel:+1-678-438-0333",
+         "$t": "678.438.0333"}],
+      "gContact$groupMembershipInfo": 
+       [{"deleted": "false",
+         "href": 
+          "http://www.google.com/m8/feeds/groups/barber.justin%40gmail.com/base/6"}]},
+     {"id": 
+       {"$t": 
+         "http://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/base/43"},
+      "gd$etag": "\"QnY8eDBbJit7I2A9XRRSEEsCQAc.\"",
+      "updated": {"$t": "2015-01-12T13:18:53.870Z"},
+      "app$edited": 
+       {"xmlns$app": "http://www.w3.org/2007/app",
+        "$t": "2015-01-12T13:18:53.870Z"},
+      "category": 
+       [{"scheme": "http://schemas.google.com/g/2005#kind",
+         "term": "http://schemas.google.com/contact/2008#contact"}],
+      "title": {"$t": "Justin Barber"},
+      "link": 
+       [{"rel": "http://schemas.google.com/contacts/2008/rel#photo",
+         "type": "image/*",
+         "href": 
+          "https://www.google.com/m8/feeds/photos/media/barber.justin%40gmail.com/43",
+         "gd$etag": "\"SDAsI3JGWit7I2B0Kn43eE8IP2wlHyYXT1Q.\""},
+        {"rel": "self",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/43"},
+        {"rel": "edit",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/43"}],
+      "gd$name": 
+       {"gd$fullName": {"$t": "Justin Barber"},
+        "gd$givenName": {"$t": "Justin"},
+        "gd$familyName": {"$t": "Barber"}},
+      "gContact$birthday": {"when": "1982-02-04"},
+      "gd$email": 
+       [{"address": "barber.justin@gmail.com",
+         "primary": "true",
+         "rel": "http://schemas.google.com/g/2005#other"},
+        {"address": "justin.barber@gatech.edu",
+         "rel": "http://schemas.google.com/g/2005#other"},
+        {"address": "justin.david.barber@gmail.com",
+         "rel": "http://schemas.google.com/g/2005#other"},
+        {"address": "test+barber.justin@gmail.com",
+         "rel": "http://schemas.google.com/g/2005#other"},
+        {"address": "Notes^barber.justin@gmail.com",
+         "rel": "http://schemas.google.com/g/2005#other"},
+        {"address": "smileygoatee@gmail.com",
+         "rel": "http://schemas.google.com/g/2005#home"},
+        {"address": "jbarber@altalang.com",
+         "rel": "http://schemas.google.com/g/2005#work"}],
+      "gd$phoneNumber": 
+       [{"rel": "http://schemas.google.com/g/2005#mobile",
+         "uri": "tel:+1-512-522-7237",
+         "$t": "5125227237"},
+        {"rel": "http://schemas.google.com/g/2005#mobile",
+         "uri": "tel:+1-404-863-6685",
+         "$t": "4048636685"}],
+      "gd$structuredPostalAddress": 
+       [{"rel": "http://schemas.google.com/g/2005#work",
+         "gd$formattedAddress": 
+          {"$t": "533 W Howard Ave\nDecatur\nGa\n30030\nUnited States"},
+         "gd$street": {"$t": "533 W Howard Ave"},
+         "gd$city": {"$t": "Decatur"},
+         "gd$region": {"$t": "Ga"},
+         "gd$postcode": {"$t": "30030"},
+         "gd$country": {"$t": "United States"}}],
+      "gContact$relation": [{"$t": "Angela Hurley Barber", "rel": "spouse"}],
+      "gContact$groupMembershipInfo": 
+       [{"deleted": "false",
+         "href": 
+          "http://www.google.com/m8/feeds/groups/barber.justin%40gmail.com/base/6"}]},
+     {"id": 
+       {"$t": 
+         "http://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/base/51"},
+      "gd$etag": "\"QnY8eDBbJit7I2A9XRRSEEsCQAc.\"",
+      "updated": {"$t": "2015-01-12T13:18:53.870Z"},
+      "app$edited": 
+       {"xmlns$app": "http://www.w3.org/2007/app",
+        "$t": "2015-01-12T13:18:53.870Z"},
+      "category": 
+       [{"scheme": "http://schemas.google.com/g/2005#kind",
+         "term": "http://schemas.google.com/contact/2008#contact"}],
+      "title": {"$t": "Papi Palazzo"},
+      "link": 
+       [{"rel": "http://schemas.google.com/contacts/2008/rel#photo",
+         "type": "image/*",
+         "href": 
+          "https://www.google.com/m8/feeds/photos/media/barber.justin%40gmail.com/51",
+         "gd$etag": "\"eT5vEX47Sit7I2BNXR8IbAlCHE09HUo8Rxg.\""},
+        {"rel": "self",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/51"},
+        {"rel": "edit",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/51"}],
+      "gd$name": 
+       {"gd$fullName": {"$t": "Papi Palazzo"},
+        "gd$givenName": {"$t": "Papi"},
+        "gd$familyName": {"$t": "Palazzo"}},
+      "gd$email": 
+       [{"address": "kenpala@gmail.com",
+         "primary": "true",
+         "rel": "http://schemas.google.com/g/2005#other"},
+        {"address": "Ken.Palazzo@polycom.com",
+         "rel": "http://schemas.google.com/g/2005#work"}],
+      "gd$phoneNumber": 
+       [{"rel": "http://schemas.google.com/g/2005#mobile",
+         "primary": "true",
+         "uri": "tel:+1-770-289-7641",
+         "$t": "770.289.7641"}],
+      "gContact$event": 
+       [{"rel": "anniversary", "gd$when": {"startTime": "2005-11-19"}}],
+      "gContact$groupMembershipInfo": 
+       [{"deleted": "false",
+         "href": 
+          "http://www.google.com/m8/feeds/groups/barber.justin%40gmail.com/base/6"},
+        {"deleted": "false",
+         "href": 
+          "http://www.google.com/m8/feeds/groups/barber.justin%40gmail.com/base/e"}]},
+     {"id": 
+       {"$t": 
+         "http://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/base/5b"},
+      "gd$etag": "\"QnY8eDBbJit7I2A9XRRSEEsCQAc.\"",
+      "updated": {"$t": "2015-01-12T13:18:53.870Z"},
+      "app$edited": 
+       {"xmlns$app": "http://www.w3.org/2007/app",
+        "$t": "2015-01-12T13:18:53.870Z"},
+      "category": 
+       [{"scheme": "http://schemas.google.com/g/2005#kind",
+         "term": "http://schemas.google.com/contact/2008#contact"}],
+      "title": {"$t": "Diane Barber"},
+      "link": 
+       [{"rel": "http://schemas.google.com/contacts/2008/rel#photo",
+         "type": "image/*",
+         "href": 
+          "https://www.google.com/m8/feeds/photos/media/barber.justin%40gmail.com/5b"},
+        {"rel": "self",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/5b"},
+        {"rel": "edit",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/5b"}],
+      "gd$name": 
+       {"gd$fullName": {"$t": "Diane Barber"},
+        "gd$givenName": {"$t": "Diane"},
+        "gd$familyName": {"$t": "Barber"}},
+      "gContact$birthday": {"when": "1992-12-09"},
+      "gd$email": 
+       [{"address": "DianeBarber92@yahoo.com",
+         "primary": "true",
+         "rel": "http://schemas.google.com/g/2005#home"},
+        {"address": "dmb11g@my.fsu.edu", "label": "School"}],
+      "gd$phoneNumber": 
+       [{"rel": "http://schemas.google.com/g/2005#mobile",
+         "uri": "tel:+1-678-628-7740",
+         "$t": "(678)628-7740"}],
+      "gContact$groupMembershipInfo": 
+       [{"deleted": "false",
+         "href": 
+          "http://www.google.com/m8/feeds/groups/barber.justin%40gmail.com/base/6"},
+        {"deleted": "false",
+         "href": 
+          "http://www.google.com/m8/feeds/groups/barber.justin%40gmail.com/base/e"}]},
+     {"id": 
+       {"$t": 
+         "http://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/base/6e"},
+      "gd$etag": "\"QnY8eDBbJit7I2A9XRRSEEsCQAc.\"",
+      "updated": {"$t": "2015-01-12T13:18:53.870Z"},
+      "app$edited": 
+       {"xmlns$app": "http://www.w3.org/2007/app",
+        "$t": "2015-01-12T13:18:53.870Z"},
+      "category": 
+       [{"scheme": "http://schemas.google.com/g/2005#kind",
+         "term": "http://schemas.google.com/contact/2008#contact"}],
+      "title": {"$t": "Brian Jennings"},
+      "link": 
+       [{"rel": "http://schemas.google.com/contacts/2008/rel#photo",
+         "type": "image/*",
+         "href": 
+          "https://www.google.com/m8/feeds/photos/media/barber.justin%40gmail.com/6e"},
+        {"rel": "self",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/6e"},
+        {"rel": "edit",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/6e"}],
+      "gd$name": 
+       {"gd$fullName": {"$t": "Brian Jennings"},
+        "gd$givenName": {"$t": "Brian"},
+        "gd$familyName": {"$t": "Jennings"}},
+      "gd$email": 
+       [{"address": "bjennings67@gmail.com",
+         "primary": "true",
+         "rel": "http://schemas.google.com/g/2005#other"}],
+      "gd$phoneNumber": 
+       [{"rel": "http://schemas.google.com/g/2005#home",
+         "uri": "tel:+1-770-966-7470",
+         "$t": "770.966.7470"}],
+      "gContact$groupMembershipInfo": 
+       [{"deleted": "false",
+         "href": 
+          "http://www.google.com/m8/feeds/groups/barber.justin%40gmail.com/base/6"}]},
+     {"id": 
+       {"$t": 
+         "http://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/base/7a"},
+      "gd$etag": "\"QnY8eDBbJit7I2A9XRRSEEsCQAc.\"",
+      "updated": {"$t": "2015-01-12T13:18:53.870Z"},
+      "app$edited": 
+       {"xmlns$app": "http://www.w3.org/2007/app",
+        "$t": "2015-01-12T13:18:53.870Z"},
+      "category": 
+       [{"scheme": "http://schemas.google.com/g/2005#kind",
+         "term": "http://schemas.google.com/contact/2008#contact"}],
+      "title": {"$t": "Ruth Brown"},
+      "link": 
+       [{"rel": "http://schemas.google.com/contacts/2008/rel#photo",
+         "type": "image/*",
+         "href": 
+          "https://www.google.com/m8/feeds/photos/media/barber.justin%40gmail.com/7a"},
+        {"rel": "self",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/7a"},
+        {"rel": "edit",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/7a"}],
+      "gd$name": 
+       {"gd$fullName": {"$t": "Ruth Brown"},
+        "gd$givenName": {"$t": "Ruth"},
+        "gd$familyName": {"$t": "Brown"}},
+      "gd$email": 
+       [{"address": "brown308@bama.ua.edu",
+         "primary": "true",
+         "rel": "http://schemas.google.com/g/2005#other"},
+        {"address": "ruth@pogopictures.com",
+         "rel": "http://schemas.google.com/g/2005#other"}],
+      "gd$phoneNumber": 
+       [{"rel": "http://schemas.google.com/g/2005#home",
+         "uri": "tel:+1-678-429-6579",
+         "$t": "(678)429-6579"},
+        {"rel": "http://schemas.google.com/g/2005#mobile",
+         "uri": "tel:+1-678-429-6573",
+         "$t": "(678) 429-6573"}],
+      "gContact$groupMembershipInfo": 
+       [{"deleted": "false",
+         "href": 
+          "http://www.google.com/m8/feeds/groups/barber.justin%40gmail.com/base/6"}]},
+     {"id": 
+       {"$t": 
+         "http://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/base/7b"},
+      "gd$etag": "\"QnY8eDBbJit7I2A9XRRSEEsCQAc.\"",
+      "updated": {"$t": "2015-01-12T13:18:53.870Z"},
+      "app$edited": 
+       {"xmlns$app": "http://www.w3.org/2007/app",
+        "$t": "2015-01-12T13:18:53.870Z"},
+      "category": 
+       [{"scheme": "http://schemas.google.com/g/2005#kind",
+         "term": "http://schemas.google.com/contact/2008#contact"}],
+      "title": {"$t": "Nana Palazzo"},
+      "link": 
+       [{"rel": "http://schemas.google.com/contacts/2008/rel#photo",
+         "type": "image/*",
+         "href": 
+          "https://www.google.com/m8/feeds/photos/media/barber.justin%40gmail.com/7b"},
+        {"rel": "self",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/7b"},
+        {"rel": "edit",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/7b"}],
+      "gd$name": 
+       {"gd$fullName": {"$t": "Nana Palazzo"},
+        "gd$givenName": {"$t": "Nana"},
+        "gd$familyName": {"$t": "Palazzo"}},
+      "gContact$birthday": {"when": "1960-11-14"},
+      "gd$email": 
+       [{"address": "ppalazzo@forsyth.k12.ga.us",
+         "primary": "true",
+         "rel": "http://schemas.google.com/g/2005#other"}],
+      "gd$phoneNumber": 
+       [{"rel": "http://schemas.google.com/g/2005#mobile",
+         "primary": "true",
+         "uri": "tel:+1-770-883-8534",
+         "$t": "(770)883-8534"},
+        {"rel": "http://schemas.google.com/g/2005#work",
+         "uri": "tel:+1-770-888-0218",
+         "$t": "(770)888-0218"}],
+      "gContact$groupMembershipInfo": 
+       [{"deleted": "false",
+         "href": 
+          "http://www.google.com/m8/feeds/groups/barber.justin%40gmail.com/base/6"},
+        {"deleted": "false",
+         "href": 
+          "http://www.google.com/m8/feeds/groups/barber.justin%40gmail.com/base/e"}]},
+     {"id": 
+       {"$t": 
+         "http://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/base/8e"},
+      "gd$etag": "\"QnY8eDBbJit7I2A9XRRSEEsCQAc.\"",
+      "updated": {"$t": "2015-01-12T13:18:53.870Z"},
+      "app$edited": 
+       {"xmlns$app": "http://www.w3.org/2007/app",
+        "$t": "2015-01-12T13:18:53.870Z"},
+      "category": 
+       [{"scheme": "http://schemas.google.com/g/2005#kind",
+         "term": "http://schemas.google.com/contact/2008#contact"}],
+      "title": {"$t": "Danny Bonner"},
+      "link": 
+       [{"rel": "http://schemas.google.com/contacts/2008/rel#photo",
+         "type": "image/*",
+         "href": 
+          "https://www.google.com/m8/feeds/photos/media/barber.justin%40gmail.com/8e"},
+        {"rel": "self",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/8e"},
+        {"rel": "edit",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/8e"}],
+      "gd$name": 
+       {"gd$fullName": {"$t": "Danny Bonner"},
+        "gd$givenName": {"$t": "Danny"},
+        "gd$familyName": {"$t": "Bonner"}},
+      "gd$email": 
+       [{"address": "bonner12@bellsouth.net",
+         "primary": "true",
+         "rel": "http://schemas.google.com/g/2005#other"}],
+      "gd$phoneNumber": 
+       [{"rel": "http://schemas.google.com/g/2005#mobile",
+         "uri": "tel:+1-770-560-8080",
+         "$t": "770.560.8080"}],
+      "gContact$groupMembershipInfo": 
+       [{"deleted": "false",
+         "href": 
+          "http://www.google.com/m8/feeds/groups/barber.justin%40gmail.com/base/270f"},
+        {"deleted": "false",
+         "href": 
+          "http://www.google.com/m8/feeds/groups/barber.justin%40gmail.com/base/6"}]},
+     {"id": 
+       {"$t": 
+         "http://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/base/97"},
+      "gd$etag": "\"QnY8eDBbJit7I2A9XRRSEEsCQAc.\"",
+      "updated": {"$t": "2015-01-12T13:18:53.870Z"},
+      "app$edited": 
+       {"xmlns$app": "http://www.w3.org/2007/app",
+        "$t": "2015-01-12T13:18:53.870Z"},
+      "category": 
+       [{"scheme": "http://schemas.google.com/g/2005#kind",
+         "term": "http://schemas.google.com/contact/2008#contact"}],
+      "title": {"$t": "Hiron Roy"},
+      "link": 
+       [{"rel": "http://schemas.google.com/contacts/2008/rel#photo",
+         "type": "image/*",
+         "href": 
+          "https://www.google.com/m8/feeds/photos/media/barber.justin%40gmail.com/97",
+         "gd$etag": "\"UDNfOHtDWit7I2B1O3YKbCQDBlpBIXgNS08.\""},
+        {"rel": "self",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/97"},
+        {"rel": "edit",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/97"}],
+      "gd$name": 
+       {"gd$fullName": {"$t": "Hiron Roy"},
+        "gd$givenName": {"$t": "Hiron"},
+        "gd$familyName": {"$t": "Roy"}},
+      "gd$email": 
+       [{"address": "hiron.roy@gmail.com",
+         "primary": "true",
+         "rel": "http://schemas.google.com/g/2005#other"}],
+      "gd$phoneNumber": 
+       [{"rel": "http://schemas.google.com/g/2005#mobile",
+         "uri": "tel:+1-404-232-0956",
+         "$t": "404.232.0956"}],
+      "gContact$groupMembershipInfo": 
+       [{"deleted": "false",
+         "href": 
+          "http://www.google.com/m8/feeds/groups/barber.justin%40gmail.com/base/6"}]},
+     {"id": 
+       {"$t": 
+         "http://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/base/99"},
+      "gd$etag": "\"QnY8eDBbJit7I2A9XRRSEEsCQAc.\"",
+      "updated": {"$t": "2015-01-12T13:18:53.870Z"},
+      "app$edited": 
+       {"xmlns$app": "http://www.w3.org/2007/app",
+        "$t": "2015-01-12T13:18:53.870Z"},
+      "category": 
+       [{"scheme": "http://schemas.google.com/g/2005#kind",
+         "term": "http://schemas.google.com/contact/2008#contact"}],
+      "title": {"$t": "Michael Losapio"},
+      "link": 
+       [{"rel": "http://schemas.google.com/contacts/2008/rel#photo",
+         "type": "image/*",
+         "href": 
+          "https://www.google.com/m8/feeds/photos/media/barber.justin%40gmail.com/99",
+         "gd$etag": "\"QBYoF0UCWit7I2BUDB5aYjBzEA05fE87Xw4.\""},
+        {"rel": "self",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/99"},
+        {"rel": "edit",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/99"}],
+      "gd$name": 
+       {"gd$fullName": {"$t": "Michael Losapio"},
+        "gd$givenName": {"$t": "Michael"},
+        "gd$familyName": {"$t": "Losapio"}},
+      "gContact$birthday": {"when": "1980-12-02"},
+      "gd$email": 
+       [{"address": "michael.losapio@gmail.com",
+         "primary": "true",
+         "rel": "http://schemas.google.com/g/2005#other"}],
+      "gd$phoneNumber": 
+       [{"rel": "http://schemas.google.com/g/2005#mobile",
+         "uri": "tel:+1-404-538-7287",
+         "$t": "404.538.7287"}],
+      "gd$structuredPostalAddress": 
+       [{"rel": "http://schemas.google.com/g/2005#home",
+         "gd$formattedAddress": 
+          {"$t": "195 Arizona Ave\nUnit 111\nAtlanta\nGA\n30307\n"},
+         "gd$street": {"$t": "195 Arizona Ave\nUnit 111"},
+         "gd$city": {"$t": "Atlanta"},
+         "gd$region": {"$t": "GA"},
+         "gd$postcode": {"$t": "30307"}}],
+      "gContact$groupMembershipInfo": 
+       [{"deleted": "false",
+         "href": 
+          "http://www.google.com/m8/feeds/groups/barber.justin%40gmail.com/base/6"}]},
+     {"id": 
+       {"$t": 
+         "http://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/base/c5"},
+      "gd$etag": "\"QnY8eDBbJit7I2A9XRRSEEsCQAc.\"",
+      "updated": {"$t": "2015-01-12T13:18:53.870Z"},
+      "app$edited": 
+       {"xmlns$app": "http://www.w3.org/2007/app",
+        "$t": "2015-01-12T13:18:53.870Z"},
+      "category": 
+       [{"scheme": "http://schemas.google.com/g/2005#kind",
+         "term": "http://schemas.google.com/contact/2008#contact"}],
+      "title": {"$t": "Dolores Smith"},
+      "link": 
+       [{"rel": "http://schemas.google.com/contacts/2008/rel#photo",
+         "type": "image/*",
+         "href": 
+          "https://www.google.com/m8/feeds/photos/media/barber.justin%40gmail.com/c5"},
+        {"rel": "self",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/c5"},
+        {"rel": "edit",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/c5"}],
+      "gd$name": 
+       {"gd$fullName": {"$t": "Dolores Smith"},
+        "gd$givenName": {"$t": "Dolores"},
+        "gd$familyName": {"$t": "Smith"}},
+      "gd$email": 
+       [{"address": "Dolores.Smith@chick-fil-a.com",
+         "primary": "true",
+         "rel": "http://schemas.google.com/g/2005#work"}],
+      "gd$phoneNumber": 
+       [{"rel": "http://schemas.google.com/g/2005#mobile",
+         "uri": "tel:+1-770-377-8531",
+         "$t": "(770)377-8531"},
+        {"rel": "http://schemas.google.com/g/2005#home",
+         "uri": "tel:+1-770-461-3853",
+         "$t": "(770)461-3853"}],
+      "gd$structuredPostalAddress": 
+       [{"rel": "http://schemas.google.com/g/2005#home",
+         "gd$formattedAddress": {"$t": "290 Bontura Drive\nSenoia, Ga 30276"},
+         "gd$street": {"$t": "290 Bontura Drive"},
+         "gd$city": {"$t": "Senoia"},
+         "gd$region": {"$t": "Ga"},
+         "gd$postcode": {"$t": "30276"}}],
+      "gContact$groupMembershipInfo": 
+       [{"deleted": "false",
+         "href": 
+          "http://www.google.com/m8/feeds/groups/barber.justin%40gmail.com/base/e"},
+        {"deleted": "false",
+         "href": 
+          "http://www.google.com/m8/feeds/groups/barber.justin%40gmail.com/base/6"}]},
+     {"id": 
+       {"$t": 
+         "http://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/base/cc"},
+      "gd$etag": "\"QnY8eDBbJit7I2A9XRRSEEsCQAc.\"",
+      "updated": {"$t": "2015-01-12T13:18:53.870Z"},
+      "app$edited": 
+       {"xmlns$app": "http://www.w3.org/2007/app",
+        "$t": "2015-01-12T13:18:53.870Z"},
+      "category": 
+       [{"scheme": "http://schemas.google.com/g/2005#kind",
+         "term": "http://schemas.google.com/contact/2008#contact"}],
+      "title": {"$t": "Ben Bruce"},
+      "link": 
+       [{"rel": "http://schemas.google.com/contacts/2008/rel#photo",
+         "type": "image/*",
+         "href": 
+          "https://www.google.com/m8/feeds/photos/media/barber.justin%40gmail.com/cc"},
+        {"rel": "self",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/cc"},
+        {"rel": "edit",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/cc"}],
+      "gd$name": 
+       {"gd$fullName": {"$t": "Ben Bruce"},
+        "gd$givenName": {"$t": "Ben"},
+        "gd$familyName": {"$t": "Bruce"}},
+      "gd$email": 
+       [{"address": "bengolfer1@comcast.com",
+         "primary": "true",
+         "rel": "http://schemas.google.com/g/2005#other"}],
+      "gd$phoneNumber": 
+       [{"rel": "http://schemas.google.com/g/2005#mobile",
+         "uri": "tel:+1-678-269-7009",
+         "$t": "(678) 269-7009"}],
+      "gd$structuredPostalAddress": 
+       [{"rel": "http://schemas.google.com/g/2005#home",
+         "gd$formattedAddress": 
+          {"$t": "3861 Kensington Drive\nMarietta\nGA\n30066\n"},
+         "gd$street": {"$t": "3861 Kensington Drive"},
+         "gd$city": {"$t": "Marietta"},
+         "gd$region": {"$t": "GA"},
+         "gd$postcode": {"$t": "30066"}}],
+      "gContact$groupMembershipInfo": 
+       [{"deleted": "false",
+         "href": 
+          "http://www.google.com/m8/feeds/groups/barber.justin%40gmail.com/base/e"},
+        {"deleted": "false",
+         "href": 
+          "http://www.google.com/m8/feeds/groups/barber.justin%40gmail.com/base/6"}]},
+     {"id": 
+       {"$t": 
+         "http://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/base/ce"},
+      "gd$etag": "\"QnY8eDBbJit7I2A9XRRSEEsCQAc.\"",
+      "updated": {"$t": "2015-01-12T13:18:53.870Z"},
+      "app$edited": 
+       {"xmlns$app": "http://www.w3.org/2007/app",
+        "$t": "2015-01-12T13:18:53.870Z"},
+      "category": 
+       [{"scheme": "http://schemas.google.com/g/2005#kind",
+         "term": "http://schemas.google.com/contact/2008#contact"}],
+      "title": {"$t": "Kirk Farrar"},
+      "link": 
+       [{"rel": "http://schemas.google.com/contacts/2008/rel#photo",
+         "type": "image/*",
+         "href": 
+          "https://www.google.com/m8/feeds/photos/media/barber.justin%40gmail.com/ce"},
+        {"rel": "self",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/ce"},
+        {"rel": "edit",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/ce"}],
+      "gd$name": 
+       {"gd$fullName": {"$t": "Kirk Farrar"},
+        "gd$givenName": {"$t": "Kirk"},
+        "gd$familyName": {"$t": "Farrar"}},
+      "gd$email": 
+       [{"address": "kirk.farrar@gxs.com",
+         "primary": "true",
+         "rel": "http://schemas.google.com/g/2005#other"}],
+      "gd$phoneNumber": 
+       [{"rel": "http://schemas.google.com/g/2005#work",
+         "uri": "tel:+1-404-467-3120",
+         "$t": "404-467-3120"},
+        {"rel": "http://schemas.google.com/g/2005#home",
+         "uri": "tel:+1-770-908-8144",
+         "$t": "770-908-8144"}],
+      "gd$structuredPostalAddress": 
+       [{"rel": "http://schemas.google.com/g/2005#work",
+         "gd$formattedAddress": 
+          {"$t": "11720 Amberpark\r\nDr. Suite #100\r\nAlpharetta, GA 30004"},
+         "gd$street": {"$t": "11720 Amberpark\r\nDr. Suite #100"},
+         "gd$city": {"$t": "Alpharetta"},
+         "gd$region": {"$t": "GA"},
+         "gd$postcode": {"$t": "30004"}}],
+      "gContact$groupMembershipInfo": 
+       [{"deleted": "false",
+         "href": 
+          "http://www.google.com/m8/feeds/groups/barber.justin%40gmail.com/base/6"},
+        {"deleted": "false",
+         "href": 
+          "http://www.google.com/m8/feeds/groups/barber.justin%40gmail.com/base/1a0f82fb8b5f3649"}]},
+     {"id": 
+       {"$t": 
+         "http://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/base/d1"},
+      "gd$etag": "\"QnY8eDBbJit7I2A9XRRSEEsCQAc.\"",
+      "updated": {"$t": "2015-01-12T13:18:53.870Z"},
+      "app$edited": 
+       {"xmlns$app": "http://www.w3.org/2007/app",
+        "$t": "2015-01-12T13:18:53.870Z"},
+      "category": 
+       [{"scheme": "http://schemas.google.com/g/2005#kind",
+         "term": "http://schemas.google.com/contact/2008#contact"}],
+      "title": {"$t": "Bill McKissack"},
+      "link": 
+       [{"rel": "http://schemas.google.com/contacts/2008/rel#photo",
+         "type": "image/*",
+         "href": 
+          "https://www.google.com/m8/feeds/photos/media/barber.justin%40gmail.com/d1"},
+        {"rel": "self",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/d1"},
+        {"rel": "edit",
+         "type": "application/atom+xml",
+         "href": 
+          "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/d1"}],
+      "gd$name": 
+       {"gd$fullName": {"$t": "Bill McKissack"},
+        "gd$givenName": {"$t": "Bill"},
+        "gd$familyName": {"$t": "McKissack"}},
+      "gd$phoneNumber": 
+       [{"rel": "http://schemas.google.com/g/2005#home",
+         "uri": "tel:+1-404-286-0734",
+         "$t": "404.286.0734"}],
+      "gContact$groupMembershipInfo": 
+       [{"deleted": "false",
+         "href": 
+          "http://www.google.com/m8/feeds/groups/barber.justin%40gmail.com/base/6"}]}]}}

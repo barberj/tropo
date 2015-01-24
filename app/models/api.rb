@@ -22,7 +22,7 @@ class Api < ActiveRecord::Base
   end
 
   def authorized?
-    check_authorization.present?
+    check_authorization
   rescue Exceptions::Unauthorized
     false
   end

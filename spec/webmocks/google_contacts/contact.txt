@@ -1,0 +1,95 @@
+HTTP/1.1 200 OK
+Expires: Fri, 23 Jan 2015 12:50:39 GMT
+Date: Fri, 23 Jan 2015 12:50:39 GMT
+Cache-Control: private, max-age=0, must-revalidate, no-transform
+ETag: "QXg5cTVSLit7I2A9XRRREEwNQwc."
+Vary: Origin
+Vary: X-Origin
+Content-Type: application/json; charset=UTF-8
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 1; mode=block
+Content-Length: 3695
+Server: GSE
+Alternate-Protocol: 443:quic,p=0.02
+Connection: close
+
+{"version": "1.0",
+ "encoding": "UTF-8",
+ "entry": 
+  {"id": 
+    {"$t": 
+      "http://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/base/7f7b814a8c299763"},
+   "gd$etag": "\"QXg5cTVSLit7I2A9XRRREEwNQwc.\"",
+   "updated": {"$t": "2015-01-23T12:50:30.629Z"},
+   "app$edited": 
+    {"xmlns$app": "http://www.w3.org/2007/app",
+     "$t": "2015-01-23T12:50:30.629Z"},
+   "category": 
+    [{"scheme": "http://schemas.google.com/g/2005#kind",
+      "term": "http://schemas.google.com/contact/2008#contact"}],
+   "title": {"$t": "Elizabeth Bennet"},
+   "content": {"$t": "Notes"},
+   "link": 
+    [{"rel": "http://schemas.google.com/contacts/2008/rel#photo",
+      "type": "image/*",
+      "href": 
+       "https://www.google.com/m8/feeds/photos/media/barber.justin%40gmail.com/7f7b814a8c299763"},
+     {"rel": "self",
+      "type": "application/atom+xml",
+      "href": 
+       "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/7f7b814a8c299763"},
+     {"rel": "edit",
+      "type": "application/atom+xml",
+      "href": 
+       "https://www.google.com/m8/feeds/contacts/barber.justin%40gmail.com/full/7f7b814a8c299763"}],
+   "gd$name": 
+    {"gd$fullName": {"$t": "Elizabeth Bennet"},
+     "gd$givenName": {"$t": "Elizabeth"},
+     "gd$familyName": {"$t": "Bennet"}},
+   "gd$email": 
+    [{"address": "liz@gmail.com",
+      "primary": "true",
+      "rel": "http://schemas.google.com/g/2005#work",
+      "displayName": "E. Bennet"},
+     {"address": "liz@example.org",
+      "rel": "http://schemas.google.com/g/2005#home"}],
+   "gd$im": 
+    [{"address": "liz@gmail.com",
+      "primary": "true",
+      "protocol": "http://schemas.google.com/g/2005#GOOGLE_TALK",
+      "rel": "http://schemas.google.com/g/2005#home"}],
+   "gd$phoneNumber": 
+    [{"rel": "http://schemas.google.com/g/2005#work",
+      "primary": "true",
+      "uri": "tel:+1-206-555-1212",
+      "$t": "\n    (206)555-1212\n  "},
+     {"rel": "http://schemas.google.com/g/2005#home",
+      "uri": "tel:+1-206-555-1213",
+      "$t": "\n    (206)555-1213\n  "},
+     {"label": "Custom Phone", "$t": "8675309"}],
+   "gd$structuredPostalAddress": 
+    [{"rel": "http://schemas.google.com/g/2005#work",
+      "primary": "true",
+      "gd$formattedAddress": 
+       {"$t": "\n      1600 Amphitheatre Pkwy Mountain View\n    "},
+      "gd$street": {"$t": "1600 Amphitheatre Pkwy"},
+      "gd$city": {"$t": "Mountain View"},
+      "gd$region": {"$t": "CA"},
+      "gd$postcode": {"$t": "94043"},
+      "gd$country": {"$t": "United States"}},
+     {"label": "Custom Address",
+      "gd$formattedAddress": 
+       {"$t": "1 Simple Address \nSimpleCity, SimpleState\n12345"},
+      "gd$street": 
+       {"$t": "1 Simple Address \nSimpleCity, SimpleState\n12345"}}],
+   "gContact$userDefinedField": 
+    [{"key": "Pet", "value": "Dog"}, {"key": "Pet", "value": "Dog"}],
+   "gContact$groupMembershipInfo": 
+    [{"deleted": "false",
+      "href": 
+       "http://www.google.com/m8/feeds/groups/barber.justin%40gmail.com/base/6"}],
+   "xmlns": "http://www.w3.org/2005/Atom",
+   "xmlns$batch": "http://schemas.google.com/gdata/batch",
+   "xmlns$gContact": "http://schemas.google.com/contact/2008",
+   "xmlns$gd": "http://schemas.google.com/g/2005"}}
