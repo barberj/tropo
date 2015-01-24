@@ -27,7 +27,8 @@ class GoogleContacts < Api
   end
 
   def check_authorization
-    request(:get)
+    # user accepting oauth2 offline request is enough to verify authorization
+    true
   end
 
   def request_page(page, limit, query)

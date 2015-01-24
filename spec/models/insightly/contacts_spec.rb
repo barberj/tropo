@@ -255,10 +255,8 @@ describe Insightly do
       let(:stub_create_contact) do
         stub_request(:post, 'https://letmein:@api.insight.ly/v2.1/Contacts').
           with(
-            :body => {
-              'FIRST_NAME'   => 'Justin',
-            }.to_json,
-            :headers =>  { 'content-type' => 'application/json' }
+            :body => { 'FIRST_NAME' => 'Justin' }.to_json,
+            :headers => { 'content-type' => 'application/json' }
           )
       end
       let(:stub_create_contact_with_info) do

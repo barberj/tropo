@@ -2,7 +2,7 @@ div class="row"
   div class="col-md-6 col-md-offset-3 api-authorize"
     div class="panel panel-default"
       div class="panel-body"
-        = form_tag(insightly_signup_path, method: "get") do
+        = form_tag(google_contacts_signup_path, method: "get") do
           div class="form-group"
-            = text_field_tag(:token, 'insightly_token', class: "form-control")
+            = text_field_tag(:token, 'api_token', class: "form-control")
           button type="submit" class="btn btn-default" SignUp
