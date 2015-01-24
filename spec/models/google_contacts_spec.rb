@@ -34,6 +34,10 @@ describe GoogleContacts do
         expect(api.read_contact(1).first).to include('id' => '7f7b814a8c299763')
       end
       it 'returns empty' do
+        stub_read_contact.
+          to_return(File.new("#{mock_base}/no_contacts.txt"))
+
+        expect(api.read_contact(1)).to be_empty
       end
     end
     describe 'updated'

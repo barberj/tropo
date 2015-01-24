@@ -15,8 +15,47 @@ class GoogleContacts < Api
     @token || refresh_token
   end
 
+  def format_json(entries)
+    [].tap do |contacts|
+      Array.wrap(entries).each do |entry|
+        contacts << contact = {}
+        contact['id'] = entry['id']['$t'].split('/').last
+        contact['title'] = Dpaths.dselect(entry, '/title/$t/*')
+        contact['content'] = Dpaths.dselect(entry, '/content/$t/*')
+        contact['given_name'] = Dpaths.dselect(entry, '/gd$name/gd$givenName/$t/*')
+        contact['family_name'] = Dpaths.dselect(entry, '/gd$name/gd$familyName/$t/*')
+        contact['full_name'] = Dpaths.dselect(entry, '/gd$name/gd$fullName/$t/*')
+
+        Array.wrap(entry['gd$email']).each do |email|
+          type = email['rel'].split('#').last
+          contact["#{type}_email"] = email['address']
+        end
+
+        Array.wrap(entry['gd$im']).each do |im|
+          type = im['rel'].split('#').last
+          contact["#{type}_im"] = im['address']
+        end
+
+        Array.wrap(entry['gd$phoneNumber']).each do |phone|
+          type = phone['rel'].present? ? phone['rel'].split('#').last : phone['label']
+          contact["#{type}_phone_number"] = phone['$t'].strip
+        end
+
+        Array.wrap(entry['gd$structuredPostalAddress']).each do |addr|
+          type = addr['rel'].present? ? addr['rel'].split('#').last : addr['label']
+          contact["#{type}_street"] = Dpaths.dselect(addr, '/gd$street/$t/*')
+          contact["#{type}_city"] = Dpaths.dselect(addr, '/gd$city/$t/*')
+          contact["#{type}_region"] = Dpaths.dselect(addr, '/gd$region/$t/*')
+          contact["#{type}_postcode"] = Dpaths.dselect(addr, '/gd$postcode/$t/*')
+          contact["#{type}_country"] = Dpaths.dselect(addr, '/gd$country/$t/*')
+        end
+      end
+    end
+  end
+
   def request(method, path=nil, headers: {}, query: {}, body: {})
-    http(method, "https://www.google.com/m8/feeds/contacts/default/full/#{path}",
+    url = "https://www.google.com/m8/feeds/contacts/default/full#{ "/#{path}" if path }"
+    rsp = http(method, url,
       :query   => query.merge( 'alt' => 'json'),
       :body    => body,
       :headers => headers.merge(
@@ -24,6 +63,10 @@ class GoogleContacts < Api
         'GData-Version' => '3.0'
       )
     )
+
+    if rsp.code.in? [200]
+      format_json(rsp['feed']['entry'])
+    end
   end
 
   def check_authorization
@@ -40,7 +83,7 @@ class GoogleContacts < Api
   end
 
   def read_contact(identifier)
-    request(:get, "/#{identifier}")
+    request(:get, identifier)
   end
 
   def updated_contacts(updated_since: 1.week.ago, limit: 250, page: 1)
