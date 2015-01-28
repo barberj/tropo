@@ -8,6 +8,12 @@ describe Insightly do
     id = create(:api, :data => {:api_key => 'letmein'}).id
     Api.find(id)
   end
+  let(:stub_read_contacts) do
+    stub_request(:get, 'https://letmein:@api.insight.ly/v2.1/Contacts')
+      .with(:query => {
+        'ids' => "1,2"
+      })
+  end
 
   describe '#request' do
     it 'includes basic authorization' do
@@ -55,7 +61,7 @@ describe Insightly do
 
         contacts = api.search_contacts(email: 'alice@barberfami.ly')
         info = contacts.first['CONTACTINFOS'].first
-        expect(info['DETAIL']).to eq "wade@zapier.com"
+        expect(info['DETAIL']).to eq "coty@ecommhub.com"
       end
       it 'returns empty' do
         stub_search_contacts
@@ -91,7 +97,7 @@ describe Insightly do
           created_since: Time.new(2014, 12, 19, 11, 16, 0, -5*3600)
         )
 
-        expect(contacts.first['CONTACT_ID']).to eq 91978560
+        expect(contacts.first['CONTACT_ID']).to eq 94941790
       end
       it 'returns empty' do
         stub_created_contacts
@@ -149,7 +155,7 @@ describe Insightly do
           updated_since: Time.new(2014, 12, 19, 11, 16, 0, -5*3600)
         )
 
-        expect(contacts.first['CONTACT_ID']).to eq 91978560
+        expect(contacts.first['CONTACT_ID']).to eq 94941790
       end
       it 'returns empty' do
         stub_updated_contacts
@@ -171,20 +177,13 @@ describe Insightly do
       end
     end
     describe 'read' do
-      let(:stub_read_contacts) do
-        stub_request(:get, 'https://letmein:@api.insight.ly/v2.1/Contacts')
-          .with(:query => {
-            'ids' => "1,2"
-          })
-      end
-
       it 'returns contacts' do
         stub_read_contacts
           .to_return(File.new("#{mock_base}/a_contact.txt"))
 
         contacts = api.read_contacts([1,2])
 
-        expect(contacts.first['CONTACT_ID']).to eq 91978560
+        expect(contacts.first['CONTACT_ID']).to eq 94941790
       end
       it 'returns empty' do
         stub_read_contacts
@@ -203,12 +202,96 @@ describe Insightly do
         )}.to raise_error Exceptions::Unauthorized
       end
     end
+    it 'returns simplified address' do
+      stub_read_contacts
+        .to_return(File.new("#{mock_base}/a_contact.txt"))
+
+      contacts = api.read_contacts([1,2])
+      address = contacts.first['ADDRESSES'].first
+
+      expect(address).to include(
+        'ADDRESS_ID'   => 50036173,
+        'ADDRESS_TYPE' => 'WORK',
+        'STREET'       => '730 Peachtree St., NE Suite 330',
+        'CITY'         => 'Atlanta',
+        'STATE'        => 'Ga',
+        'POSTCODE'     => '30308',
+        'COUNTRY'      => 'United States',
+        'WORK_STREET'  => '730 Peachtree St., NE Suite 330',
+        'WORK_CITY'    => 'Atlanta',
+        'WORK_STATE'   => 'Ga',
+        'WORK_POSTCODE'=> '30308',
+        'WORK_COUNTRY' => 'United States',
+      )
+    end
+    it 'returns simplified phone numbers' do
+      stub_read_contacts
+        .to_return(File.new("#{mock_base}/a_contact.txt"))
+
+      contacts = api.read_contacts([1,2])
+      number = contacts.first['PHONE_NUMBERS'].first
+
+      expect(number).to include(
+        "CONTACT_INFO_ID" => 172195354,
+        "TYPE"            => "PHONE",
+        "SUBTYPE"         => nil,
+        "LABEL"           => "WORK",
+        "DETAIL"          => "6784625167",
+        "WORK_NUMBER"     => "6784625167"
+      )
+    end
+    it 'returns simplified websites' do
+      stub_read_contacts
+        .to_return(File.new("#{mock_base}/a_contact.txt"))
+
+      contacts = api.read_contacts([1,2])
+      site = contacts.first['WEBSITES'].first
+
+      expect(site).to include(
+        "CONTACT_INFO_ID" => 172195355,
+        "TYPE"            => "WEBSITE",
+        "SUBTYPE"         => nil,
+        "LABEL"           => "WORK",
+        "DETAIL"          => "www.ecommhub.com",
+        "WORK_WEBSITE"    => "www.ecommhub.com"
+      )
+    end
+    it 'returns simplified social' do
+      stub_read_contacts
+        .to_return(File.new("#{mock_base}/a_contact.txt"))
+
+      contacts = api.read_contacts([1,2])
+      social = contacts.first['SOCIAL'].first
+
+      expect(social).to include(
+        "CONTACT_INFO_ID" => 172195357,
+        "TYPE"            => "SOCIAL",
+        "SUBTYPE"         => "TwitterID",
+        "LABEL"           => "TwitterID",
+        "DETAIL"          => "eCommHub",
+        "TWITTER"         => "eCommHub"
+      )
+
+      social = contacts.first['SOCIAL'].last
+
+      expect(social).to include(
+        "CONTACT_INFO_ID" => 172195356,
+        "TYPE"            => "SOCIAL",
+        "SUBTYPE"         => "LinkedInPublicProfileUrl",
+        "LABEL"           => "LinkedInPublicProfileUrl",
+        "DETAIL"          => "https://www.linkedin.com/profile/view?id=14151",
+        "LINKEDIN"        => "https://www.linkedin.com/profile/view?id=14151"
+      )
+    end
 
     describe 'create' do
       let(:stub_create_contact) do
         stub_request(:post, 'https://letmein:@api.insight.ly/v2.1/Contacts')
           .with(
-            :body => { 'FIRST_NAME' => 'Justin' }.to_json,
+            :body => {
+              'FIRST_NAME'   => 'Justin',
+              'CONTACTINFOS' => []
+            }.to_json,
             :headers =>  { 'content-type' => 'application/json' }
           )
       end
