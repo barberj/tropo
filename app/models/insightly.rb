@@ -30,38 +30,29 @@ class Insightly < Api
   end
 
   def simplify_contact_info!(contact)
-    emails = contact['EMAILS'] = []
-    numbers = contact['PHONE_NUMBERS'] = []
-    websites = contact['WEBSITES'] = []
-    socials = contact['SOCIAL'] = []
     contact['CONTACTINFOS'].each do |info|
-      case info['TYPE']
+      case info['TYPE'].upcase
       when 'EMAIL'
-        info["#{info['LABEL']}_EMAIL"] = info['DETAIL']
-        emails << info
+        emails = contact[ "#{info['LABEL']}_EMAILS"] ||= []
+        emails << info['DETAIL']
       when 'PHONE'
-        info["#{info['LABEL']}_NUMBER"] = info['DETAIL']
-        numbers << info
+        numbers = contact[ "#{info['LABEL']}_PHONE_NUMBERS"] ||= []
+        numbers << info['DETAIL']
       when 'WEBSITE'
-        info["#{info['LABEL']}_WEBSITE"] = info['DETAIL']
-        websites << info
+        websites = contact[ "#{info['LABEL']}_WEBSITES"] ||= []
+        websites << info['DETAIL']
       when 'SOCIAL'
         key = info['LABEL'].include?('LinkedIn') ? 'LINKEDIN' : 'TWITTER'
-        info[key] = info['DETAIL']
-        socials << info
+        socials = contact[key] ||= []
+        socials << info['DETAIL']
       end
     end
   end
 
   def simplify_addresses!(contact)
     contact['ADDRESSES'].each do |address|
-      address.merge!(
-        "#{address['ADDRESS_TYPE']}_STREET"   => address['STREET'],
-        "#{address['ADDRESS_TYPE']}_CITY"     => address['CITY'],
-        "#{address['ADDRESS_TYPE']}_STATE"    => address['STATE'],
-        "#{address['ADDRESS_TYPE']}_POSTCODE" => address['POSTCODE'],
-        "#{address['ADDRESS_TYPE']}_COUNTRY"  => address['COUNTRY']
-      )
+      addresses = contact["#{address['ADDRESS_TYPE']}_ADDRESSES"] ||= []
+      addresses << address
     end
   end
 

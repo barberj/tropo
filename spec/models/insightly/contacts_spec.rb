@@ -207,7 +207,7 @@ describe Insightly do
         .to_return(File.new("#{mock_base}/a_contact.txt"))
 
       contacts = api.read_contacts([1,2])
-      address = contacts.first['ADDRESSES'].first
+      address = contacts.first['WORK_ADDRESSES'].first
 
       expect(address).to include(
         'ADDRESS_ID'   => 50036173,
@@ -216,12 +216,7 @@ describe Insightly do
         'CITY'         => 'Atlanta',
         'STATE'        => 'Ga',
         'POSTCODE'     => '30308',
-        'COUNTRY'      => 'United States',
-        'WORK_STREET'  => '730 Peachtree St., NE Suite 330',
-        'WORK_CITY'    => 'Atlanta',
-        'WORK_STATE'   => 'Ga',
-        'WORK_POSTCODE'=> '30308',
-        'WORK_COUNTRY' => 'United States',
+        'COUNTRY'      => 'United States'
       )
     end
     it 'returns simplified phone numbers' do
@@ -229,59 +224,31 @@ describe Insightly do
         .to_return(File.new("#{mock_base}/a_contact.txt"))
 
       contacts = api.read_contacts([1,2])
-      number = contacts.first['PHONE_NUMBERS'].first
+      number = contacts.first['WORK_PHONE_NUMBERS']
 
-      expect(number).to include(
-        "CONTACT_INFO_ID" => 172195354,
-        "TYPE"            => "PHONE",
-        "SUBTYPE"         => nil,
-        "LABEL"           => "WORK",
-        "DETAIL"          => "6784625167",
-        "WORK_NUMBER"     => "6784625167"
-      )
+      expect(number).to include( "6784625167" )
     end
     it 'returns simplified websites' do
       stub_read_contacts
         .to_return(File.new("#{mock_base}/a_contact.txt"))
 
       contacts = api.read_contacts([1,2])
-      site = contacts.first['WEBSITES'].first
+      site = contacts.first['WORK_WEBSITES']
 
-      expect(site).to include(
-        "CONTACT_INFO_ID" => 172195355,
-        "TYPE"            => "WEBSITE",
-        "SUBTYPE"         => nil,
-        "LABEL"           => "WORK",
-        "DETAIL"          => "www.ecommhub.com",
-        "WORK_WEBSITE"    => "www.ecommhub.com"
-      )
+      expect(site).to include( "www.ecommhub.com" )
     end
     it 'returns simplified social' do
       stub_read_contacts
         .to_return(File.new("#{mock_base}/a_contact.txt"))
 
       contacts = api.read_contacts([1,2])
-      social = contacts.first['SOCIAL'].first
+      social = contacts.first['TWITTER']
 
-      expect(social).to include(
-        "CONTACT_INFO_ID" => 172195357,
-        "TYPE"            => "SOCIAL",
-        "SUBTYPE"         => "TwitterID",
-        "LABEL"           => "TwitterID",
-        "DETAIL"          => "eCommHub",
-        "TWITTER"         => "eCommHub"
-      )
+      expect(social).to include( "eCommHub" )
 
-      social = contacts.first['SOCIAL'].last
+      social = contacts.first['LINKEDIN']
 
-      expect(social).to include(
-        "CONTACT_INFO_ID" => 172195356,
-        "TYPE"            => "SOCIAL",
-        "SUBTYPE"         => "LinkedInPublicProfileUrl",
-        "LABEL"           => "LinkedInPublicProfileUrl",
-        "DETAIL"          => "https://www.linkedin.com/profile/view?id=14151",
-        "LINKEDIN"        => "https://www.linkedin.com/profile/view?id=14151"
-      )
+      expect(social).to include( "https://www.linkedin.com/profile/view?id=14151" )
     end
 
     describe 'create' do
