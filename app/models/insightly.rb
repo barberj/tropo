@@ -63,9 +63,10 @@ class Insightly < Api
     end
   end
 
-  def get_contacts(query)
+  def get_contacts(query, simplify: true)
     contacts = get_request('Contacts', query)
-    simplify_contacts!(contacts)
+    simplify_contacts!(contacts) if simplify
+    contacts
   end
 
   def upsert_request(method, resource, data)
@@ -83,8 +84,8 @@ class Insightly < Api
     get_contacts(:email => email)
   end
 
-  def read_contacts(identifiers)
-    get_contacts(:ids => identifiers.join(','))
+  def read_contacts(identifiers, simplify: true)
+    get_contacts({:ids => identifiers.join(',')}, :simplify => simplify)
   end
 
   def created_contacts(created_since: 1.week.ago, limit: 250, page: 1)
@@ -170,7 +171,10 @@ class Insightly < Api
   end
 
   def update_contact(data)
-    upsert_request(:put, 'Contacts', data)
+    if contact = read_contacts([data['CONTACT_ID']], :simplify => false).first
+      contact = contact.except("DATE_CREATED_UTC", "DATE_UPDATED_UTC")
+      upsert_request(:put, 'Contacts', contact.merge(data))
+    end
   end
 
   def delete_contact(id)

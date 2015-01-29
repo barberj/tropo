@@ -336,12 +336,92 @@ describe Insightly do
       end
     end
     describe 'update' do
+      before do
+        stub_request(:get, 'https://letmein:@api.insight.ly/v2.1/Contacts').
+          with(:query => {
+            'ids' => "1"
+          }).
+          to_return(File.new("#{mock_base}/a_contact.txt"))
+      end
       let(:stub_update_contact) do
         stub_request(:put, 'https://letmein:@api.insight.ly/v2.1/Contacts').
           with(
             :body => {
               'CONTACT_ID' => 1,
-              'FIRST_NAME' => 'Justin'
+              "SALUTATION" => nil,
+              'FIRST_NAME' => 'Justin',
+              "LAST_NAME"  => "Rosenblath",
+              "BACKGROUND" => "background",
+              "IMAGE_URL"  => "http://jpeg",
+              "DEFAULT_LINKED_ORGANISATION" => nil,
+              "OWNER_USER_ID" => 635532,
+              "VISIBLE_TO" => "EVERYONE",
+              "VISIBLE_TEAM_ID" => nil,
+              "VISIBLE_USER_IDS" => nil,
+              "CUSTOMFIELDS" => [],
+              "ADDRESSES" => [{
+                "ADDRESS_ID" => 50036173,
+                "ADDRESS_TYPE" => "WORK",
+                "STREET" => "730 Peachtree St., NE Suite 330",
+                "CITY" => "Atlanta",
+                "STATE" => "Ga",
+                "POSTCODE" => "30308",
+                "COUNTRY" => "United States"
+              }],
+              "CONTACTINFOS" => [{
+                "CONTACT_INFO_ID" => 166638898,
+                "TYPE" => "EMAIL",
+                "SUBTYPE" => nil,
+                "LABEL" => "WORK",
+                "DETAIL" => "coty@ecommhub.com"
+              },{
+                "CONTACT_INFO_ID" => 172195351,
+                "TYPE" => "EMAIL",
+                "SUBTYPE" => nil,
+                "LABEL" => "HOME",
+                "DETAIL" => "home@email.com"
+              },{
+                "CONTACT_INFO_ID" => 172195352,
+                "TYPE" => "EMAIL",
+                "SUBTYPE" => nil,
+                "LABEL" => "PERSONAL",
+                "DETAIL" => "personal@email.com"
+              },{
+                "CONTACT_INFO_ID" => 172195353,
+                "TYPE" => "EMAIL",
+                "SUBTYPE" => nil,
+                "LABEL" => "OTHER",
+                "DETAIL" => "other@email.com"
+              },{
+                "CONTACT_INFO_ID" => 172195354,
+                "TYPE" => "PHONE",
+                "SUBTYPE" => nil,
+                "LABEL" => "WORK",
+                "DETAIL" => "6784625167"
+              },{
+                "CONTACT_INFO_ID" => 172195355,
+                "TYPE" => "WEBSITE",
+                "SUBTYPE" => nil,
+                "LABEL" => "WORK",
+                "DETAIL" => "www.ecommhub.com"
+              },{
+                "CONTACT_INFO_ID" => 172195357,
+                "TYPE" => "SOCIAL",
+                "SUBTYPE" => "TwitterID",
+                "LABEL" => "TwitterID",
+                "DETAIL" => "eCommHub"
+              },{
+                "CONTACT_INFO_ID" => 172195356,
+                "TYPE" => "SOCIAL",
+                "SUBTYPE" => "LinkedInPublicProfileUrl",
+                "LABEL" => "LinkedInPublicProfileUrl",
+                "DETAIL" => "https://www.linkedin.com/profile/view?id=14151"
+              }],
+              "DATES" => [],
+              "TAGS" => [],
+              "LINKS" => [],
+              "CONTACTLINKS" => [],
+              "EMAILLINKS" => nil
             }.to_json,
             :headers =>  { 'content-type' => 'application/json' }
           )
@@ -352,9 +432,11 @@ describe Insightly do
 
         contact = api.update_contact(
           'CONTACT_ID' => 1,
-          'FIRST_NAME' => 'Justin'
+          'FIRST_NAME' => 'Justin',
         ).first
         expect(contact['CONTACT_ID']).to eq(94941790)
+      end
+      it 'formats contact info' do
       end
     end
     describe 'delete' do

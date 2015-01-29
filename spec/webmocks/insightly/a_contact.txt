@@ -7,7 +7,7 @@ Vary: Accept-Encoding
 Server: Microsoft-IIS/7.5
 Date: Wed, 28 Jan 2015 01:06:31 GMT
 Connection: close
-Content-Length: 2321
+Content-Length: 2229
 Set-Cookie: snaptid=sac1prdc01ut06; path=/
 
 [{"CONTACT_ID": 94941790,
@@ -15,8 +15,7 @@ Set-Cookie: snaptid=sac1prdc01ut06; path=/
   "FIRST_NAME": "Coty",
   "LAST_NAME": "Rosenblath",
   "BACKGROUND": "background",
-  "IMAGE_URL": 
-   "http://s3.amazonaws.com/insightly.userfiles/357208/YAKIOD/5db59c3b-11e9-432c-a32f-a940dcd323d7.jpeg",
+  "IMAGE_URL": "http://jpeg",
   "DEFAULT_LINKED_ORGANISATION": null,
   "OWNER_USER_ID": 635532,
   "DATE_CREATED_UTC": "2015-01-07 01:57:37",
