@@ -102,17 +102,70 @@ class Insightly < Api
   end
 
   def format_new_contact_info!(data)
-    info = data['CONTACTINFOS'] = []
-    ['EMAILS', 'WEBSITES', 'PHONE_NUMBERS', 'SOCIAL'].each do |key|
-      info_type = data.delete(key) || []
-      info.concat(info_type)
+    info = []
+
+    ['EMAIL', 'WEBSITE', 'PHONE'].each do |info_type|
+      matching_info = data.select { |k| k.include?(info_type) }
+      matching_info.each do |simplify_info, values|
+        label = simplify_info.split('_').first
+        values.each do |value|
+          info << {
+            "TYPE"   => info_type,
+            "LABEL"  => label,
+            "DETAIL" => value
+          }
+        end
+        data.delete(simplify_info)
+      end
     end
 
+    Array.wrap(data.delete('TWITTER')).each do |social|
+      info << {
+       "TYPE"     => "SOCIAL",
+       "SUBTYPE"  => "TwitterID",
+       "LABEL"    => "TwitterID",
+       "DETAIL"   => social
+      }
+    end
+
+    Array.wrap(data.delete('LINKEDIN')).each do |social|
+      info << {
+       "TYPE"     => "SOCIAL",
+       "SUBTYPE"  => "LinkedInPublicProfileUrl",
+       "LABEL"    => "LinkedInPublicProfileUrl",
+       "DETAIL"   => social
+      }
+    end
+
+    data['CONTACTINFOS'] = info if info.present?
     data
   end
 
-  def create_contact(data)
+  def format_new_contact_addresses!(data)
+    addresses = []
+    matching_info = data.select { |k| k.include?('ADDRESS') }
+
+    matching_info.each do |simplify_info, values|
+      label = simplify_info.split('_').first
+      values.each do |address|
+        addresses << address.merge(
+         "ADDRESS_TYPE" => label
+        )
+      end
+      data.delete(simplify_info)
+    end
+
+    data['ADDRESSES'] = addresses if addresses.present?
+    data
+  end
+
+  def format_new_contact!(data)
+    format_new_contact_addresses!(data)
     format_new_contact_info!(data)
+  end
+
+  def create_contact(data)
+    format_new_contact!(data)
     upsert_request(:post, 'Contacts', data)
   end
 
