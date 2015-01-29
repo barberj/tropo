@@ -102,14 +102,14 @@ class Insightly < Api
     )
   end
 
-  def format_new_contact_info!(data)
+  def format_contact_info!(data)
     info = []
 
     ['EMAIL', 'WEBSITE', 'PHONE'].each do |info_type|
-      matching_info = data.select { |k| k.include?(info_type) }
+      matching_info = data.select { |k| k.include?("_#{info_type}") }
       matching_info.each do |simplify_info, values|
         label = simplify_info.split('_').first
-        values.each do |value|
+        Array.wrap(values).compact.each do |value|
           info << {
             "TYPE"   => info_type,
             "LABEL"  => label,
@@ -138,13 +138,18 @@ class Insightly < Api
       }
     end
 
-    data['CONTACTINFOS'] = info if info.present?
+    if info.present?
+      data['CONTACTINFOS'] ||= []
+      data['CONTACTINFOS'].concat info
+      data['CONTACTINFOS'] = data['CONTACTINFOS'].
+        uniq{ |i| (i['TYPE'] + i['LABEL'] + i['DETAIL']).downcase }
+    end
     data
   end
 
-  def format_new_contact_addresses!(data)
+  def format_contact_addresses!(data)
     addresses = []
-    matching_info = data.select { |k| k.include?('ADDRESS') }
+    matching_info = data.select { |k| k.include?('_ADDRESS') }
 
     matching_info.each do |simplify_info, values|
       label = simplify_info.split('_').first
@@ -156,24 +161,30 @@ class Insightly < Api
       data.delete(simplify_info)
     end
 
-    data['ADDRESSES'] = addresses if addresses.present?
+    if addresses.present?
+      data['ADDRESSES'] ||= []
+      data['ADDRESSES'].concat addresses
+      data['ADDRESSES'] = data['ADDRESSES'].
+        uniq{ |i| (i['ADDRESS_TYPE'] + i['STREET']).downcase }
+    end
     data
   end
 
-  def format_new_contact!(data)
-    format_new_contact_addresses!(data)
-    format_new_contact_info!(data)
+  def format_contact!(data)
+    format_contact_addresses!(data)
+    format_contact_info!(data)
   end
 
   def create_contact(data)
-    format_new_contact!(data)
+    format_contact!(data)
     upsert_request(:post, 'Contacts', data)
   end
 
   def update_contact(data)
     if contact = read_contacts([data['CONTACT_ID']], :simplify => false).first
-      contact = contact.except("DATE_CREATED_UTC", "DATE_UPDATED_UTC")
-      upsert_request(:put, 'Contacts', contact.merge(data))
+      contact = contact.except("DATE_CREATED_UTC", "DATE_UPDATED_UTC").merge(data)
+      format_contact!(contact)
+      upsert_request(:put, 'Contacts', contact)
     end
   end
 

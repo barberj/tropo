@@ -261,6 +261,39 @@ describe Insightly do
             :headers =>  { 'content-type' => 'application/json' }
           )
       end
+      let(:stub_create_contact_with_info) do
+        stub_request(:post, 'https://letmein:@api.insight.ly/v2.1/Contacts').
+          with(
+            :body => {
+              'FIRST_NAME'   => 'Justin',
+              "ADDRESSES" => [{
+                "STREET"       => "730 Peachtree St., NE Suite 330",
+                "CITY"         => "Atlanta",
+                "STATE"        => "Ga",
+                "POSTCODE"     => "30308",
+                "COUNTRY"      => "United States",
+                "ADDRESS_TYPE" => "WORK"
+              }],
+              'CONTACTINFOS' => [{
+                "TYPE"    => "EMAIL",
+                "LABEL"   => "WORK",
+                "DETAIL"  => "justin@simpleapi.io"
+              },{
+                "TYPE"    => "SOCIAL",
+                "SUBTYPE" => "TwitterID",
+                "LABEL"   => "TwitterID",
+                "DETAIL"  => "simpletwitter"
+              },{
+                "TYPE"    => "SOCIAL",
+                "SUBTYPE" => "LinkedInPublicProfileUrl",
+                "LABEL"   => "LinkedInPublicProfileUrl",
+                "DETAIL"  => "simplelinkedin"
+              }]
+            }.to_json,
+            :headers =>  { 'content-type' => 'application/json' }
+          ).
+          to_return(File.new("#{mock_base}/modified_contact.txt"))
+      end
       it 'returns contact' do
         stub_create_contact.
           to_return(File.new("#{mock_base}/modified_contact.txt"))
@@ -286,37 +319,7 @@ describe Insightly do
           }.to raise_error /Cannot insert the value NULL into column/
         end
         it 'formats new contact info' do
-          stub_request(:post, 'https://letmein:@api.insight.ly/v2.1/Contacts').
-            with(
-              :body => {
-                'FIRST_NAME'   => 'Justin',
-                "ADDRESSES" => [{
-                  "STREET"       => "730 Peachtree St., NE Suite 330",
-                  "CITY"         => "Atlanta",
-                  "STATE"        => "Ga",
-                  "POSTCODE"     => "30308",
-                  "COUNTRY"      => "United States",
-                  "ADDRESS_TYPE" => "WORK"
-                }],
-                'CONTACTINFOS' => [{
-                  "TYPE"    => "EMAIL",
-                  "LABEL"   => "WORK",
-                  "DETAIL"  => "justin@simpleapi.io"
-                },{
-                  "TYPE"    => "SOCIAL",
-                  "SUBTYPE" => "TwitterID",
-                  "LABEL"   => "TwitterID",
-                  "DETAIL"  => "simpletwitter"
-                },{
-                  "TYPE"    => "SOCIAL",
-                  "SUBTYPE" => "LinkedInPublicProfileUrl",
-                  "LABEL"   => "LinkedInPublicProfileUrl",
-                  "DETAIL"  => "simplelinkedin"
-                }]
-              }.to_json,
-              :headers =>  { 'content-type' => 'application/json' }
-            ).
-            to_return(File.new("#{mock_base}/modified_contact.txt"))
+          stub_create_contact_with_info
 
           contact = api.create_contact(
             'FIRST_NAME'  => 'Justin',
@@ -329,7 +332,25 @@ describe Insightly do
             }],
             'WORK_EMAILS' => ['justin@simpleapi.io'],
             'TWITTER'     => ['simpletwitter'],
-            'LINKEDIN'     => ['simplelinkedin']
+            'LINKEDIN'    => ['simplelinkedin']
+          ).first
+          expect(contact['CONTACT_ID']).to eq(94941790)
+        end
+        it 'removes duplicate data from request' do
+          stub_create_contact_with_info
+
+          contact = api.create_contact(
+            'FIRST_NAME'  => 'Justin',
+            "WORK_ADDRESSES"   => [{
+              "STREET"   => "730 Peachtree St., NE Suite 330",
+              "CITY"     => "Atlanta",
+              "STATE"    => "Ga",
+              "POSTCODE" => "30308",
+              "COUNTRY"  => "United States"
+            }],
+            'WORK_EMAILS' => ['justin@simpleapi.io', 'justin@simpleapi.io'],
+            'TWITTER'     => ['simpletwitter', 'simpletwitter'],
+            'LINKEDIN'    => ['simplelinkedin', 'simplelinkedin']
           ).first
           expect(contact['CONTACT_ID']).to eq(94941790)
         end
