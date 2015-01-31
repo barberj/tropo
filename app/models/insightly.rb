@@ -70,7 +70,8 @@ class Insightly < Api
   end
 
   def upsert_request(method, resource, data)
-    Array.wrap(request(method, resource, body: data))
+    contacts = Array.wrap(request(method, resource, body: data))
+    simplify_contacts!(contacts)
   end
 
   def get_contacts_on_page(page, limit, filter={})
