@@ -3,10 +3,10 @@ class GoogleContacts < Api
   def refresh_token
     @token = HTTParty.post("https://accounts.google.com/o/oauth2/token",
       :body => {
-        "client_id"=>"1026077737604-j4tu3ov7qer2e81b1h7keejb25sebng5.apps.googleusercontent.com",
-        "client_secret"=>"IJLxxyYUTO0mtI3l_5Q5E36A",
-        'refresh_token'=> self.data['refresh_token'],
-        "grant_type"=>"refresh_token"
+        "client_id"     => "1026077737604-j4tu3ov7qer2e81b1h7keejb25sebng5.apps.googleusercontent.com",
+        "client_secret" => "IJLxxyYUTO0mtI3l_5Q5E36A",
+        'refresh_token' => self.data['refresh_token'],
+        "grant_type"    => "refresh_token"
       }
     )['access_token']
   end
@@ -15,7 +15,7 @@ class GoogleContacts < Api
     @token || refresh_token
   end
 
-  def format_json(entries)
+  def simplify_contact(entries)
     [].tap do |contacts|
       Array.wrap(entries).each do |entry|
         contacts << contact = {}
@@ -28,26 +28,27 @@ class GoogleContacts < Api
 
         Array.wrap(entry['gd$email']).each do |email|
           type = email['rel'].split('#').last
-          contact["#{type}_email"] = email['address']
+          (contact["#{type}_emails"] ||= []) << email['address']
         end
 
         Array.wrap(entry['gd$im']).each do |im|
           type = im['rel'].split('#').last
-          contact["#{type}_im"] = im['address']
+          (contact["#{type}_ims"] ||= []) << im['address']
         end
 
         Array.wrap(entry['gd$phoneNumber']).each do |phone|
           type = phone['rel'].present? ? phone['rel'].split('#').last : phone['label']
-          contact["#{type}_phone_number"] = phone['$t'].strip
+          (contact["#{type}_phone_numbers"] ||= []) << phone['$t'].strip
         end
 
         Array.wrap(entry['gd$structuredPostalAddress']).each do |addr|
           type = addr['rel'].present? ? addr['rel'].split('#').last : addr['label']
-          contact["#{type}_street"] = Dpaths.dselect(addr, '/gd$street/$t/*')
-          contact["#{type}_city"] = Dpaths.dselect(addr, '/gd$city/$t/*')
-          contact["#{type}_region"] = Dpaths.dselect(addr, '/gd$region/$t/*')
-          contact["#{type}_postcode"] = Dpaths.dselect(addr, '/gd$postcode/$t/*')
-          contact["#{type}_country"] = Dpaths.dselect(addr, '/gd$country/$t/*')
+          (contact["#{type}_addresses"] ||= []) << simplified_address = {}
+          simplified_address["street"] = Dpaths.dselect(addr, '/gd$street/$t/*')
+          simplified_address["city"] = Dpaths.dselect(addr, '/gd$city/$t/*')
+          simplified_address["region"] = Dpaths.dselect(addr, '/gd$region/$t/*')
+          simplified_address["postcode"] = Dpaths.dselect(addr, '/gd$postcode/$t/*')
+          simplified_address["country"] = Dpaths.dselect(addr, '/gd$country/$t/*')
         end
       end
     end
@@ -65,7 +66,7 @@ class GoogleContacts < Api
     )
 
     if rsp.code.in? [200]
-      format_json(rsp['feed']['entry'])
+      simplify_contact(rsp['feed']['entry'])
     end
   end
 
