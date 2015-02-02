@@ -39,6 +39,40 @@ describe GoogleContacts do
 
         expect(api.read_contact(1)).to be_empty
       end
+      it 'returns simplified contact info' do
+        stub_read_contact.
+          to_return(File.new("#{mock_base}/a_contact.txt"))
+
+        contact = api.read_contact(1).first
+        expect(contact).to include(
+          'title'       => 'Elizabeth Bennet',
+          'content'     => 'Notes',
+          'given_name'  => 'Elizabeth',
+          'family_name' => 'Bennet'
+        )
+      end
+      it 'returns simplified contact emails' do
+        stub_read_contact.
+          to_return(File.new("#{mock_base}/a_contact.txt"))
+
+        contact = api.read_contact(1).first
+        expect(contact['work_emails']).to eq(['liz@gmail.com'])
+        expect(contact['home_emails']).to eq(['liz@example.org'])
+      end
+      it 'returns simplified address' do
+        stub_read_contact.
+          to_return(File.new("#{mock_base}/a_contact.txt"))
+
+        contact = api.read_contact(1).first
+        expect(contact['work_addresses'].count).to eq(1)
+        expect(contact['work_addresses'].first).to include(
+          'street'   => '1600 Amphitheatre Pkwy',
+          'city'     => 'Mountain View',
+          'region'   => 'CA',
+          'postcode' => '94043',
+          'country'  => 'United States'
+        )
+      end
     end
     describe 'updated'
     describe 'created'
