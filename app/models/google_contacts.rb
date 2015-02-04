@@ -76,7 +76,7 @@ class GoogleContacts < Api
   end
 
   def request_page(page, limit, query)
-    query.merge(
+    query.merge!(
       'max-results' => limit,
       'start-index' => offset_for_page(page: page, limit: limit),
     )

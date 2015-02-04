@@ -74,9 +74,134 @@ describe GoogleContacts do
         )
       end
     end
-    describe 'updated'
-    describe 'created'
-    describe 'search'
+    describe 'updated' do
+      let(:stub_updated_contacts) do
+        stub_request(:get, 'https://www.google.com/m8/feeds/contacts/default/full').
+          with(
+            :query => {
+              'alt'         => "json",
+              'start-index' => 0,
+              'max-results' => 250,
+              'updated-min' => '2015-02-03T00:00:00'
+            },
+            :headers => {
+              'Authorization' => "Bearer token",
+              'GData-Version' => '3.0'
+            }
+          )
+      end
+      it 'returns contacts' do
+        stub_updated_contacts.
+          to_return(File.new("#{mock_base}/a_contact.txt"))
+
+        expect(api.updated_contacts(
+          updated_since: Time.new(2015, 2, 3, 0, 0, 0, 0)
+        ).first).to include('id' => '7f7b814a8c299763')
+      end
+      it 'returns empty' do
+        stub_updated_contacts.
+          to_return(File.new("#{mock_base}/no_contacts.txt"))
+
+        expect(api.updated_contacts(
+          updated_since: Time.new(2015, 2, 3, 0, 0, 0, 0)
+        )).to be_empty
+      end
+      it 'pages' do
+        stub_request(:get, 'https://www.google.com/m8/feeds/contacts/default/full').
+          with(
+            :query => {
+              'alt'         => "json",
+              'start-index' => 250,
+              'max-results' => 250,
+              'updated-min' => '2015-02-03T00:00:00'
+            },
+            :headers => {
+              'Authorization' => "Bearer token",
+              'GData-Version' => '3.0'
+            }
+          ).
+          to_return(File.new("#{mock_base}/a_contact.txt"))
+
+        expect(api.updated_contacts(
+          updated_since: Time.new(2015, 2, 3, 0, 0, 0, 0),
+          page: 2
+        ).first).to include('id' => '7f7b814a8c299763')
+      end
+      it 'limits' do
+        stub_request(:get, 'https://www.google.com/m8/feeds/contacts/default/full').
+          with(
+            :query => {
+              'alt'         => "json",
+              'start-index' => 10,
+              'max-results' => 10,
+              'updated-min' => '2015-02-03T00:00:00'
+            },
+            :headers => {
+              'Authorization' => "Bearer token",
+              'GData-Version' => '3.0'
+            }
+          ).
+          to_return(File.new("#{mock_base}/a_contact.txt"))
+
+        expect(api.updated_contacts(
+          updated_since: Time.new(2015, 2, 3, 0, 0, 0, 0),
+          page: 2,
+          limit: 10
+        ).first).to include('id' => '7f7b814a8c299763')
+      end
+      it 'returns simplified contact info' do
+        stub_updated_contacts.
+          to_return(File.new("#{mock_base}/a_contact.txt"))
+
+        contact = api.updated_contacts(
+          updated_since: Time.new(2015, 2, 3, 0, 0, 0, 0),
+        ).first
+
+        expect(contact).to include(
+          'title'       => 'Elizabeth Bennet',
+          'content'     => 'Notes',
+          'given_name'  => 'Elizabeth',
+          'family_name' => 'Bennet'
+        )
+      end
+    end
+    describe 'created' do
+      let(:stub_created_contacts) do
+        stub_request(:get, 'https://www.google.com/m8/feeds/contacts/default/full').
+          with(
+            :query => {
+              'alt'         => "json",
+              'start-index' => 0,
+              'max-results' => 250,
+              'created-min' => '2015-02-03T00:00:00'
+            },
+            :headers => {
+              'Authorization' => "Bearer token",
+              'GData-Version' => '3.0'
+            }
+          )
+      end
+      it 'returns contacts' do
+        stub_created_contacts.
+          to_return(File.new("#{mock_base}/a_contact.txt"))
+
+        expect(api.created_contacts(
+          created_since: Time.new(2015, 2, 3, 0, 0, 0, 0)
+        ).first).to include('id' => '7f7b814a8c299763')
+      end
+      it 'returns empty' do
+        stub_created_contacts.
+          to_return(File.new("#{mock_base}/no_contacts.txt"))
+
+        expect(api.created_contacts(
+          created_since: Time.new(2015, 2, 3, 0, 0, 0, 0)
+        )).to be_empty
+      end
+    end
+    describe 'search' do
+      it 'returns contacts'
+      it 'returns empty'
+    end
     describe 'create'
     describe 'update'
     describe 'delete'

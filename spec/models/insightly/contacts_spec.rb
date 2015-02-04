@@ -146,7 +146,6 @@ describe Insightly do
             '$top'    => '250'
           })
       end
-
       it 'returns contacts' do
         stub_updated_contacts.
           to_return(File.new("#{mock_base}/a_contact.txt"))
@@ -174,6 +173,39 @@ describe Insightly do
         expect{api.updated_contacts(
           updated_since: Time.new(2014, 12, 19, 11, 16, 0, -5*3600)
         )}.to raise_error Exceptions::Unauthorized
+      end
+      it 'pages' do
+        stub_request(:get, 'https://letmein:@api.insight.ly/v2.1/Contacts').
+          with(:query => {
+            '$filter' => "DATE_UPDATED_UTC gt DateTime'2014-12-19T16:16:00'",
+            '$skip'   => '250',
+            '$top'    => '250'
+          }).
+          to_return(File.new("#{mock_base}/a_contact.txt"))
+
+        contacts = api.updated_contacts(
+          updated_since: Time.new(2014, 12, 19, 11, 16, 0, -5*3600),
+          page: 2
+        )
+
+        expect(contacts.first['CONTACT_ID']).to eq 94941790
+      end
+      it 'limits' do
+        stub_request(:get, 'https://letmein:@api.insight.ly/v2.1/Contacts').
+          with(:query => {
+            '$filter' => "DATE_UPDATED_UTC gt DateTime'2014-12-19T16:16:00'",
+            '$skip'   => '10',
+            '$top'    => '10'
+          }).
+          to_return(File.new("#{mock_base}/a_contact.txt"))
+
+        contacts = api.updated_contacts(
+          updated_since: Time.new(2014, 12, 19, 11, 16, 0, -5*3600),
+          page: 2,
+          limit: 10
+        )
+
+        expect(contacts.first['CONTACT_ID']).to eq 94941790
       end
     end
     describe 'read' do
