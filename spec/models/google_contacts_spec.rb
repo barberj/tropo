@@ -199,8 +199,50 @@ describe GoogleContacts do
       end
     end
     describe 'search' do
-      it 'returns contacts'
-      it 'returns empty'
+      let(:stub_search_contacts) do
+        stub_request(:get, 'https://www.google.com/m8/feeds/contacts/default/full').
+          with(
+            :query => {
+              'q'   => 'alice@barberfami.ly',
+              'alt' => "json",
+            },
+            :headers => {
+              'Authorization' => "Bearer token",
+              'GData-Version' => '3.0'
+            }
+          )
+      end
+      it 'returns empty' do
+        stub_search_contacts.
+          to_return(File.new("#{mock_base}/no_contacts.txt"))
+
+        expect(api.search_contacts(
+          work_emails: ['alice@barberfami.ly']
+        )).to be_empty
+      end
+      it 'returns contacts' do
+        stub_search_contacts.
+          to_return(File.new("#{mock_base}/a_contact.txt"))
+
+        expect(api.search_contacts(
+          work_emails: ['alice@barberfami.ly']
+        ).first).to include('id' => '7f7b814a8c299763')
+      end
+      it 'returns simplified contact info' do
+        stub_search_contacts.
+          to_return(File.new("#{mock_base}/a_contact.txt"))
+
+        contact = api.search_contacts(
+          home_emails: ['alice@barberfami.ly']
+        ).first
+
+        expect(contact).to include(
+          'title'       => 'Elizabeth Bennet',
+          'content'     => 'Notes',
+          'given_name'  => 'Elizabeth',
+          'family_name' => 'Bennet'
+        )
+      end
     end
     describe 'create'
     describe 'update'

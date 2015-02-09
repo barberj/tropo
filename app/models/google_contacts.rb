@@ -94,4 +94,9 @@ class GoogleContacts < Api
   def created_contacts(created_since: 1.week.ago, limit: 250, page: 1)
     request_page(page, limit, 'created-min' => created_since.utc.strftime('%FT%T'))
   end
+
+  def search_contacts(emails)
+    email_address = emails.values.first.first
+    request(:get, nil, query: { q: email_address })
+  end
 end

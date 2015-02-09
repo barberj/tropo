@@ -1,7 +1,7 @@
 module Encryption
   extend ActiveSupport::Concern
 
-  module ClassMethods
+  class_methods do
     def encrypting?
       @encryption ||= ancestors.find { |a| a.encryption if a < ActiveRecord::Base } || false
     end
@@ -18,7 +18,7 @@ module Encryption
       if !encrypting?
         encrypting!
         attr_encrypted(attribute_name,
-          key: proc { |record| "#{Tropo.secret}#{record.id}#{record.created_at.to_s}" },
+          key: ->(record) { "#{Tropo.secret}#{record.id}#{record.created_at.to_s}" },
           marshal: true
         )
 
@@ -64,5 +64,7 @@ private
       self.data = to_encrypt
       self.save
     end
+
+    self
   end
 end
