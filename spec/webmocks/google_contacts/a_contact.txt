@@ -101,7 +101,7 @@ Connection: close
       "gd$organization": 
        [{"rel": "http://schemas.google.com/g/2005#other",
          "gd$orgName": {"$t": "company"},
-         "gd$orgTitle": {"$t": "ttile"}}],
+         "gd$orgTitle": {"$t": "title"}}],
       "gd$email": 
        [{"address": "work",
          "primary": "true",

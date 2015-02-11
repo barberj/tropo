@@ -45,10 +45,14 @@ describe GoogleContacts do
 
         contact = api.read_contact(1).first
         expect(contact).to include(
-          'title'       => 'pre first middle last suff',
-          'content'     => 'note',
-          'given_name'  => 'first',
-          'family_name' => 'last'
+          'title'           => 'pre first middle last suff',
+          'content'         => 'note',
+          'given_name'      => 'first',
+          'family_name'     => 'last',
+          'additional_name' => 'middle',
+          'nickname'        => 'nickname',
+          'org_name'        => 'company',
+          'org_title'       => 'title'
         )
       end
       it 'returns simplified contact emails' do
@@ -158,10 +162,14 @@ describe GoogleContacts do
         ).first
 
         expect(contact).to include(
-          'title'       => 'pre first middle last suff',
-          'content'     => 'note',
-          'given_name'  => 'first',
-          'family_name' => 'last'
+          'title'           => 'pre first middle last suff',
+          'content'         => 'note',
+          'given_name'      => 'first',
+          'family_name'     => 'last',
+          'additional_name' => 'middle',
+          'nickname'        => 'nickname',
+          'org_name'        => 'company',
+          'org_title'       => 'title'
         )
       end
     end

@@ -22,12 +22,18 @@ class GoogleContacts < Api
         contact['id'] = entry['id']['$t'].split('/').last
         contact['title'] = Dpaths.dselect(entry, '/title/$t/*')
         contact['content'] = Dpaths.dselect(entry, '/content/$t/*')
-        contact['given_name'] = Dpaths.dselect(entry, '/gd$name/gd$givenName/$t/*')
-        contact['family_name'] = Dpaths.dselect(entry, '/gd$name/gd$familyName/$t/*')
-        contact['full_name'] = Dpaths.dselect(entry, '/gd$name/gd$fullName/$t/*')
-        contact['name_prefix'] = Dpaths.dselect(entry, '/gd$name/gd$namePrefix/$t/*')
-        contact['name_suffix'] = Dpaths.dselect(entry, '/gd$name/gd$nameSuffix/$t/*')
-        contact['nickname'] = Dpaths.dselect(entry, '/gd$name/gd$additionalName/$t/*')
+
+        (entry['gd$name'] || {}).each do |field, value_pack|
+          contact[field[3..-1].underscore] = value_pack['$t']
+        end
+
+        contact['nickname'] = Dpaths.dselect(entry, '/gContact$nickname/$t/*')
+
+        Array.wrap(entry['gd$organization']).each do |org|
+          (org || {}).each do |field, value_pack|
+            contact[field[3..-1].underscore] = value_pack['$t']
+          end
+        end
 
         Array.wrap(entry['gd$email']).each do |email|
           type = email['rel'].present? ? email['rel'].split('#').last : email['label']
