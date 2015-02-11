@@ -189,7 +189,7 @@ class Insightly < Api
     end
   end
 
-  def delete_contact(id)
-    request(:delete, "Contacts/#{id}")
+  def delete_contact(identifier)
+    request(:delete, "Contacts/#{identifier}")
   end
 end

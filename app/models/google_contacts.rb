@@ -67,6 +67,8 @@ class GoogleContacts < Api
 
     if rsp.code.in? [200]
       simplify_contact(rsp['feed']['entry'])
+    else
+      raise Exceptions::ApiError.new(rsp['error']['message'])
     end
   end
 
@@ -98,5 +100,9 @@ class GoogleContacts < Api
   def search_contacts(emails)
     email_address = emails.values.first.first
     request(:get, nil, query: { q: email_address })
+  end
+
+  def delete_contact(identifier)
+    request(:delete, identifier, headers: { 'If-Match' => '*' })
   end
 end

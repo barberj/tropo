@@ -246,6 +246,41 @@ describe GoogleContacts do
     end
     describe 'create'
     describe 'update'
-    describe 'delete'
+    describe 'delete' do
+      let(:stub_delete_contact) do
+        stub_request(:delete, 'https://www.google.com/m8/feeds/contacts/default/full/12345').
+          with(
+            :query => {
+              'alt' => "json",
+            },
+            :headers => {
+              'Authorization' => "Bearer token",
+              'GData-Version' => '3.0',
+              'If-Match'      => '*'
+            }
+          )
+      end
+      it 'returns accepted' do
+        stub_delete_contact.
+          to_return(File.new("#{mock_base}/a_contact.txt"))
+
+        expect(api.delete_contact(12345).first).
+          to include('id' => '7f7b814a8c299763')
+      end
+      it 'raises ApiError' do
+        stub_delete_contact.
+          to_return(File.new("#{mock_base}/not_found.txt"))
+
+        expect{api.delete_contact(12345)}.
+          to raise_error Exceptions::ApiError
+      end
+      it 'returns api message' do
+        stub_delete_contact.
+          to_return(File.new("#{mock_base}/not_found.txt"))
+
+        expect{api.delete_contact(12345)}.
+          to raise_error(/Contact not found/)
+      end
+    end
   end
 end
