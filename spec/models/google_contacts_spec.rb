@@ -29,9 +29,9 @@ describe GoogleContacts do
       end
       it 'returns contact' do
         stub_read_contact.
-          to_return(File.new("#{mock_base}/a_contact.txt"))
+          to_return(File.new("#{mock_base}/contact.txt"))
 
-        expect(api.read_contact(1).first).to include('id' => '7f7b814a8c299763')
+        expect(api.read_contact(1).first).to include('id' => '30b75c0e8a26b6b7')
       end
       it 'returns empty' do
         stub_read_contact.
@@ -45,10 +45,10 @@ describe GoogleContacts do
 
         contact = api.read_contact(1).first
         expect(contact).to include(
-          'title'       => 'Elizabeth Bennet',
-          'content'     => 'Notes',
-          'given_name'  => 'Elizabeth',
-          'family_name' => 'Bennet'
+          'title'       => 'pre first middle last suff',
+          'content'     => 'note',
+          'given_name'  => 'first',
+          'family_name' => 'last'
         )
       end
       it 'returns simplified contact emails' do
@@ -56,8 +56,8 @@ describe GoogleContacts do
           to_return(File.new("#{mock_base}/a_contact.txt"))
 
         contact = api.read_contact(1).first
-        expect(contact['work_emails']).to eq(['liz@gmail.com'])
-        expect(contact['home_emails']).to eq(['liz@example.org'])
+        expect(contact['work_emails']).to eq(['work'])
+        expect(contact['home_emails']).to eq(['home'])
       end
       it 'returns simplified address' do
         stub_read_contact.
@@ -66,11 +66,11 @@ describe GoogleContacts do
         contact = api.read_contact(1).first
         expect(contact['work_addresses'].count).to eq(1)
         expect(contact['work_addresses'].first).to include(
-          'street'   => '1600 Amphitheatre Pkwy',
-          'city'     => 'Mountain View',
-          'region'   => 'CA',
-          'postcode' => '94043',
-          'country'  => 'United States'
+          'street'   => 'street',
+          'city'     => 'city',
+          'region'   => 'state',
+          'postcode' => 'zip',
+          'country'  => 'country'
         )
       end
     end
@@ -96,7 +96,7 @@ describe GoogleContacts do
 
         expect(api.updated_contacts(
           updated_since: Time.new(2015, 2, 3, 0, 0, 0, 0)
-        ).first).to include('id' => '7f7b814a8c299763')
+        ).first).to include('id' => '30b75c0e8a26b6b7')
       end
       it 'returns empty' do
         stub_updated_contacts.
@@ -125,7 +125,7 @@ describe GoogleContacts do
         expect(api.updated_contacts(
           updated_since: Time.new(2015, 2, 3, 0, 0, 0, 0),
           page: 2
-        ).first).to include('id' => '7f7b814a8c299763')
+        ).first).to include('id' => '30b75c0e8a26b6b7')
       end
       it 'limits' do
         stub_request(:get, 'https://www.google.com/m8/feeds/contacts/default/full').
@@ -147,7 +147,7 @@ describe GoogleContacts do
           updated_since: Time.new(2015, 2, 3, 0, 0, 0, 0),
           page: 2,
           limit: 10
-        ).first).to include('id' => '7f7b814a8c299763')
+        ).first).to include('id' => '30b75c0e8a26b6b7')
       end
       it 'returns simplified contact info' do
         stub_updated_contacts.
@@ -158,10 +158,10 @@ describe GoogleContacts do
         ).first
 
         expect(contact).to include(
-          'title'       => 'Elizabeth Bennet',
-          'content'     => 'Notes',
-          'given_name'  => 'Elizabeth',
-          'family_name' => 'Bennet'
+          'title'       => 'pre first middle last suff',
+          'content'     => 'note',
+          'given_name'  => 'first',
+          'family_name' => 'last'
         )
       end
     end
@@ -187,7 +187,7 @@ describe GoogleContacts do
 
         expect(api.created_contacts(
           created_since: Time.new(2015, 2, 3, 0, 0, 0, 0)
-        ).first).to include('id' => '7f7b814a8c299763')
+        ).first).to include('id' => '30b75c0e8a26b6b7')
       end
       it 'returns empty' do
         stub_created_contacts.
@@ -226,7 +226,7 @@ describe GoogleContacts do
 
         expect(api.search_contacts(
           work_emails: ['alice@barberfami.ly']
-        ).first).to include('id' => '7f7b814a8c299763')
+        ).first).to include('id' => '30b75c0e8a26b6b7')
       end
       it 'returns simplified contact info' do
         stub_search_contacts.
@@ -237,14 +237,19 @@ describe GoogleContacts do
         ).first
 
         expect(contact).to include(
-          'title'       => 'Elizabeth Bennet',
-          'content'     => 'Notes',
-          'given_name'  => 'Elizabeth',
-          'family_name' => 'Bennet'
+          'title'       => 'pre first middle last suff',
+          'content'     => 'note',
+          'given_name'  => 'first',
+          'family_name' => 'last'
         )
       end
     end
-    describe 'create'
+    describe 'create' do
+      it 'returns contact' do
+        contact = api.create_contact('given_name' => 'Justin').first
+        expect(contact['id']).to eq('50455d538eae9940')
+      end
+    end
     describe 'update'
     describe 'delete' do
       let(:stub_delete_contact) do
@@ -265,7 +270,7 @@ describe GoogleContacts do
           to_return(File.new("#{mock_base}/a_contact.txt"))
 
         expect(api.delete_contact(12345).first).
-          to include('id' => '7f7b814a8c299763')
+          to include('id' => '30b75c0e8a26b6b7')
       end
       it 'raises ApiError' do
         stub_delete_contact.

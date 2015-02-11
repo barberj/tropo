@@ -25,14 +25,17 @@ class GoogleContacts < Api
         contact['given_name'] = Dpaths.dselect(entry, '/gd$name/gd$givenName/$t/*')
         contact['family_name'] = Dpaths.dselect(entry, '/gd$name/gd$familyName/$t/*')
         contact['full_name'] = Dpaths.dselect(entry, '/gd$name/gd$fullName/$t/*')
+        contact['name_prefix'] = Dpaths.dselect(entry, '/gd$name/gd$namePrefix/$t/*')
+        contact['name_suffix'] = Dpaths.dselect(entry, '/gd$name/gd$nameSuffix/$t/*')
+        contact['nickname'] = Dpaths.dselect(entry, '/gd$name/gd$additionalName/$t/*')
 
         Array.wrap(entry['gd$email']).each do |email|
-          type = email['rel'].split('#').last
+          type = email['rel'].present? ? email['rel'].split('#').last : email['label']
           (contact["#{type}_emails"] ||= []) << email['address']
         end
 
         Array.wrap(entry['gd$im']).each do |im|
-          type = im['rel'].split('#').last
+          type = im['rel'].present? ? im['rel'].split('#').last : im['label']
           (contact["#{type}_ims"] ||= []) << im['address']
         end
 
@@ -66,7 +69,7 @@ class GoogleContacts < Api
     )
 
     if rsp.code.in? [200]
-      simplify_contact(rsp['feed']['entry'])
+      simplify_contact(rsp['feed'] ? rsp['feed']['entry'] : rsp['entry'])
     else
       raise Exceptions::ApiError.new(rsp['error']['message'])
     end
@@ -104,5 +107,34 @@ class GoogleContacts < Api
 
   def delete_contact(identifier)
     request(:delete, identifier, headers: { 'If-Match' => '*' })
+  end
+
+  def create_contact(data)
+    xml = format_contact(data)
+  end
+
+  NAME_FIELDS = ['given_name', 'family_name', 'full_name']
+  def gd_name(data)
+    name_xml = ""
+    (data.keys & NAME_FIELDS).each do |field|
+      gd_field = field.camelcase(:lower)
+      name_xml << "<gd:#{gd_field}>#{data[field]}</gd:#{gd_field}>"
+    end
+    "<gd:name>#{name_xml}</gd:name>"
+  end
+
+  def gd_emails(data)
+  end
+
+  def format_contact(data)
+"<atom:entry xmlns:atom='http://www.w3.org/2005/Atom' xmlns:gd='http://schemas.google.com/g/2005'>
+  <atom:category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/contact/2008#contact' />
+  #{gd_name(data)}
+  #{gd_content(data)}
+  #{gd_emails(data)}
+  #{gd_phone_nubmers(data)}
+  #{gd_im(data)}
+  #{gd_addresses(data)}
+</atom:entry>"
   end
 end
